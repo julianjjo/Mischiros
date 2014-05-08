@@ -1,0 +1,3 @@
+mischiros_tienda_homepage:
+    pattern:  /
+    defaults: { _controller: MischirosTiendaBundle:Default:index }
