@@ -38,7 +38,12 @@
         "jquery/jquery":  "1.10.*",
         "knplabs/knp-paginator-bundle": "dev-master",
         "knplabs/knp-menu-bundle":"dev-master",
-        "knplabs/knp-menu": "2.0.*@dev"
+        "knplabs/knp-menu": "2.0.*@dev",
+        "sonata-project/admin-bundle": "dev-master",
+        "sonata-project/doctrine-orm-admin-bundle": "dev-master",
+        "sonata-project/block-bundle": "dev-master",
+        "sonata-project/jquery-bundle": "dev-master",
+        "sonata-project/media-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
