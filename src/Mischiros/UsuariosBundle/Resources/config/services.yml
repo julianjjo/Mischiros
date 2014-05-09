@@ -1,7 +1,0 @@
-parameters:
-#    mischiros_usuarios.example.class: Mischiros\UsuariosBundle\Example
-
-services:
-#    mischiros_usuarios.example:
-#        class: %mischiros_usuarios.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]

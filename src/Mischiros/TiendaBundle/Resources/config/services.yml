@@ -5,3 +5,8 @@ services:
 #    mischiros_tienda.example:
 #        class: %mischiros_tienda.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
+    mischiros_tienda.admin.tipo:
+        class: Mischiros\TiendaBundle\Admin\TipoAdmin
+        arguments: [~, Mischiros\TiendaBundle\Entity\Tipo, MischirosTiendaBundle:TipoAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: Tipo}
