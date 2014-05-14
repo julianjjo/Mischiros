@@ -1,35 +1,35 @@
 Symfony Standard Edition
 ========================
 
-Welcome to the Symfony Standard Edition - a fully-functional Symfony2
-application that you can use as the skeleton for your new applications.
+Bienvenido al Symfony Standard Edition - una Symfony2 totalmente funcional
+aplicación que se puede utilizar como el esqueleto para sus nuevas aplicaciones.
 
-This document contains information on how to download, install, and start
-using Symfony. For a more detailed explanation, see the [Installation][1]
-chapter of the Symfony Documentation.
+Este documento contiene información sobre cómo descargar , instalar y empezar a
+usando Symfony . Para una explicación más detallada, [Installation][1]
+capítulo de la documentación de Symfony.
 
-1) Installing the Standard Edition
+1) Instalación de la Standard Edition
 ----------------------------------
 
-When it comes to installing the Symfony Standard Edition, you have the
-following options.
+Cuando se trata de la instalación de la edición estándar de Symfony , usted tiene la
+siguientes opciones.
 
-### Use Composer (*recommended*)
+### Use Composer (*recomendado*)
 
-As Symfony uses [Composer][2] to manage its dependencies, the recommended way
-to create a new project is to use it.
+Como utiliza Symfony [Composer][2] para la gestión de sus dependencias, la forma recomendada
+para crear un nuevo proyecto es utilizarlo.
 
-If you don't have Composer yet, download it following the instructions on
-http://getcomposer.org/ or just run the following command:
+Si usted no tiene aún Composer , descargar siguiendo las instrucciones de
+http://getcomposer.org/ o simplemente ejecutar el siguiente comando:
 
     curl -s http://getcomposer.org/installer | php
 
-Then, use the `create-project` command to generate a new Symfony application:
+A continuación, utilice el comando `create -project ` para generar una nueva aplicación de Symfony :
 
     php composer.phar create-project symfony/framework-standard-edition path/to/install
 
-Composer will install Symfony and all its dependencies under the
-`path/to/install` directory.
+Composer  instalará Symfony y todas sus dependencias en el marco del
+'path/to/instal' directorio.
 
 ### Download an Archive File
 
