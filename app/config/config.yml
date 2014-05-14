@@ -87,6 +87,17 @@ fos_user:
     service:
         user_manager: sonata.user.orm.user_manager                      # If you're using doctrine orm (use sonata.user.mongodb.group_manager for mongodb)
 
+knp_paginator:
+    page_range: 5                      # default page range used in pagination control
+    default_options:
+        page_name: page                # page query parameter name
+        sort_field_name: sort          # sort field query parameter name
+        sort_direction_name: direction # sort direction query parameter name
+        distinct: true                 # ensure distinct results, useful when ORM queries are using GROUP BY statements
+    template:
+        pagination: KnpPaginatorBundle:Pagination:sliding.html.twig     # sliding pagination controls template
+        sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
+
 knp_menu:
     twig:  # use "twig: false" to disable the Twig extension and the TwigRenderer
         template: knp_menu.html.twig
@@ -190,6 +201,9 @@ sonata_media:
     db_driver: doctrine_orm # or doctrine_mongodb, doctrine_phpcr
     contexts:
         default:  # the default context is mandatory
+            download:
+                 strategy: sonata.media.security.superadmin_strategy
+
             providers:
                 - sonata.media.provider.dailymotion
                 - sonata.media.provider.youtube
@@ -197,8 +211,19 @@ sonata_media:
                 - sonata.media.provider.file
 
             formats:
-                small: { width: 100 , quality: 70}
-                big:   { width: 500 , quality: 70}
+                small: { width: 100 , quality: 100}
+                big:   { width: 700 , quality: 100}
+
+        prenda:
+            download:
+                 strategy: sonata.media.security.public_strategy
+
+            providers:
+                - sonata.media.provider.image
+
+            formats:
+                small: { width: 100 , quality: 100}
+                big:   { width: 700 , quality: 100}
 
     cdn:
         server:

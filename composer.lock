@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "260f21d212e9eedb00686bc03a3b4e1d",
+    "hash": "30942a24a3471c4d0cbddb74bd8e133b",
     "packages": [
         {
             "name": "braincrafted/bootstrap-bundle",
@@ -1307,6 +1307,67 @@
             "time": "2014-02-24 18:17:33"
         },
         {
+            "name": "knplabs/knp-components",
+            "version": "1.2.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/KnpLabs/knp-components.git",
+                "reference": "8803fdaa18bd24bd158143e3d9099f4b243a31dd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/KnpLabs/knp-components/zipball/8803fdaa18bd24bd158143e3d9099f4b243a31dd",
+                "reference": "8803fdaa18bd24bd158143e3d9099f4b243a31dd",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "suggest": {
+                "doctrine/common": "to allow usage pagination with Doctrine ArrayCollection",
+                "doctrine/mongodb-odm": "to allow usage pagination with Doctrine ODM MongoDB",
+                "doctrine/orm": "to allow usage pagination with Doctrine ORM",
+                "propel/propel1": "to allow usage pagination with Propel ORM",
+                "ruflin/Elastica": "to allow usage pagination with ElasticSearch Client",
+                "solarium/solarium": "to allow usage pagination with Solarium Client"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Knp\\Component": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "KnpLabs Team",
+                    "homepage": "http://knplabs.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://github.com/KnpLabs/knp-components/contributors"
+                }
+            ],
+            "description": "Knplabs component library",
+            "homepage": "http://github.com/KnpLabs/knp-components",
+            "keywords": [
+                "components",
+                "knp",
+                "knplabs",
+                "pager",
+                "paginator"
+            ],
+            "time": "2014-01-09 16:23:31"
+        },
+        {
             "name": "knplabs/knp-menu",
             "version": "v1.1.2",
             "source": {
@@ -1418,6 +1479,65 @@
                 "menu"
             ],
             "time": "2013-05-25 10:20:03"
+        },
+        {
+            "name": "knplabs/knp-paginator-bundle",
+            "version": "dev-master",
+            "target-dir": "Knp/Bundle/PaginatorBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/KnpLabs/KnpPaginatorBundle.git",
+                "reference": "8067a1b46260c619ae8f3ffa3c32a612ff04924c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/KnpLabs/KnpPaginatorBundle/zipball/8067a1b46260c619ae8f3ffa3c32a612ff04924c",
+                "reference": "8067a1b46260c619ae8f3ffa3c32a612ff04924c",
+                "shasum": ""
+            },
+            "require": {
+                "knplabs/knp-components": "~1.2",
+                "php": ">=5.3.3",
+                "symfony/framework-bundle": "~2.0",
+                "twig/twig": "~1.5"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Knp\\Bundle\\PaginatorBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "KnpLabs Team",
+                    "homepage": "http://knplabs.com"
+                },
+                {
+                    "name": "Symfony2 Community",
+                    "homepage": "http://github.com/KnpLabs/KnpPaginatorBundle/contributors"
+                }
+            ],
+            "description": "Paginator bundle for Symfony2 to automate pagination and simplify sorting and other features",
+            "homepage": "http://github.com/KnpLabs/KnpPaginatorBundle",
+            "keywords": [
+                "Symfony2",
+                "bundle",
+                "knp",
+                "knplabs",
+                "pager",
+                "pagination",
+                "paginator"
+            ],
+            "time": "2014-05-13 07:26:35"
         },
         {
             "name": "kriswallsmith/assetic",
@@ -2030,12 +2150,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataAdminBundle.git",
-                "reference": "d89d9dc1447f2e0eaac14e89558a4738385c4099"
+                "reference": "26ecdeedf85d370408564f2c48cd3bb428030aed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/d89d9dc1447f2e0eaac14e89558a4738385c4099",
-                "reference": "d89d9dc1447f2e0eaac14e89558a4738385c4099",
+                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/26ecdeedf85d370408564f2c48cd3bb428030aed",
+                "reference": "26ecdeedf85d370408564f2c48cd3bb428030aed",
                 "shasum": ""
             },
             "require": {
@@ -2101,7 +2221,7 @@
                 "bootstrap",
                 "sonata"
             ],
-            "time": "2014-05-07 08:41:34"
+            "time": "2014-05-13 12:38:31"
         },
         {
             "name": "sonata-project/block-bundle",
@@ -2169,22 +2289,22 @@
         },
         {
             "name": "sonata-project/cache",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/cache.git",
-                "reference": "3bd8c266c6184ebcf82846d659292e9680b979eb"
+                "reference": "7c91e7fd1ca5be4273b09388650709bff31d8966"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/cache/zipball/3bd8c266c6184ebcf82846d659292e9680b979eb",
-                "reference": "3bd8c266c6184ebcf82846d659292e9680b979eb",
+                "url": "https://api.github.com/repos/sonata-project/cache/zipball/7c91e7fd1ca5be4273b09388650709bff31d8966",
+                "reference": "7c91e7fd1ca5be4273b09388650709bff31d8966",
                 "shasum": ""
             },
             "require-dev": {
                 "doctrine/orm": "~2.2",
                 "doctrine/phpcr-odm": "~1.0",
-                "predis/predis": "~0.8",
+                "predis/predis": "~0.8,<1.0",
                 "psr/log": "~1.0"
             },
             "suggest": {
@@ -2225,7 +2345,7 @@
                 "mongodb",
                 "redis"
             ],
-            "time": "2014-02-13 15:12:33"
+            "time": "2014-05-12 08:55:48"
         },
         {
             "name": "sonata-project/core-bundle",
@@ -2392,12 +2512,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataDoctrineORMAdminBundle.git",
-                "reference": "f35952c3e58e6cb50e2a773c3681859bf2469a07"
+                "reference": "79e04f7bdea76a8bdd3253e0645c2dd12276eef4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/f35952c3e58e6cb50e2a773c3681859bf2469a07",
-                "reference": "f35952c3e58e6cb50e2a773c3681859bf2469a07",
+                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/79e04f7bdea76a8bdd3253e0645c2dd12276eef4",
+                "reference": "79e04f7bdea76a8bdd3253e0645c2dd12276eef4",
                 "shasum": ""
             },
             "require": {
@@ -2410,9 +2530,11 @@
                 "symfony/framework-bundle": "~2.2",
                 "symfony/security": "~2.3"
             },
+            "provide": {
+                "sonata-project/admin-bundle-persistency-layer": "1.0.0"
+            },
             "require-dev": {
-                "simplethings/entity-audit-bundle": "~0.1",
-                "sonata-project/admin-bundle": "~2.3@dev"
+                "simplethings/entity-audit-bundle": "~0.1"
             },
             "suggest": {
                 "simplethings/entity-audit-bundle": "If you want to support for versioning of entities and their associations."
@@ -2452,7 +2574,7 @@
                 "generator",
                 "sonata"
             ],
-            "time": "2014-04-29 11:25:21"
+            "time": "2014-05-13 14:08:28"
         },
         {
             "name": "sonata-project/easy-extends-bundle",
@@ -2829,12 +2951,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataUserBundle.git",
-                "reference": "086173fd698d6bf2bc85d113f5551871d93d40aa"
+                "reference": "fd2aa9a397872424a0084b12769336f9f066bd36"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataUserBundle/zipball/086173fd698d6bf2bc85d113f5551871d93d40aa",
-                "reference": "086173fd698d6bf2bc85d113f5551871d93d40aa",
+                "url": "https://api.github.com/repos/sonata-project/SonataUserBundle/zipball/fd2aa9a397872424a0084b12769336f9f066bd36",
+                "reference": "fd2aa9a397872424a0084b12769336f9f066bd36",
                 "shasum": ""
             },
             "require": {
@@ -2893,7 +3015,7 @@
                 "sonata",
                 "user"
             ],
-            "time": "2014-05-02 13:49:49"
+            "time": "2014-05-12 13:04:48"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -3299,12 +3421,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "48fd9e29a24ae7fd8d8061e62a099c6097c41f18"
+                "reference": "828a5baa00093b5fd9ddcb83251775d2b4f40092"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/48fd9e29a24ae7fd8d8061e62a099c6097c41f18",
-                "reference": "48fd9e29a24ae7fd8d8061e62a099c6097c41f18",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/828a5baa00093b5fd9ddcb83251775d2b4f40092",
+                "reference": "828a5baa00093b5fd9ddcb83251775d2b4f40092",
                 "shasum": ""
             },
             "type": "library",
@@ -3339,7 +3461,7 @@
                 "responsive",
                 "web"
             ],
-            "time": "2014-05-09 00:20:36"
+            "time": "2014-05-13 09:08:25"
         },
         {
             "name": "twig/extensions",
@@ -3552,7 +3674,8 @@
         "sonata-project/datagrid-bundle": 20,
         "sonata-project/core-bundle": 20,
         "sonata-project/jquery-bundle": 20,
-        "twbs/bootstrap": 20
+        "twbs/bootstrap": 20,
+        "knplabs/knp-paginator-bundle": 20
     },
     "platform": {
         "php": ">=5.3.3"

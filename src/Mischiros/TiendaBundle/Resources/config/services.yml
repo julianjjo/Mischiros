@@ -9,4 +9,48 @@ services:
         class: Mischiros\TiendaBundle\Admin\TipoAdmin
         arguments: [~, Mischiros\TiendaBundle\Entity\Tipo, MischirosTiendaBundle:TipoAdmin]
         tags:
-            - {name: sonata.admin, manager_type: orm, group: admin, label: Tipo}
+            - {name: sonata.admin, manager_type: orm, group: Administrador, label: Tipo}
+
+    mischiros_tienda.admin.talla:
+        class: Mischiros\TiendaBundle\Admin\TallaAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Administrador, label: "Talla" }
+        arguments:
+            - ~
+            - Mischiros\TiendaBundle\Entity\Talla
+            - ~
+        calls:
+            - [ setTranslationDomain, [MischirosTiendaBundle]]
+
+    mischiros_tienda.admin.medida:
+        class: Mischiros\TiendaBundle\Admin\MedidaAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Administrador, label: "Medida" }
+        arguments:
+            - ~
+            - Mischiros\TiendaBundle\Entity\Medida
+            - ~
+        calls:
+            - [ setTranslationDomain, [MischirosTiendaBundle]]
+
+    mischiros_tienda.admin.prenda:
+        class: Mischiros\TiendaBundle\Admin\PrendaAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Administrador, label: "Prenda" }
+        arguments:
+            - ~
+            - Mischiros\TiendaBundle\Entity\Prenda
+            - ~
+        calls:
+            - [ setTranslationDomain, [MischirosTiendaBundle]]
+
+    mischiros_tienda.admin.ingreso:
+        class: Mischiros\TiendaBundle\Admin\IngresoAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Administrador, label: "Ingreso" }
+        arguments:
+            - ~
+            - Mischiros\TiendaBundle\Entity\Ingreso
+            - ~
+        calls:
+            - [ setTranslationDomain, [MischirosTiendaBundle]]

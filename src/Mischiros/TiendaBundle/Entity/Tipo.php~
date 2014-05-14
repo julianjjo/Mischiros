@@ -3,6 +3,7 @@
 namespace Mischiros\TiendaBundle\Entity;
  
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
  
 /**
  * @ORM\Entity
@@ -31,6 +32,29 @@ class Tipo
      * @ORM\Column(type="string", length=20)
      */
     protected $color;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Medida", mappedBy="tipo")
+     **/
+    private $medidas;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Prenda", mappedBy="tipo")
+     **/
+    private $prendas;
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->medidas = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->prendas = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->descripcion;
+    }
 
     /**
      * Get id
@@ -109,5 +133,71 @@ class Tipo
     public function getColor()
     {
         return $this->color;
+    }
+
+    /**
+     * Add medidas
+     *
+     * @param \Mischiros\TiendaBundle\Entity\Medida $medidas
+     * @return Tipo
+     */
+    public function addMedida(\Mischiros\TiendaBundle\Entity\Medida $medidas)
+    {
+        $this->medidas[] = $medidas;
+
+        return $this;
+    }
+
+    /**
+     * Remove medidas
+     *
+     * @param \Mischiros\TiendaBundle\Entity\Medida $medidas
+     */
+    public function removeMedida(\Mischiros\TiendaBundle\Entity\Medida $medidas)
+    {
+        $this->medidas->removeElement($medidas);
+    }
+
+    /**
+     * Get medidas
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMedidas()
+    {
+        return $this->medidas;
+    }
+
+    /**
+     * Add prendas
+     *
+     * @param \Mischiros\TiendaBundle\Entity\Prenda $prendas
+     * @return Tipo
+     */
+    public function addPrenda(\Mischiros\TiendaBundle\Entity\Prenda $prendas)
+    {
+        $this->prendas[] = $prendas;
+
+        return $this;
+    }
+
+    /**
+     * Remove prendas
+     *
+     * @param \Mischiros\TiendaBundle\Entity\Prenda $prendas
+     */
+    public function removePrenda(\Mischiros\TiendaBundle\Entity\Prenda $prendas)
+    {
+        $this->prendas->removeElement($prendas);
+    }
+
+    /**
+     * Get prendas
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPrendas()
+    {
+        return $this->prendas;
     }
 }

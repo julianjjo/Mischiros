@@ -6,5 +6,5 @@ use Sonata\AdminBundle\Controller\CRUDController;
 
 class TipoAdminController extends CRUDController
 {
-
+	
 }

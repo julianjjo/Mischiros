@@ -20,6 +20,7 @@ class TipoAdmin extends Admin
             ->add('referencia')
             ->add('descripcion')
             ->add('color')
+           
         ;
     }
 
@@ -32,7 +33,7 @@ class TipoAdmin extends Admin
             ->add('id')
             ->add('referencia')
             ->add('descripcion')
-            ->add('color')
+            ->add('color')  
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
@@ -51,7 +52,7 @@ class TipoAdmin extends Admin
         $formMapper
             ->add('referencia')
             ->add('descripcion')
-            ->add('color')
+            ->add('color')  
         ;
     }
 

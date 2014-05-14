@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block titulo %}Comprar{% endblock %}
+
+{% block contenido %}
+	{% if prendas is defined %}
+		{% for prenda in prendas %}
+			{% media prenda.media, 'small' %}			
+			<p>Precio: {{ prenda.precioVenta }}</p>
+			<p>Descripción: {{ prenda.tipo.descripcion }}</p>
+			<br>
+		{% endfor %}
+	{% else %}
+		<p>error</p>
+	{% endif %}
+{% endblock %}
