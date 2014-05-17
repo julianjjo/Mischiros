@@ -6,23 +6,20 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class RopaController extends Controller
 {
-    public function comprarAction()
+    public function ListarAction()
     {
     	$em = $this->get('doctrine')->getManager();
+        
+    	$consulta = $em->createQuery('SELECT p , t , i FROM MischirosTiendaBundle:Prenda p JOIN p.tipo t JOIN p.media i');
 
-    	$consulta = $em->createQuery(
-			    'SELECT p , t , i
-			       FROM MischirosTiendaBundle:Prenda p JOIN p.tipo t JOIN p.media i 
-			   ORDER BY p.precio_venta ASC'
-			);
+        $paginador  = $this->get('knp_paginator');
 
-		$prendas = $consulta->getResult();
+        $prendas = $paginador->paginate(
+            $consulta,
+            $this->get('request')->query->get('page', 1)/*numero de pagina*/,
+            9/*limite por pagina*/
+        );
 
-    	$repository = $this->getDoctrine()
-    		->getRepository('Application\Sonata\MediaBundle\Entity\Media');
-
-    	$imagenes = $repository->findAll();
-
-        return $this->render('MischirosTiendaBundle:Ropa:comprar.html.twig',array('prendas' => $prendas, 'imagenes' => $imagenes));
+        return $this->render('MischirosTiendaBundle:Ropa:comprar.html.twig',array('prendas' => $prendas));
     }
 }

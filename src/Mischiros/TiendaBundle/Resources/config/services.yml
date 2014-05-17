@@ -9,12 +9,12 @@ services:
         class: Mischiros\TiendaBundle\Admin\TipoAdmin
         arguments: [~, Mischiros\TiendaBundle\Entity\Tipo, MischirosTiendaBundle:TipoAdmin]
         tags:
-            - {name: sonata.admin, manager_type: orm, group: Administrador, label: Tipo}
+            - {name: sonata.admin, manager_type: orm, group: Tienda, label: Tipo}
 
     mischiros_tienda.admin.talla:
         class: Mischiros\TiendaBundle\Admin\TallaAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Administrador, label: "Talla" }
+            - { name: sonata.admin, manager_type: orm, group: Tienda, label: "Talla" }
         arguments:
             - ~
             - Mischiros\TiendaBundle\Entity\Talla
@@ -25,7 +25,7 @@ services:
     mischiros_tienda.admin.medida:
         class: Mischiros\TiendaBundle\Admin\MedidaAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Administrador, label: "Medida" }
+            - { name: sonata.admin, manager_type: orm, group: Tienda, label: "Medida" }
         arguments:
             - ~
             - Mischiros\TiendaBundle\Entity\Medida
@@ -36,7 +36,7 @@ services:
     mischiros_tienda.admin.prenda:
         class: Mischiros\TiendaBundle\Admin\PrendaAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Administrador, label: "Prenda" }
+            - { name: sonata.admin, manager_type: orm, group: Tienda, label: "Prenda" }
         arguments:
             - ~
             - Mischiros\TiendaBundle\Entity\Prenda
@@ -47,7 +47,7 @@ services:
     mischiros_tienda.admin.ingreso:
         class: Mischiros\TiendaBundle\Admin\IngresoAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Administrador, label: "Ingreso" }
+            - { name: sonata.admin, manager_type: orm, group: Tienda, label: "Ingreso" }
         arguments:
             - ~
             - Mischiros\TiendaBundle\Entity\Ingreso

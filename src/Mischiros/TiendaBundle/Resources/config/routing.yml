@@ -2,6 +2,6 @@ mischiros_tienda_homepage:
     pattern:  /
     defaults: { _controller: MischirosTiendaBundle:Default:home }
 
-mischiros_tienda_comprarpage:
-    pattern:  /comprar
-    defaults: { _controller: MischirosTiendaBundle:Ropa:comprar }
+mischiros_tienda_comprarlistar:
+    pattern:  /comprar/listar
+    defaults: { _controller: MischirosTiendaBundle:Ropa:Listar }

@@ -1,1 +1,6 @@
 body { padding-top: 70px; }
+.menuprendas{
+	border-width: 2px;
+    border-color: red;
+    border-style: solid;
+}

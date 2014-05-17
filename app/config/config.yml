@@ -74,6 +74,39 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
+security:
+    access_control:
+        # URL of FOSUserBundle which need to be available to anonymous users
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+
+        # Admin login page needs to be access without credential
+        - { path: ^/admin/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/logout$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/login_check$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+
+        # Secured part of the site
+        # This config requires being logged for the whole site and having the admin role for the admin part.
+        # Change these rules to adapt them to your needs
+        - { path: ^/admin/, role: [ROLE_ADMIN, ROLE_SONATA_ADMIN] }
+        - { path: ^/.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
+
+braincrafted_bootstrap:
+    output_dir:
+    assets_dir: %kernel.root_dir%/../vendor/twbs/bootstrap
+    jquery_path: %kernel.root_dir%/../vendor/jquery/jquery/jquery-1.10.2.js
+    less_filter: less # "less", "lessphp" or "none"
+    auto_configure:
+        assetic: true
+        twig: true
+        knp_menu: true
+        knp_paginator: true
+    customize:
+        variables_file: ~
+        bootstrap_output: %kernel.root_dir%/Resources/less/bootstrap.less
+        bootstrap_template: BraincraftedBootstrapBundle:Bootstrap:bootstrap.less.twig
+
 fos_user:
     db_driver:      orm # can be orm or odm
     firewall_name:  main
@@ -95,12 +128,9 @@ knp_paginator:
         sort_direction_name: direction # sort direction query parameter name
         distinct: true                 # ensure distinct results, useful when ORM queries are using GROUP BY statements
     template:
-        pagination: KnpPaginatorBundle:Pagination:sliding.html.twig     # sliding pagination controls template
         sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
 
 knp_menu:
-    twig:  # use "twig: false" to disable the Twig extension and the TwigRenderer
-        template: knp_menu.html.twig
     templating: false # if true, enables the helper for PHP templates
     default_renderer: twig # The renderer to use, list is also available by default
 
@@ -117,7 +147,7 @@ sonata_block:
         sonata.block.service.rss:
 
 sonata_admin:
-    title:     Admin Panel
+    title:     Administrador
     title_logo: /bundles/sonataadmin/logo_title.png
     templates:
        # default global templates
@@ -132,6 +162,13 @@ sonata_admin:
         blocks:
            # display a dashboard block
             - { position: left, type: sonata.admin.block.admin_list }
+            - 
+                position: right
+                type: sonata.block.service.text
+                settings:
+                    content: >
+                        <h2>Bienvenido al panel de administracion de Mischiros.com</h2>
+                        <p>Podra crear, modificar, eliminar e ingresar nuevas prendas a la Mischiros.com</p>
     security:
         handler: sonata.admin.security.handler.acl
         # acl security information

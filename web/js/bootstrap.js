@@ -67,6 +67,8 @@
     $(el).on('click', dismiss, this.close)
   }
 
+  Alert.VERSION = '3.1.1'
+
   Alert.prototype.close = function (e) {
     var $this    = $(this)
     var selector = $this.attr('data-target')
@@ -158,6 +160,8 @@
     this.options   = $.extend({}, Button.DEFAULTS, options)
     this.isLoading = false
   }
+
+  Button.VERSION  = '3.1.1'
 
   Button.DEFAULTS = {
     loadingText: 'loading...'
@@ -276,6 +280,8 @@
       .on('mouseenter', $.proxy(this.pause, this))
       .on('mouseleave', $.proxy(this.cycle, this))
   }
+
+  Carousel.VERSION  = '3.1.1'
 
   Carousel.DEFAULTS = {
     interval: 5000,
@@ -480,6 +486,8 @@
     if (this.options.toggle) this.toggle()
   }
 
+  Collapse.VERSION  = '3.1.1'
+
   Collapse.DEFAULTS = {
     toggle: true
   }
@@ -656,6 +664,8 @@
     $(element).on('click.bs.dropdown', this.toggle)
   }
 
+  Dropdown.VERSION = '3.1.1'
+
   Dropdown.prototype.toggle = function (e) {
     var $this = $(this)
 
@@ -816,6 +826,8 @@
         }, this))
     }
   }
+
+  Modal.VERSION  = '3.1.1'
 
   Modal.DEFAULTS = {
     backdrop: true,
@@ -1087,6 +1099,8 @@
 
     this.init('tooltip', element, options)
   }
+
+  Tooltip.VERSION  = '3.1.1'
 
   Tooltip.DEFAULTS = {
     animation: true,
@@ -1524,6 +1538,8 @@
 
   if (!$.fn.tooltip) throw new Error('Popover requires tooltip.js')
 
+  Popover.VERSION  = '3.1.1'
+
   Popover.DEFAULTS = $.extend({}, $.fn.tooltip.Constructor.DEFAULTS, {
     placement: 'right',
     trigger: 'click',
@@ -1649,6 +1665,8 @@
     this.process()
   }
 
+  ScrollSpy.VERSION  = '3.1.1'
+
   ScrollSpy.DEFAULTS = {
     offset: 10
   }
@@ -1663,6 +1681,7 @@
 
     this.$body
       .find(this.selector)
+      .filter(':visible')
       .map(function () {
         var $el   = $(this)
         var href  = $el.data('target') || $el.attr('href')
@@ -1790,6 +1809,8 @@
     this.element = $(element)
   }
 
+  Tab.VERSION = '3.1.1'
+
   Tab.prototype.show = function () {
     var $this    = this.element
     var $ul      = $this.closest('ul:not(.dropdown-menu)')
@@ -1813,7 +1834,7 @@
 
     var $target = $(selector)
 
-    this.activate($this.parent('li'), $ul)
+    this.activate($this.closest('li'), $ul)
     this.activate($target, $target.parent(), function () {
       $this.trigger({
         type: 'shown.bs.tab',
@@ -1927,7 +1948,9 @@
     this.checkPosition()
   }
 
-  Affix.RESET = 'affix affix-top affix-bottom'
+  Affix.VERSION  = '3.1.1'
+
+  Affix.RESET    = 'affix affix-top affix-bottom'
 
   Affix.DEFAULTS = {
     offset: 0
@@ -1982,7 +2005,7 @@
       .trigger($.Event(affixType.replace('affix', 'affixed')))
 
     if (affix == 'bottom') {
-      this.$element.offset({ top: position.top })
+      this.$element.offset({ top: scrollHeight - this.$element.height() - offsetBottom })
     }
   }
 

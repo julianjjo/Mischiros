@@ -5,13 +5,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block titulo %}Mischiros.com la mejor ropa para ti{% endblock %}</title>
         {% block estilos %}{% endblock %}
-        <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" media="screen">
-        <link href="{{ asset('bundles/mischirostienda/css/main.css') }}" rel="stylesheet" media="screen">
+        {% stylesheets filter='less' output='css/bootstrap_1.css''bundles/mischirostienda/less/bootstrap.less' %}
+            <link href="{{ asset_url }}" type="text/css" rel="stylesheet"/>
+        {% endstylesheets %}
+        <link href="{{ asset('bundles/mischirostienda/css/main.css') }}" rel="stylesheet">
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         {% include 'BraincraftedBootstrapBundle::ie8-support.html.twig' %}
     </head>
     <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -27,9 +29,11 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="/">Home</a></li>
-                        <li><a href="/comprar">Comprar</a></li>
-                        <li><a href="#">Contactenos</a></li>
+                        {% block barradenavegacion %}
+                            <li class="active"><a href="/">Home</a></li>
+                            <li><a href="/comprar/listar">Comprar</a></li>
+                            <li><a href="#">Contactenos</a></li>
+                        {% endblock %}
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
