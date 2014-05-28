@@ -17,9 +17,6 @@ use Imagine\Image\ImagineInterface;
 use Imagine\Exception\InvalidArgumentException;
 use Imagine\Exception\RuntimeException;
 
-/**
- * Imagine implementation using the Gmagick PHP extension
- */
 class Imagine implements ImagineInterface
 {
     /**

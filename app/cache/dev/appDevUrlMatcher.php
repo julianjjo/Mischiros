@@ -264,18 +264,51 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        // mischiros_tienda_homepage
+        // home
         if (rtrim($pathinfo, '/') === '') {
             if (substr($pathinfo, -1) !== '/') {
-                return $this->redirect($pathinfo.'/', 'mischiros_tienda_homepage');
+                return $this->redirect($pathinfo.'/', 'home');
             }
 
-            return array (  '_controller' => 'Mischiros\\TiendaBundle\\Controller\\DefaultController::homeAction',  '_route' => 'mischiros_tienda_homepage',);
+            return array (  '_controller' => 'Mischiros\\TiendaBundle\\Controller\\DefaultController::homeAction',  '_route' => 'home',);
         }
 
-        // mischiros_tienda_comprarlistar
-        if ($pathinfo === '/comprar/listar') {
-            return array (  '_controller' => 'Mischiros\\TiendaBundle\\Controller\\RopaController::ListarAction',  '_route' => 'mischiros_tienda_comprarlistar',);
+        if (0 === strpos($pathinfo, '/co')) {
+            if (0 === strpos($pathinfo, '/comprar')) {
+                // comprar
+                if (rtrim($pathinfo, '/') === '/comprar') {
+                    if (substr($pathinfo, -1) !== '/') {
+                        return $this->redirect($pathinfo.'/', 'comprar');
+                    }
+
+                    return array (  '_controller' => 'Mischiros\\TiendaBundle\\Controller\\RopaController::ComprarAction',  '_route' => 'comprar',);
+                }
+
+                // listarportipo
+                if (0 === strpos($pathinfo, '/comprar/listar') && preg_match('#^/comprar/listar/(?P<tipo>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'listarportipo')), array (  '_controller' => 'Mischiros\\TiendaBundle\\Controller\\RopaController::ListartipoAction',));
+                }
+
+                // mostrarproducto
+                if (0 === strpos($pathinfo, '/comprar/mostrar') && preg_match('#^/comprar/mostrar/(?P<producto>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'mostrarproducto')), array (  '_controller' => 'Mischiros\\TiendaBundle\\Controller\\RopaController::MostrarAction',));
+                }
+
+            }
+
+            if (0 === strpos($pathinfo, '/contactenos')) {
+                // contactenos
+                if ($pathinfo === '/contactenos') {
+                    return array (  '_controller' => 'Mischiros\\TiendaBundle\\Controller\\RopaController::ContactoAction',  '_route' => 'contactenos',);
+                }
+
+                // enviocorrecto
+                if ($pathinfo === '/contactenos/enviocorrecto') {
+                    return array (  '_controller' => 'Mischiros\\TiendaBundle\\Controller\\RopaController::EnviocorrectoAction',  '_route' => 'enviocorrecto',);
+                }
+
+            }
+
         }
 
         if (0 === strpos($pathinfo, '/media')) {

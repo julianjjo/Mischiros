@@ -16,9 +16,6 @@ use Imagine\Image\BoxInterface;
 use Imagine\Image\Color;
 use Imagine\Image\PointInterface;
 
-/**
- * Interface for the drawer
- */
 interface DrawerInterface
 {
     /**

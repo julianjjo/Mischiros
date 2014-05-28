@@ -19,9 +19,6 @@ use Imagine\Image\BoxInterface;
 use Imagine\Image\Color;
 use Imagine\Image\PointInterface;
 
-/**
- * Drawer implementation using the GD library
- */
 final class Drawer implements DrawerInterface
 {
     /**
@@ -176,9 +173,19 @@ final class Drawer implements DrawerInterface
             ));
         }
 
-        $points = call_user_func_array('array_merge', array_map(function(PointInterface $p) {
-            return array($p->getX(), $p->getY());
-        }, $coordinates));
+        $points = array();
+
+        foreach ($coordinates as $coordinate) {
+            if (!$coordinate instanceof PointInterface) {
+                throw new InvalidArgumentException(sprintf(
+                    'Each entry in coordinates array must be instance of '.
+                    'Imagine\Image\PointInterface, %s given', var_export($coordinate)
+                ));
+            }
+
+            $points[] = $coordinate->getX();
+            $points[] = $coordinate->getY();
+        }
 
         if ($fill) {
             $callback = 'imagefilledpolygon';
@@ -208,15 +215,27 @@ final class Drawer implements DrawerInterface
         $angle    = -1 * $angle;
         $fontsize = $font->getSize();
         $fontfile = $font->getFile();
-        $x        = $position->getX();
-        $y        = $position->getY() + $fontsize;
+        $info     = imageftbbox($fontsize, $angle, $fontfile, $string);
+        $xs       = array($info[0], $info[2], $info[4], $info[6]);
+        $ys       = array($info[1], $info[3], $info[5], $info[7]);
+
+        $xdiff = 0 - min($xs) + $position->getX();
+        $ydiff = 0 - min($ys) + $position->getY();
+
+        foreach ($xs as &$x) {
+            $x += $xdiff;
+        }
+
+        foreach ($ys as &$y) {
+            $y += $ydiff;
+        }
 
         if (false === imagealphablending($this->resource, true)) {
             throw new RuntimeException('Font mask operation failed');
         }
 
         if (false === imagefttext(
-                $this->resource, $fontsize, $angle, $x, $y,
+                $this->resource, $fontsize, $angle, $xs[0], $ys[0],
                 $this->getColor($font->getColor()), $fontfile, $string
             )) {
             throw new RuntimeException('Font mask operation failed');

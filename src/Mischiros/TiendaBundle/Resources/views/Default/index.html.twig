@@ -3,9 +3,52 @@
 {% block titulo %}Bienvenido{% endblock %}
  
 {% block contenido %}
+	<br><br>	
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
-
+			<h2 class="text-center">Bienvenido a tu mejor tienda de ropa online de colombia</h2><br><br>				
 	    </div>
-	</div>	    
+	</div>
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4">
+			<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+				<!-- Indicators -->
+				<ol class="carousel-indicators">
+				<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+				<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+				<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+				</ol>
+
+				<!-- Wrapper for slides -->
+				<div class="carousel-inner">
+					{% for prenda in prendas %}
+					  	{% if loop.first %}
+							<div class="item active">
+						      {% media prenda.media, 'media' %}
+						      <div class="carousel-caption">
+								<h3>{{ prenda.Tipo.descripcion }}</h3>
+						      </div>
+						    </div>
+						{% else %}
+							<div class="item">
+						      {% media prenda.media, 'media' %}
+						      <div class="carousel-caption">
+								<h3>{{ prenda.Tipo.descripcion }}</h3>
+						      </div>
+						    </div>
+					  	{% endif %}				    
+				{% endfor %}
+				</div>
+
+				<!-- Controls -->
+				<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+					<span class="glyphicon glyphicon-chevron-left"></span>
+				</a>
+				<a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+					<span class="glyphicon glyphicon-chevron-right"></span>
+				</a>
+			</div>	  
+		</div>
+	</div>
+	  
 {% endblock %}

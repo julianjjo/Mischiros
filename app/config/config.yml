@@ -74,23 +74,6 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
-security:
-    access_control:
-        # URL of FOSUserBundle which need to be available to anonymous users
-        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-
-        # Admin login page needs to be access without credential
-        - { path: ^/admin/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/logout$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/login_check$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-
-        # Secured part of the site
-        # This config requires being logged for the whole site and having the admin role for the admin part.
-        # Change these rules to adapt them to your needs
-        - { path: ^/admin/, role: [ROLE_ADMIN, ROLE_SONATA_ADMIN] }
-        - { path: ^/.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
 
 braincrafted_bootstrap:
     output_dir:
@@ -185,43 +168,52 @@ sonata_admin:
 
 
 sonata_doctrine_orm_admin:
-   # default value is null, so doctrine uses the value defined in the configuration
+    # default value is null, so doctrine uses the value defined in the configuration
     entity_manager: ~
 
     templates:
         form:
-           - SonataDoctrineORMAdminBundle:Form:form_admin_fields.html.twig
+            - SonataDoctrineORMAdminBundle:Form:form_admin_fields.html.twig
         filter:
-           - SonataDoctrineORMAdminBundle:Form:filter_admin_fields.html.twig
+            - SonataDoctrineORMAdminBundle:Form:filter_admin_fields.html.twig
         types:
             list:
-                array:     SonataAdminBundle:CRUD:list_array.html.twig
-                boolean:   SonataAdminBundle:CRUD:list_boolean.html.twig
-                date:      SonataAdminBundle:CRUD:list_date.html.twig
-                time:      SonataAdminBundle:CRUD:list_time.html.twig
-                datetime:  SonataAdminBundle:CRUD:list_datetime.html.twig
-                text:      SonataAdminBundle:CRUD:base_list_field.html.twig
-                trans:     SonataAdminBundle:CRUD:list_trans.html.twig
-                string:    SonataAdminBundle:CRUD:base_list_field.html.twig
-                smallint:  SonataAdminBundle:CRUD:base_list_field.html.twig
-                bigint:    SonataAdminBundle:CRUD:base_list_field.html.twig
-                integer:   SonataAdminBundle:CRUD:base_list_field.html.twig
-                decimal:   SonataAdminBundle:CRUD:base_list_field.html.twig
+                array:      SonataAdminBundle:CRUD:list_array.html.twig
+                boolean:    SonataAdminBundle:CRUD:list_boolean.html.twig
+                date:       SonataAdminBundle:CRUD:list_date.html.twig
+                time:       SonataAdminBundle:CRUD:list_time.html.twig
+                datetime:   SonataAdminBundle:CRUD:list_datetime.html.twig
+                text:       SonataAdminBundle:CRUD:base_list_field.html.twig
+                trans:      SonataAdminBundle:CRUD:list_trans.html.twig
+                string:     SonataAdminBundle:CRUD:base_list_field.html.twig
+                smallint:   SonataAdminBundle:CRUD:base_list_field.html.twig
+                bigint:     SonataAdminBundle:CRUD:base_list_field.html.twig
+                integer:    SonataAdminBundle:CRUD:base_list_field.html.twig
+                decimal:    SonataAdminBundle:CRUD:base_list_field.html.twig
                 identifier: SonataAdminBundle:CRUD:base_list_field.html.twig
+                currency:   SonataAdminBundle:CRUD:list_currency.html.twig
+                percent:    SonataAdminBundle:CRUD:list_percent.html.twig
+                choice:     SonataAdminBundle:CRUD:list_choice.html.twig
+                url:        SonataAdminBundle:CRUD:list_url.html.twig
 
             show:
-                array:     SonataAdminBundle:CRUD:show_array.html.twig
-                boolean:   SonataAdminBundle:CRUD:show_boolean.html.twig
-                date:      SonataAdminBundle:CRUD:show_date.html.twig
-                time:      SonataAdminBundle:CRUD:show_time.html.twig
-                datetime:  SonataAdminBundle:CRUD:show_datetime.html.twig
-                text:      SonataAdminBundle:CRUD:base_show_field.html.twig
-                trans:     SonataAdminBundle:CRUD:show_trans.html.twig
-                string:    SonataAdminBundle:CRUD:base_show_field.html.twig
-                smallint:  SonataAdminBundle:CRUD:base_show_field.html.twig
-                bigint:    SonataAdminBundle:CRUD:base_show_field.html.twig
-                integer:   SonataAdminBundle:CRUD:base_show_field.html.twig
-                decimal:   SonataAdminBundle:CRUD:base_show_field.html.twig
+                array:      SonataAdminBundle:CRUD:show_array.html.twig
+                boolean:    SonataAdminBundle:CRUD:show_boolean.html.twig
+                date:       SonataAdminBundle:CRUD:show_date.html.twig
+                time:       SonataAdminBundle:CRUD:show_time.html.twig
+                datetime:   SonataAdminBundle:CRUD:show_datetime.html.twig
+                text:       SonataAdminBundle:CRUD:base_show_field.html.twig
+                trans:      SonataAdminBundle:CRUD:show_trans.html.twig
+                string:     SonataAdminBundle:CRUD:base_show_field.html.twig
+                smallint:   SonataAdminBundle:CRUD:base_show_field.html.twig
+                bigint:     SonataAdminBundle:CRUD:base_show_field.html.twig
+                integer:    SonataAdminBundle:CRUD:base_show_field.html.twig
+                decimal:    SonataAdminBundle:CRUD:base_show_field.html.twig
+                currency:   SonataAdminBundle:CRUD:base_currency.html.twig
+                percent:    SonataAdminBundle:CRUD:base_percent.html.twig
+                choice:     SonataAdminBundle:CRUD:show_choice.html.twig
+                url:        SonataAdminBundle:CRUD:show_url.html.twig
+
 sonata_user:
     profile:        # Profile show page is a dashboard as in SonataAdminBundle
         dashboard:
@@ -259,8 +251,9 @@ sonata_media:
                 - sonata.media.provider.image
 
             formats:
-                small: { width: 100 , quality: 100}
-                big:   { width: 700 , quality: 100}
+                chica: { width: 200 , quality: 100}
+                media: { width: 350 , quality: 100}
+                grande:   { width: 700 , quality: 100}
 
     cdn:
         server:

@@ -24,19 +24,12 @@ use Imagine\Image\Point;
 use Imagine\Image\PointInterface;
 use Imagine\Image\ImageInterface;
 
-/**
- * Image implementation using the Imagick PHP extension
- */
 final class Image implements ImageInterface
 {
     /**
-     * @var \Imagick
+     * @var Imagick
      */
     private $imagick;
-    /**
-     * @var Layers
-     */
-    private $layers;
 
     /**
      * Constructs Image with Imagick and Imagine instances
@@ -46,7 +39,6 @@ final class Image implements ImageInterface
     public function __construct(\Imagick $imagick)
     {
         $this->imagick = $imagick;
-        $this->layers = new Layers($this, $this->imagick);
     }
 
     /**
@@ -58,16 +50,6 @@ final class Image implements ImageInterface
             $this->imagick->clear();
             $this->imagick->destroy();
         }
-    }
-
-    /**
-     * Returns imagick instance
-     *
-     * @return Imagick
-     */
-    public function getImagick()
-    {
-        return $this->imagick;
     }
 
     /**
@@ -200,42 +182,21 @@ final class Image implements ImageInterface
             );
         }
 
+        $this->flatten();
+
         return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function resize(BoxInterface $size, $filter = ImageInterface::FILTER_UNDEFINED)
+    public function resize(BoxInterface $size)
     {
-        static $supportedFilters = array(
-            ImageInterface::FILTER_UNDEFINED => \Imagick::FILTER_UNDEFINED,
-            ImageInterface::FILTER_BESSEL    => \Imagick::FILTER_BESSEL,
-            ImageInterface::FILTER_BLACKMAN  => \Imagick::FILTER_BLACKMAN,
-            ImageInterface::FILTER_BOX       => \Imagick::FILTER_BOX,
-            ImageInterface::FILTER_CATROM    => \Imagick::FILTER_CATROM,
-            ImageInterface::FILTER_CUBIC     => \Imagick::FILTER_CUBIC,
-            ImageInterface::FILTER_GAUSSIAN  => \Imagick::FILTER_GAUSSIAN,
-            ImageInterface::FILTER_HANNING   => \Imagick::FILTER_HANNING,
-            ImageInterface::FILTER_HAMMING   => \Imagick::FILTER_HAMMING,
-            ImageInterface::FILTER_HERMITE   => \Imagick::FILTER_HERMITE,
-            ImageInterface::FILTER_LANCZOS   => \Imagick::FILTER_LANCZOS,
-            ImageInterface::FILTER_MITCHELL  => \Imagick::FILTER_MITCHELL,
-            ImageInterface::FILTER_POINT     => \Imagick::FILTER_POINT,
-            ImageInterface::FILTER_QUADRATIC => \Imagick::FILTER_QUADRATIC,
-            ImageInterface::FILTER_SINC      => \Imagick::FILTER_SINC,
-            ImageInterface::FILTER_TRIANGLE  => \Imagick::FILTER_TRIANGLE
-        );
-
-        if (!array_key_exists($filter, $supportedFilters)) {
-            throw new InvalidArgumentException('Unsupported filter type');
-        }
-
         try {
             $this->imagick->resizeImage(
                 $size->getWidth(),
                 $size->getHeight(),
-                $supportedFilters[$filter],
+                \Imagick::FILTER_UNDEFINED,
                 1
             );
         } catch (\ImagickException $e) {
@@ -276,8 +237,18 @@ final class Image implements ImageInterface
     public function save($path, array $options = array())
     {
         try {
-            $this->prepareOutput($options);
-            $this->imagick->writeImages($path, true);
+            if (isset($options['format'])) {
+                $this->imagick->setimageformat($options['format']);
+            }
+
+            $this->applyImageOptions($this->imagick, $options);
+
+            // flatten only if image has multiple layers
+            if ($this->imagick->hasNextImage() || $this->imagick->hasPreviousImage()) {
+                $this->flatten();
+            }
+
+            $this->imagick->writeImage($path);
         } catch (\ImagickException $e) {
             throw new RuntimeException(
                 'Save operation failed', $e->getCode(), $e
@@ -304,66 +275,15 @@ final class Image implements ImageInterface
     public function get($format, array $options = array())
     {
         try {
-            $options["format"] = $format;
-            $this->prepareOutput($options);
+            $this->applyImageOptions($this->imagick, $options);
+            $this->imagick->setImageFormat($format);
         } catch (\ImagickException $e) {
-            throw new RuntimeException(
-                'Get operation failed', $e->getCode(), $e
+            throw new InvalidArgumentException(
+                'Show operation failed', $e->getCode(), $e
             );
         }
 
-        return $this->imagick->getImagesBlob();
-    }
-
-    /**
-     * {@inheritdoc}
-     **/
-    public function interlace($scheme)
-    {
-        static $supportedInterlaceSchemes = array(
-            ImageInterface::INTERLACE_NONE      => \Imagick::INTERLACE_NO,
-            ImageInterface::INTERLACE_LINE      => \Imagick::INTERLACE_LINE,
-            ImageInterface::INTERLACE_PLANE     => \Imagick::INTERLACE_PLANE,
-            ImageInterface::INTERLACE_PARTITION => \Imagick::INTERLACE_PARTITION,
-        );
-
-        if (!array_key_exists($scheme, $supportedInterlaceSchemes)) {
-            throw new InvalidArgumentException('Unsupported interlace type');
-        }
-
-        $this->imagick->setInterlaceScheme($supportedInterlaceSchemes[$scheme]);
-
-        return $this;
-    }
-
-    /**
-     * @param array $options
-     */
-    private function prepareOutput(array $options)
-    {
-        if (isset($options['format'])) {
-            $this->imagick->setImageFormat($options['format']);
-        }
-
-        if (isset($options['animated']) && true === $options['animated']) {
-
-            $format = isset($options['format']) ? $options['format'] : 'gif';
-            $delay = isset($options['animated.delay']) ? $options['animated.delay'] : 800;
-            $loops = isset($options['animated.loops']) ? $options['animated.loops'] : 0;
-
-            $options['flatten'] = false;
-
-            $this->layers->animate($format, $delay, $loops);
-        } else {
-            $this->layers->merge();
-        }
-        $this->applyImageOptions($this->imagick, $options);
-
-        // flatten only if image has multiple layers
-        if ((!isset($options['flatten']) || $options['flatten'] === true)
-            && count($this->layers) > 1) {
-            $this->flatten();
-        }
+        return (string) $this->imagick;
     }
 
     /**
@@ -384,35 +304,21 @@ final class Image implements ImageInterface
             throw new InvalidArgumentException('Invalid mode specified');
         }
 
-        $imageSize = $this->getSize();
+        $width     = $size->getWidth();
+        $height    = $size->getHeight();
         $thumbnail = $this->copy();
-
-        // if target width is larger than image width
-        // AND target height is longer than image height
-        if ($size->contains($imageSize)) {
-            return $thumbnail;
-        }
-
-        // if target width is larger than image width
-        // OR target height is longer than image height
-        if (!$imageSize->contains($size)) {
-            $size = new Box(
-                min($imageSize->getWidth(), $size->getWidth()),
-                min($imageSize->getHeight(), $size->getHeight())
-            );
-        }
 
         try {
             if ($mode === ImageInterface::THUMBNAIL_INSET) {
                 $thumbnail->imagick->thumbnailImage(
-                    $size->getWidth(),
-                    $size->getHeight(),
+                    $width,
+                    $height,
                     true
                 );
             } elseif ($mode === ImageInterface::THUMBNAIL_OUTBOUND) {
                 $thumbnail->imagick->cropThumbnailImage(
-                    $size->getWidth(),
-                    $size->getHeight()
+                    $width,
+                    $height
                 );
             }
         } catch (\ImagickException $e) {
@@ -609,14 +515,6 @@ final class Image implements ImageInterface
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function layers()
-    {
-        return $this->layers;
-    }
-
-    /**
      * Internal
      *
      * Flatten the image.
@@ -657,8 +555,7 @@ final class Image implements ImageInterface
                 throw new RuntimeException('Unsupported image unit format');
             }
 
-            $image->setImageResolution($options['resolution-x'], $options['resolution-y']);
-            $image->resampleImage($options['resolution-x'], $options['resolution-y'], \Imagick::FILTER_UNDEFINED, 0);
+            $image->setResolution($options['resolution-x'], $options['resolution-y']);
         }
     }
 

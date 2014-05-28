@@ -10,28 +10,42 @@ The main idea of Imagine is to avoid driver specific methods spill outside of th
 Installation
 ------------
 
-The recommended way to install Imagine is through `Composer`_.
-Composer is a dependency management library for PHP.
+Phar file (recommended)
++++++++++++++++++++++++
 
-Here is an example of composer project configuration that requires imagine
-version 0.4.
-
-.. code-block:: json
-
-    {
-        "require": {
-            "imagine/imagine": "~0.4.0"
-        }
-    }
-
-Update the dependencies using composer.phar and use Imagine :
+`Download Imagine PHAR file here <https://github.com/downloads/avalanche123/Imagine/imagine.phar>`_
 
 .. code-block:: php
 
-    <?php
-    require 'vendor/autoload.php';
+   <?php
 
-    $imagine = new Imagine\Gd\Imagine();
+   require_once 'phar://imagine.phar';
+
+   var_dump(interface_exists('Imagine\Image\ImageInterface'));
+
+PEAR package
+++++++++++++
+
+Install using pear package:
+
+.. code-block:: console
+
+   pear channel-discover pear.avalanche123.com
+   pear install avalanche123/Imagine-beta
+
+Clone from GitHub
++++++++++++++++++
+
+Clone Imagine git repository:
+
+.. code-block:: console
+
+   git clone git://github.com/avalanche123/Imagine.git
+
+then require files as usual
+
+.. NOTE::
+   when using git clone or pear install methods, classes don't get registered with autoload and you have to do it yourself, this will change in future.
 
 Basic usage
 -----------
@@ -80,38 +94,6 @@ Now that you've opened an image, you can perform manipulations on it:
    Read more about ImageInterface_
    Read more about coordinates_
 
-Resize Images
-+++++++++++++
-
-Resize an image is very easy, just pass the box size you want as argument :
-
-.. code-block:: php
-
-   <?php
-
-   use Imagine\Image\Box;
-   use Imagine\Image\Point;
-
-   $image->resize(new Box(15, 25))
-
-You can also specify the filter you want as second argument :
-
-.. code-block:: php
-
-   <?php
-
-   use Imagine\Image\Box;
-   use Imagine\Image\Point;
-   use Imagine\Image\ImageInterface;
-
-   // resize with lanczos filter
-   $image->resize(new Box(15, 25), ImageInterface::FILTER_LANCZOS);
-
-Available filters are ImageInterface::FILTER_* constants.
-
-.. NOTE::
-   GD only supports ImageInterface::RESIZE_UNDEFINED filter.
-
 Create New Images
 +++++++++++++++++
 
@@ -150,7 +132,7 @@ The following example opens a Jpg image and saves it as Png format :
    $imagine->open('/path/to/image.jpg')
       ->save('/path/to/image.png');
 
-Three options groups are currently supported : quality, resolution and flatten.
+Two options groups are currently supported : quality and resolution.
 
 .. NOTE::
    GD does not support resolution options group
@@ -189,27 +171,6 @@ The following example opens a Jpg image and saves it with it with 150 dpi horizo
 .. TIP::
    You **MUST** provide a unit system when setting resolution values.
    There are two available unit systems for resolution : ``ImageInterface::RESOLUTION_PIXELSPERINCH`` and ``ImageInterface::RESOLUTION_PIXELSPERCENTIMETER``.
-`
-The flatten option is used when dealing with multi-layers images (see the
-`layers <layers>`_ section for information). Image are saved flatten by default,
-you can avoid this by explicitly set this option to ``false`` when saving :
-
-.. code-block:: php
-
-   <?php
-
-   use Imagine\Image\Box;
-   use Imagine\Image\ImageInterface;
-   use Imagine\Imagick\Imagine;
-
-   $imagine = new Imagine();
-
-   $imagine->open('/path/to/animated.gif')
-           ->resize(new Box(320, 240))
-           ->save('/path/to/animated-resized.gif', array('flatten' => false));
-
-.. TIP::
-   You **SHOULD** not flatten image only for animated gif and png images.
 
 Of course, you can combine options :
 
@@ -375,4 +336,3 @@ The ``Transformation`` object is an example of a composite filter, representing 
 .. _ImageInterface: ../_static/API/Imagine/Image/ImageInterface.html
 .. _coordinates: coordinates.html
 .. _exceptions: exceptions.html
-.. _Composer: https://getcomposer.org/

@@ -1,7 +1,23 @@
-mischiros_tienda_homepage:
+home:
     pattern:  /
     defaults: { _controller: MischirosTiendaBundle:Default:home }
 
-mischiros_tienda_comprarlistar:
-    pattern:  /comprar/listar
-    defaults: { _controller: MischirosTiendaBundle:Ropa:Listar }
+comprar:
+    pattern:  /comprar/
+    defaults: { _controller: MischirosTiendaBundle:Ropa:Comprar }
+
+listarportipo:
+    pattern:  /comprar/listar/{tipo}
+    defaults: { _controller: MischirosTiendaBundle:Ropa:Listartipo }
+
+mostrarproducto:
+    pattern:  /comprar/mostrar/{producto}
+    defaults: { _controller: MischirosTiendaBundle:Ropa:Mostrar }
+
+contactenos:
+    pattern:  /contactenos
+    defaults: { _controller: MischirosTiendaBundle:Ropa:Contacto }
+
+enviocorrecto:
+    pattern:  /contactenos/enviocorrecto
+    defaults: { _controller: MischirosTiendaBundle:Ropa:Enviocorrecto }

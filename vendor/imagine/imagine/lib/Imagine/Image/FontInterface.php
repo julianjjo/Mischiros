@@ -14,9 +14,6 @@ namespace Imagine\Image;
 use Imagine\Image\BoxInterface;
 use Imagine\Image\Color;
 
-/**
- * The font interface
- */
 interface FontInterface
 {
     /**

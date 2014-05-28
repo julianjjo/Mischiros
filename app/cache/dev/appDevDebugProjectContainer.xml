@@ -31,6 +31,7 @@
       <parameter key="SonataEasyExtendsBundle">Sonata\EasyExtendsBundle\SonataEasyExtendsBundle</parameter>
       <parameter key="ApplicationSonataMediaBundle">Application\Sonata\MediaBundle\ApplicationSonataMediaBundle</parameter>
       <parameter key="BraincraftedBootstrapBundle">Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle</parameter>
+      <parameter key="AvalancheImagineBundle">Avalanche\Bundle\ImagineBundle\AvalancheImagineBundle</parameter>
       <parameter key="AcmeDemoBundle">Acme\DemoBundle\AcmeDemoBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
@@ -50,6 +51,7 @@
     <parameter key="mailer_password">polojilop@87</parameter>
     <parameter key="locale">es</parameter>
     <parameter key="secret">ThisTokenIsNotSoSecretChangeIt</parameter>
+    <parameter key="security.acl.permission.map.class">Sonata\AdminBundle\Security\Acl\Permission\AdminPermissionMap</parameter>
     <parameter key="controller_resolver.class">Symfony\Bundle\FrameworkBundle\Controller\ControllerResolver</parameter>
     <parameter key="controller_name_converter.class">Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser</parameter>
     <parameter key="response_listener.class">Symfony\Component\HttpKernel\EventListener\ResponseListener</parameter>
@@ -321,7 +323,6 @@
     </parameter>
     <parameter key="security.acl.permission_granting_strategy.class">Symfony\Component\Security\Acl\Domain\PermissionGrantingStrategy</parameter>
     <parameter key="security.acl.voter.class">Symfony\Component\Security\Acl\Voter\AclVoter</parameter>
-    <parameter key="security.acl.permission.map.class">Symfony\Component\Security\Acl\Permission\BasicPermissionMap</parameter>
     <parameter key="security.acl.object_identity_retrieval_strategy.class">Symfony\Component\Security\Acl\Domain\ObjectIdentityRetrievalStrategy</parameter>
     <parameter key="security.acl.security_identity_retrieval_strategy.class">Symfony\Component\Security\Acl\Domain\SecurityIdentityRetrievalStrategy</parameter>
     <parameter key="security.acl.cache.doctrine.class">Symfony\Component\Security\Acl\Domain\DoctrineAclCache</parameter>
@@ -918,6 +919,20 @@
     <parameter key="braincrafted_bootstrap.assets_dir">/var/www/app/../vendor/twbs/bootstrap</parameter>
     <parameter key="braincrafted_bootstrap.output_dir">null</parameter>
     <parameter key="braincrafted_bootstrap.less_filter">less</parameter>
+    <parameter key="imagine.web_root">/var/www/app/../web</parameter>
+    <parameter key="imagine.source_root">/var/www/app/../web</parameter>
+    <parameter key="imagine.cache_prefix">media/cache</parameter>
+    <parameter key="imagine.filters" type="collection"/>
+    <parameter key="imagine.filter.manager.class">Avalanche\Bundle\ImagineBundle\Imagine\Filter\FilterManager</parameter>
+    <parameter key="imagine.cache.path.resolver.class">Avalanche\Bundle\ImagineBundle\Imagine\CachePathResolver</parameter>
+    <parameter key="imagine.controller.class">Avalanche\Bundle\ImagineBundle\Controller\ImagineController</parameter>
+    <parameter key="imagine.routing.loader.class">Avalanche\Bundle\ImagineBundle\Routing\ImagineLoader</parameter>
+    <parameter key="imagine.twig.extension.class">Avalanche\Bundle\ImagineBundle\Templating\ImagineExtension</parameter>
+    <parameter key="imagine.templating.helper.class">Avalanche\Bundle\ImagineBundle\Templating\Helper\ImagineHelper</parameter>
+    <parameter key="imagine.gd.class">Imagine\Gd\Imagine</parameter>
+    <parameter key="imagine.imagick.class">Imagine\Imagick\Imagine</parameter>
+    <parameter key="imagine.gmagick.class">Imagine\Gmagick\Imagine</parameter>
+    <parameter key="imagine.filter.loader.thumbnail.class">Avalanche\Bundle\ImagineBundle\Imagine\Filter\Loader\ThumbnailFilterLoader</parameter>
     <parameter key="web_profiler.controller.profiler.class">Symfony\Bundle\WebProfilerBundle\Controller\ProfilerController</parameter>
     <parameter key="web_profiler.controller.router.class">Symfony\Bundle\WebProfilerBundle\Controller\RouterController</parameter>
     <parameter key="web_profiler.controller.exception.class">Symfony\Bundle\WebProfilerBundle\Controller\ExceptionController</parameter>
@@ -3194,6 +3209,8 @@
               <argument key="sonata_type_translatable_choice">sonata.core.form.type.translatable_choice</argument>
               <argument key="sonata_type_date_range">sonata.core.form.type.date_range</argument>
               <argument key="sonata_type_datetime_range">sonata.core.form.type.datetime_range</argument>
+              <argument key="sonata_type_date_picker">sonata.core.form.type.date_picker</argument>
+              <argument key="sonata_type_datetime_picker">sonata.core.form.type.datetime_picker</argument>
               <argument key="sonata_type_equal">sonata.core.form.type.equal</argument>
               <argument key="sonata_security_roles">sonata.user.form.type.security_roles</argument>
               <argument key="sonata_user_profile">sonata.user.profile.form.type</argument>
@@ -3719,6 +3736,9 @@
           <call method="addLoader">
             <argument type="service" id="sonata.admin.route_loader"/>
           </call>
+          <call method="addLoader">
+            <argument type="service" id="imagine.routing.loader"/>
+          </call>
         </service>
       </argument>
     </service>
@@ -3756,7 +3776,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>5377bc421622d</argument>
+            <argument>538621da0d699</argument>
           </service>
         </argument>
         <argument type="service">
@@ -3770,7 +3790,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>5377bc421622d</argument>
+            <argument>538621da0d699</argument>
           </service>
         </argument>
       </argument>
@@ -3826,7 +3846,7 @@
               </service>
             </argument>
             <argument type="service">
-              <service class="Symfony\Component\Security\Acl\Permission\BasicPermissionMap" public="false"/>
+              <service class="Sonata\AdminBundle\Security\Acl\Permission\AdminPermissionMap" public="false"/>
             </argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument>true</argument>
@@ -3895,6 +3915,28 @@
       <call method="add">
         <argument type="service">
           <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+            <argument>^/_wdt</argument>
+          </service>
+        </argument>
+        <argument type="collection">
+          <argument>IS_AUTHENTICATED_ANONYMOUSLY</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+      <call method="add">
+        <argument type="service">
+          <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+            <argument>^/_profiler</argument>
+          </service>
+        </argument>
+        <argument type="collection">
+          <argument>IS_AUTHENTICATED_ANONYMOUSLY</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+      <call method="add">
+        <argument type="service">
+          <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
             <argument>^/login$</argument>
           </service>
         </argument>
@@ -3906,7 +3948,7 @@
       <call method="add">
         <argument type="service">
           <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-            <argument>^/register</argument>
+            <argument>^/js/</argument>
           </service>
         </argument>
         <argument type="collection">
@@ -3917,7 +3959,7 @@
       <call method="add">
         <argument type="service">
           <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-            <argument>^/resetting</argument>
+            <argument>^/css/</argument>
           </service>
         </argument>
         <argument type="collection">
@@ -3950,7 +3992,117 @@
       <call method="add">
         <argument type="service">
           <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-            <argument>^/admin/login_check$</argument>
+            <argument>^/admin/login-check$</argument>
+          </service>
+        </argument>
+        <argument type="collection">
+          <argument>IS_AUTHENTICATED_ANONYMOUSLY</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+      <call method="add">
+        <argument type="service">
+          <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+            <argument>^/user/new$</argument>
+          </service>
+        </argument>
+        <argument type="collection">
+          <argument>IS_AUTHENTICATED_ANONYMOUSLY</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+      <call method="add">
+        <argument type="service">
+          <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+            <argument>^/user/check-confirmation-email$</argument>
+          </service>
+        </argument>
+        <argument type="collection">
+          <argument>IS_AUTHENTICATED_ANONYMOUSLY</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+      <call method="add">
+        <argument type="service">
+          <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+            <argument>^/user/confirm/</argument>
+          </service>
+        </argument>
+        <argument type="collection">
+          <argument>IS_AUTHENTICATED_ANONYMOUSLY</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+      <call method="add">
+        <argument type="service">
+          <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+            <argument>^/user/confirmed$</argument>
+          </service>
+        </argument>
+        <argument type="collection">
+          <argument>IS_AUTHENTICATED_ANONYMOUSLY</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+      <call method="add">
+        <argument type="service">
+          <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+            <argument>^/user/request-reset-password$</argument>
+          </service>
+        </argument>
+        <argument type="collection">
+          <argument>IS_AUTHENTICATED_ANONYMOUSLY</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+      <call method="add">
+        <argument type="service">
+          <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+            <argument>^/user/send-resetting-email$</argument>
+          </service>
+        </argument>
+        <argument type="collection">
+          <argument>IS_AUTHENTICATED_ANONYMOUSLY</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+      <call method="add">
+        <argument type="service">
+          <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+            <argument>^/user/check-resetting-email$</argument>
+          </service>
+        </argument>
+        <argument type="collection">
+          <argument>IS_AUTHENTICATED_ANONYMOUSLY</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+      <call method="add">
+        <argument type="service">
+          <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+            <argument>^/user/reset-password/</argument>
+          </service>
+        </argument>
+        <argument type="collection">
+          <argument>IS_AUTHENTICATED_ANONYMOUSLY</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+      <call method="add">
+        <argument type="service">
+          <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+            <argument>^/register</argument>
+          </service>
+        </argument>
+        <argument type="collection">
+          <argument>IS_AUTHENTICATED_ANONYMOUSLY</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+      <call method="add">
+        <argument type="service">
+          <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+            <argument>^/resetting</argument>
           </service>
         </argument>
         <argument type="collection">
@@ -3966,7 +4118,6 @@
         </argument>
         <argument type="collection">
           <argument>ROLE_ADMIN</argument>
-          <argument>ROLE_SONATA_ADMIN</argument>
         </argument>
         <argument>null</argument>
       </call>
@@ -4104,7 +4255,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>5377bc421622d</argument>
+            <argument>538621da0d699</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
           </service>
         </argument>
@@ -4218,7 +4369,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>5377bc421622d</argument>
+            <argument>538621da0d699</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
           </service>
         </argument>
@@ -4460,6 +4611,14 @@
       </call>
       <call method="addExtension">
         <argument type="service" id="braincrafted_bootstrap.twig.form_extension"/>
+      </call>
+      <call method="addExtension">
+        <argument type="service">
+          <service class="Avalanche\Bundle\ImagineBundle\Templating\ImagineExtension" public="false">
+            <tag name="twig.extension"/>
+            <argument type="service" id="imagine.cache.path.resolver"/>
+          </service>
+        </argument>
       </call>
       <call method="addExtension">
         <argument type="service" id="twig.extension.acme.demo"/>
@@ -5695,7 +5854,9 @@
         <argument key="title_mode">both</argument>
         <argument key="javascripts" type="collection">
           <argument>bundles/sonataadmin/vendor/jquery/dist/jquery.min.js</argument>
+          <argument>bundles/sonatacore/vendor/moment/min/moment.min.js</argument>
           <argument>bundles/sonataadmin/vendor/bootstrap/dist/js/bootstrap.min.js</argument>
+          <argument>bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js</argument>
           <argument>bundles/sonataadmin/vendor/jqueryui/ui/minified/jquery-ui.min.js</argument>
           <argument>bundles/sonataadmin/vendor/jqueryui/ui/minified/i18n/jquery-ui-i18n.min.js</argument>
           <argument>bundles/sonataadmin/jquery/jquery.form.js</argument>
@@ -5710,6 +5871,7 @@
           <argument>bundles/sonataadmin/vendor/AdminLTE/css/font-awesome.min.css</argument>
           <argument>bundles/sonataadmin/vendor/AdminLTE/css/ionicons.min.css</argument>
           <argument>bundles/sonataadmin/vendor/AdminLTE/css/AdminLTE.css</argument>
+          <argument>bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css</argument>
           <argument>bundles/sonataadmin/vendor/jqueryui/themes/base/jquery-ui.css</argument>
           <argument>bundles/sonataadmin/vendor/select2/select2.css</argument>
           <argument>bundles/sonataadmin/vendor/select2/select2-bootstrap.css</argument>
@@ -6198,6 +6360,7 @@
       <argument>true</argument>
     </service>
     <service id="sonata.block.exception.renderer.throw" class="Sonata\BlockBundle\Exception\Renderer\MonkeyThrowRenderer"/>
+    <service id="sonata.core.date.moment_format_converter" class="Sonata\CoreBundle\Date\MomentFormatConverter"/>
     <service id="sonata.core.flashmessage.manager" class="Sonata\CoreBundle\FlashMessage\FlashManager">
       <tag name="sonata.status.renderer"/>
       <argument type="service" id="session"/>
@@ -6267,6 +6430,14 @@
     <service id="sonata.core.form.type.datetime_range" class="Sonata\CoreBundle\Form\Type\DateTimeRangeType">
       <tag name="form.type" alias="sonata_type_datetime_range"/>
       <argument type="service" id="translator.default"/>
+    </service>
+    <service id="sonata.core.form.type.date_picker" class="Sonata\CoreBundle\Form\Type\DatePickerType">
+      <tag name="form.type" alias="sonata_type_date_picker"/>
+      <argument type="service" id="sonata.core.date.moment_format_converter"/>
+    </service>
+    <service id="sonata.core.form.type.datetime_picker" class="Sonata\CoreBundle\Form\Type\DateTimePickerType">
+      <tag name="form.type" alias="sonata_type_datetime_picker"/>
+      <argument type="service" id="sonata.core.date.moment_format_converter"/>
     </service>
     <service id="sonata.core.form.type.equal" class="Sonata\CoreBundle\Form\Type\EqualType">
       <tag name="form.type" alias="sonata_type_equal"/>
@@ -6858,14 +7029,21 @@
           <argument>sonata.media.provider.image</argument>
         </argument>
         <argument type="collection">
-          <argument key="prenda_small" type="collection">
-            <argument key="width">100</argument>
+          <argument key="prenda_chica" type="collection">
+            <argument key="width">200</argument>
             <argument key="quality">100</argument>
             <argument key="height">false</argument>
             <argument key="format">jpg</argument>
             <argument key="constraint">true</argument>
           </argument>
-          <argument key="prenda_big" type="collection">
+          <argument key="prenda_media" type="collection">
+            <argument key="width">350</argument>
+            <argument key="quality">100</argument>
+            <argument key="height">false</argument>
+            <argument key="format">jpg</argument>
+            <argument key="constraint">true</argument>
+          </argument>
+          <argument key="prenda_grande" type="collection">
             <argument key="width">700</argument>
             <argument key="quality">100</argument>
             <argument key="height">false</argument>
@@ -6957,9 +7135,9 @@
         </argument>
       </call>
       <call method="addFormat">
-        <argument>prenda_small</argument>
+        <argument>prenda_chica</argument>
         <argument type="collection">
-          <argument key="width">100</argument>
+          <argument key="width">200</argument>
           <argument key="quality">100</argument>
           <argument key="height">false</argument>
           <argument key="format">jpg</argument>
@@ -6967,7 +7145,17 @@
         </argument>
       </call>
       <call method="addFormat">
-        <argument>prenda_big</argument>
+        <argument>prenda_media</argument>
+        <argument type="collection">
+          <argument key="width">350</argument>
+          <argument key="quality">100</argument>
+          <argument key="height">false</argument>
+          <argument key="format">jpg</argument>
+          <argument key="constraint">true</argument>
+        </argument>
+      </call>
+      <call method="addFormat">
+        <argument>prenda_grande</argument>
         <argument type="collection">
           <argument key="width">700</argument>
           <argument key="quality">100</argument>
@@ -7844,6 +8032,41 @@
     <service id="braincrafted_bootstrap.flash" class="Braincrafted\Bundle\BootstrapBundle\Session\FlashMessage">
       <argument type="service" id="session"/>
     </service>
+    <service id="imagine.cache.path.resolver" class="Avalanche\Bundle\ImagineBundle\Imagine\CachePathResolver">
+      <argument>/var/www/app/../web</argument>
+      <argument type="service" id="router"/>
+    </service>
+    <service id="imagine.filter.manager" class="Avalanche\Bundle\ImagineBundle\Imagine\Filter\FilterManager">
+      <argument type="collection"/>
+      <call method="addLoader">
+        <argument>thumbnail</argument>
+        <argument type="service" id="imagine.filter.loader.thumbnail"/>
+      </call>
+    </service>
+    <service id="imagine.controller" class="Avalanche\Bundle\ImagineBundle\Controller\ImagineController" scope="request">
+      <argument type="service" id="request"/>
+      <argument type="service" id="imagine.cache.path.resolver"/>
+      <argument type="service" id="imagine.gd"/>
+      <argument type="service" id="imagine.filter.manager"/>
+      <argument type="service" id="filesystem"/>
+      <argument>/var/www/app/../web</argument>
+      <argument>/var/www/app/../web</argument>
+    </service>
+    <service id="imagine.routing.loader" class="Avalanche\Bundle\ImagineBundle\Routing\ImagineLoader">
+      <tag name="routing.loader"/>
+      <argument>media/cache</argument>
+      <argument type="collection"/>
+    </service>
+    <service id="imagine.gd" class="Imagine\Gd\Imagine"/>
+    <service id="imagine.imagick" class="Imagine\Imagick\Imagine"/>
+    <service id="imagine.gmagick" class="Imagine\Gmagick\Imagine"/>
+    <service id="imagine.templating.helper" class="Avalanche\Bundle\ImagineBundle\Templating\Helper\ImagineHelper">
+      <tag name="templating.helper" alias="imagine"/>
+      <argument type="service" id="imagine.cache.path.resolver"/>
+    </service>
+    <service id="imagine.filter.loader.thumbnail" class="Avalanche\Bundle\ImagineBundle\Imagine\Filter\Loader\ThumbnailFilterLoader">
+      <tag name="imagine.filter.loader" filter="thumbnail"/>
+    </service>
     <service id="twig.extension.acme.demo" class="Acme\DemoBundle\Twig\Extension\DemoExtension" public="false">
       <tag name="twig.extension"/>
       <argument type="service" id="twig.loader"/>
@@ -8079,6 +8302,7 @@
           <argument key="assetic">assetic.helper.dynamic</argument>
           <argument key="sonata_block">sonata.block.templating.helper</argument>
           <argument key="knp_pagination">knp_paginator.templating.helper.pagination</argument>
+          <argument key="imagine">imagine.templating.helper</argument>
         </argument>
       </call>
     </service>
@@ -8449,6 +8673,7 @@
     <service id="sonata.user.group_manager" alias="fos_user.group_manager"/>
     <service id="sonata.user.authentication.form" alias="fos_user.profile.form"/>
     <service id="sonata.user.authentication.form_handler" alias="fos_user.profile.form.handler"/>
+    <service id="imagine" alias="imagine.gd"/>
     <service id="sensio.distribution.webconfigurator" alias="sensio_distribution.webconfigurator"/>
   </services>
 </container>

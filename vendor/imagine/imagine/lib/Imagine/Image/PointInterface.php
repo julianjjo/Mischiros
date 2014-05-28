@@ -14,9 +14,6 @@ namespace Imagine\Image;
 use Imagine\Image\BoxInterface;
 use Imagine\Image\ImageInterface;
 
-/**
- * The point interface
- */
 interface PointInterface
 {
     /**

@@ -19,9 +19,14 @@ class Venta
     protected $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", columnDefinition="INT(11) UNSIGNED ZEROFILL")
      */
     protected $numero_factura;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $numero_tajeta_credito;
 
     /**
      * @ORM\Column(type="date")
@@ -188,5 +193,28 @@ class Venta
     public function getUsuarios()
     {
         return $this->usuarios;
+    }
+
+    /**
+     * Set numero_tajeta_credito
+     *
+     * @param integer $numeroTajetaCredito
+     * @return Venta
+     */
+    public function setNumeroTajetaCredito($numeroTajetaCredito)
+    {
+        $this->numero_tajeta_credito = $numeroTajetaCredito;
+
+        return $this;
+    }
+
+    /**
+     * Get numero_tajeta_credito
+     *
+     * @return integer 
+     */
+    public function getNumeroTajetaCredito()
+    {
+        return $this->numero_tajeta_credito;
     }
 }

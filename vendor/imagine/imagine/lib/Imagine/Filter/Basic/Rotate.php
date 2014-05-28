@@ -15,9 +15,6 @@ use Imagine\Image\ImageInterface;
 use Imagine\Image\Color;
 use Imagine\Filter\FilterInterface;
 
-/**
- * A rotate filter
- */
 class Rotate implements FilterInterface
 {
     /**

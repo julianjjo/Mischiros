@@ -1,0 +1,96 @@
+{% extends 'MischirosTiendaBundle::listarbase.html.twig' %}
+
+{% block titulo %}Comprar{% endblock %}
+
+{% block barradenavegacion %}
+    <li><a href="{{ path('home')}}">Home</a></li>
+    <li class="active"><a href="{{ path('listarportipo',{ 'tipo' : 1 }) }}">Comprar</a></li>
+    <li><a href="{{ path('contactenos')}}">Contactenos</a></li>
+{% endblock %}
+
+
+{% block menulateral %}
+	<ul class="nav nav-pills nav-stacked">
+		{% for tipo in tipos %}						
+			<li><a href="{{ path('listarportipo',{ 'tipo' : tipo.id }) }}">			
+				{{tipo.descripcion}} 
+				<span class="badge">{{tipo.cantidad}}</span></a>
+			</li>
+		{% endfor %}
+	</ul>
+{% endblock %}	
+
+{% block paginador %}
+	{% set cantidad = 0 %}
+	{% for cantida in cantidades %}
+		{% set cantidad = cantida.cantidad %}
+	{% endfor %}
+		<div class="row">
+			<div class="col-md-4 pull-right">{{ knp_pagination_sortable(prendas, 'Ordenar por Precio de venta', 'p.precio_venta') }}<br><br><br></div>
+		</div>		
+		{% if cantidad < 3 %}
+			<div class="row">
+			{% for prenda in prendas %}
+				<div class="col-md-4">
+					<div class="panel panel-default">
+						<div class="panel-body">
+						    <div class="row">
+								<div class="col-md-12">{% media prenda.media, 'chica' %}</div>
+							</div>
+						</div>
+						<div class="panel-footer">
+							<div class="row">
+								<div class="col-md-5">${{ prenda.precioVenta | number_format(0, ',', '.') }}</div>
+								<div class="col-md-7"><a href="/comprar/mostrar/{{ prenda.id }}" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Detalle</a></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endfor %}			
+			</div>	
+		{% else %}			
+			<div class="row">
+			{% for prenda in prendas %}
+				{% if (loop.index % 3 == 0 and loop.index >= 1) %}
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-body">
+							    <div class="row">
+									<div class="col-md-12">{% media prenda.media, 'chica' %}</div>
+								</div>
+							</div>
+							<div class="panel-footer">
+								<div class="row">
+									<div class="col-md-5">${{ prenda.precioVenta | number_format(0, ',', '.') }}</div>
+									<div class="col-md-7"><a href="/comprar/mostrar/{{ prenda.id }}" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Detalle</a></div>
+								</div>
+							</div>
+						</div>
+					</div>
+			</div>
+			<div class="row">
+				{% elseif loop.last %}
+					</div>
+				{% else %}
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-body">
+							    <div class="row">
+									<div class="col-md-12">{% media prenda.media, 'chica' %}</div>
+								</div>
+							</div>
+							<div class="panel-footer">
+								<div class="row">
+									<div class="col-md-5">${{ prenda.precioVenta | number_format(0, ',', '.') }}</div>
+									<div class="col-md-7"><a href="/comprar/mostrar/{{ prenda.id }}" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Detalle</a></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				{% endif %}
+			{% endfor %}		
+		{% endif %}	
+		<div class="row">
+			<div class="col-md-4 pull-right">{{ knp_pagination_render(prendas) }}</div>
+		</div>	
+{% endblock %}

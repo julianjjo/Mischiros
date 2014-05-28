@@ -14,9 +14,6 @@ namespace Imagine\Filter\Basic;
 use Imagine\Image\ImageInterface;
 use Imagine\Filter\FilterInterface;
 
-/**
- * A save filter
- */
 class Save implements FilterInterface
 {
     /**

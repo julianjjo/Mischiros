@@ -17,9 +17,6 @@ use Imagine\Exception\InvalidArgumentException;
 use Imagine\Exception\RuntimeException;
 use Imagine\Image\ImagineInterface;
 
-/**
- * Imagine implementation using the Imagick PHP extension
- */
 final class Imagine implements ImagineInterface
 {
     /**
@@ -35,7 +32,6 @@ final class Imagine implements ImagineInterface
         $v = $imagick->getVersion();
         list($version, $year, $month, $day, $q, $website) = sscanf($v['versionString'], 'ImageMagick %s %04d-%02d-%02d %s %s');
 
-        // imagick.setiteratorindex.php
         if (version_compare('6.2.9', $version) > 0) {
             throw new RuntimeException('Imagick version 6.2.9 or higher is required');
         }
@@ -58,7 +54,7 @@ final class Imagine implements ImagineInterface
             $image = $this->read($handle);
         } catch (\Exception $e) {
             fclose($handle);
-            throw new RuntimeException(sprintf('Unable to open image %s', $path), $e->getCode(), $e);
+            throw $e;
         }
 
         return $image;

@@ -20,9 +20,6 @@ use Imagine\Image\Color;
 use Imagine\Image\Point;
 use Imagine\Image\PointInterface;
 
-/**
- * Drawer implementation using the Imagick PHP extension
- */
 final class Drawer implements DrawerInterface
 {
     /**
@@ -384,8 +381,6 @@ final class Drawer implements DrawerInterface
                 'Draw text operation failed', $e->getCode(), $e
             );
         }
-
-        return $this;
     }
 
     /**

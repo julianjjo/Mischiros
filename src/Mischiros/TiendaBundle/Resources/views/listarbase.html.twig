@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block contenido %}
+	<div class="container">
+		<br>
+		<div class="row">
+			<div class="col-md-3">
+				{% block menulateral %}{% endblock %}
+			</div>
+			<div class="col-md-8">
+				{% block paginador %}{% endblock %}
+			</div>
+		</div>		
+	</div>
+{% endblock %}

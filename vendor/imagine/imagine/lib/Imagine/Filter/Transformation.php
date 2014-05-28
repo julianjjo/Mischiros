@@ -33,9 +33,6 @@ use Imagine\Image\Fill\FillInterface;
 use Imagine\Image\ManipulatorInterface;
 use Imagine\Image\PointInterface;
 
-/**
- * A transformation filter
- */
 final class Transformation implements FilterInterface, ManipulatorInterface
 {
     /**
@@ -164,9 +161,9 @@ final class Transformation implements FilterInterface, ManipulatorInterface
     /**
      * {@inheritdoc}
      */
-    public function resize(BoxInterface $size, $filter = ImageInterface::FILTER_UNDEFINED)
+    public function resize(BoxInterface $size)
     {
-        return $this->add(new Resize($size, $filter));
+        return $this->add(new Resize($size));
     }
 
     /**

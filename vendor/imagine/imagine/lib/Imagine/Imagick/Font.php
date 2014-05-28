@@ -15,9 +15,6 @@ use Imagine\Image\AbstractFont;
 use Imagine\Image\Box;
 use Imagine\Image\Color;
 
-/**
- * Font implementation using the Imagick PHP extension
- */
 final class Font extends AbstractFont
 {
     /**

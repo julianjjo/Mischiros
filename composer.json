@@ -45,7 +45,9 @@
         "knplabs/knp-menu-bundle":"1.1.2",
         "knplabs/knp-menu": "1.1.2",
         "sonata-project/media-bundle": "2.2.8",
-        "knplabs/knp-paginator-bundle": "dev-master"
+        "knplabs/knp-paginator-bundle": "dev-master",
+        "avalanche123/imagine-bundle": "v2.1",
+        "friendsofsymfony/comment-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [

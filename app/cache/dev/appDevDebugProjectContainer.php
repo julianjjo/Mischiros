@@ -149,6 +149,15 @@ class appDevDebugProjectContainer extends Container
             'fragment.renderer.hinclude' => 'getFragment_Renderer_HincludeService',
             'fragment.renderer.inline' => 'getFragment_Renderer_InlineService',
             'http_kernel' => 'getHttpKernelService',
+            'imagine.cache.path.resolver' => 'getImagine_Cache_Path_ResolverService',
+            'imagine.controller' => 'getImagine_ControllerService',
+            'imagine.filter.loader.thumbnail' => 'getImagine_Filter_Loader_ThumbnailService',
+            'imagine.filter.manager' => 'getImagine_Filter_ManagerService',
+            'imagine.gd' => 'getImagine_GdService',
+            'imagine.gmagick' => 'getImagine_GmagickService',
+            'imagine.imagick' => 'getImagine_ImagickService',
+            'imagine.routing.loader' => 'getImagine_Routing_LoaderService',
+            'imagine.templating.helper' => 'getImagine_Templating_HelperService',
             'kernel' => 'getKernelService',
             'knp_menu.factory' => 'getKnpMenu_FactoryService',
             'knp_menu.menu_provider' => 'getKnpMenu_MenuProviderService',
@@ -319,12 +328,15 @@ class appDevDebugProjectContainer extends Container
             'sonata.block.service.text' => 'getSonata_Block_Service_TextService',
             'sonata.block.templating.helper' => 'getSonata_Block_Templating_HelperService',
             'sonata.block.twig.global' => 'getSonata_Block_Twig_GlobalService',
+            'sonata.core.date.moment_format_converter' => 'getSonata_Core_Date_MomentFormatConverterService',
             'sonata.core.flashmessage.manager' => 'getSonata_Core_Flashmessage_ManagerService',
             'sonata.core.flashmessage.twig.extension' => 'getSonata_Core_Flashmessage_Twig_ExtensionService',
             'sonata.core.form.type.array' => 'getSonata_Core_Form_Type_ArrayService',
             'sonata.core.form.type.boolean' => 'getSonata_Core_Form_Type_BooleanService',
             'sonata.core.form.type.collection' => 'getSonata_Core_Form_Type_CollectionService',
+            'sonata.core.form.type.date_picker' => 'getSonata_Core_Form_Type_DatePickerService',
             'sonata.core.form.type.date_range' => 'getSonata_Core_Form_Type_DateRangeService',
+            'sonata.core.form.type.datetime_picker' => 'getSonata_Core_Form_Type_DatetimePickerService',
             'sonata.core.form.type.datetime_range' => 'getSonata_Core_Form_Type_DatetimeRangeService',
             'sonata.core.form.type.equal' => 'getSonata_Core_Form_Type_EqualService',
             'sonata.core.form.type.translatable_choice' => 'getSonata_Core_Form_Type_TranslatableChoiceService',
@@ -471,6 +483,7 @@ class appDevDebugProjectContainer extends Container
             'event_dispatcher' => 'debug.event_dispatcher',
             'fos_user.change_password.form.handler' => 'fos_user.change_password.form.handler.default',
             'fos_user.util.username_canonicalizer' => 'fos_user.util.email_canonicalizer',
+            'imagine' => 'imagine.gd',
             'mailer' => 'swiftmailer.mailer.default',
             'security.acl.dbal.connection' => 'doctrine.dbal.default_connection',
             'sensio.distribution.webconfigurator' => 'sensio_distribution.webconfigurator',
@@ -921,7 +934,7 @@ class appDevDebugProjectContainer extends Container
         $this->services['debug.templating.engine.php'] = $instance = new \Symfony\Bundle\FrameworkBundle\Templating\TimedPhpEngine($this->get('templating.name_parser'), $this, $this->get('templating.loader'), $this->get('debug.stopwatch'), $this->get('templating.globals'));
 
         $instance->setCharset('UTF-8');
-        $instance->setHelpers(array('slots' => 'templating.helper.slots', 'assets' => 'templating.helper.assets', 'request' => 'templating.helper.request', 'session' => 'templating.helper.session', 'router' => 'templating.helper.router', 'actions' => 'templating.helper.actions', 'code' => 'templating.helper.code', 'translator' => 'templating.helper.translator', 'form' => 'templating.helper.form', 'stopwatch' => 'templating.helper.stopwatch', 'logout_url' => 'templating.helper.logout_url', 'security' => 'templating.helper.security', 'assetic' => 'assetic.helper.dynamic', 'sonata_block' => 'sonata.block.templating.helper', 'knp_pagination' => 'knp_paginator.templating.helper.pagination'));
+        $instance->setHelpers(array('slots' => 'templating.helper.slots', 'assets' => 'templating.helper.assets', 'request' => 'templating.helper.request', 'session' => 'templating.helper.session', 'router' => 'templating.helper.router', 'actions' => 'templating.helper.actions', 'code' => 'templating.helper.code', 'translator' => 'templating.helper.translator', 'form' => 'templating.helper.form', 'stopwatch' => 'templating.helper.stopwatch', 'logout_url' => 'templating.helper.logout_url', 'security' => 'templating.helper.security', 'assetic' => 'assetic.helper.dynamic', 'sonata_block' => 'sonata.block.templating.helper', 'knp_pagination' => 'knp_paginator.templating.helper.pagination', 'imagine' => 'imagine.templating.helper'));
 
         return $instance;
     }
@@ -1129,7 +1142,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getForm_RegistryService()
     {
-        return $this->services['form.registry'] = new \Symfony\Component\Form\FormRegistry(array(0 => new \Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension($this, array('form' => 'form.type.form', 'birthday' => 'form.type.birthday', 'checkbox' => 'form.type.checkbox', 'choice' => 'form.type.choice', 'collection' => 'form.type.collection', 'country' => 'form.type.country', 'date' => 'form.type.date', 'datetime' => 'form.type.datetime', 'email' => 'form.type.email', 'file' => 'form.type.file', 'hidden' => 'form.type.hidden', 'integer' => 'form.type.integer', 'language' => 'form.type.language', 'locale' => 'form.type.locale', 'money' => 'braincrafted_bootstrap.form.type.money', 'number' => 'form.type.number', 'password' => 'form.type.password', 'percent' => 'form.type.percent', 'radio' => 'form.type.radio', 'repeated' => 'form.type.repeated', 'search' => 'form.type.search', 'textarea' => 'form.type.textarea', 'text' => 'form.type.text', 'time' => 'form.type.time', 'timezone' => 'form.type.timezone', 'url' => 'form.type.url', 'button' => 'form.type.button', 'submit' => 'form.type.submit', 'reset' => 'form.type.reset', 'currency' => 'form.type.currency', 'entity' => 'form.type.entity', 'fos_user_username' => 'fos_user.username_form_type', 'fos_user_profile' => 'fos_user.profile.form.type', 'fos_user_registration' => 'fos_user.registration.form.type', 'fos_user_change_password' => 'fos_user.change_password.form.type', 'fos_user_resetting' => 'fos_user.resetting.form.type', 'fos_user_group' => 'fos_user.group.form.type', 'sonata_type_admin' => 'sonata.admin.form.type.admin', 'sonata_type_model' => 'sonata.admin.form.type.model_choice', 'sonata_type_model_list' => 'sonata.admin.form.type.model_list', 'sonata_type_model_reference' => 'sonata.admin.form.type.model_reference', 'sonata_type_model_hidden' => 'sonata.admin.form.type.model_hidden', 'sonata_type_filter_number' => 'sonata.admin.form.filter.type.number', 'sonata_type_filter_choice' => 'sonata.admin.form.filter.type.choice', 'sonata_type_filter_default' => 'sonata.admin.form.filter.type.default', 'sonata_type_filter_date' => 'sonata.admin.form.filter.type.date', 'sonata_type_filter_date_range' => 'sonata.admin.form.filter.type.daterange', 'sonata_type_filter_datetime' => 'sonata.admin.form.filter.type.datetime', 'sonata_type_filter_datetime_range' => 'sonata.admin.form.filter.type.datetime_range', 'sonata_block_service_choice' => 'sonata.block.form.type.block', 'sonata_type_immutable_array' => 'sonata.core.form.type.array', 'sonata_type_boolean' => 'sonata.core.form.type.boolean', 'sonata_type_collection' => 'sonata.core.form.type.collection', 'sonata_type_translatable_choice' => 'sonata.core.form.type.translatable_choice', 'sonata_type_date_range' => 'sonata.core.form.type.date_range', 'sonata_type_datetime_range' => 'sonata.core.form.type.datetime_range', 'sonata_type_equal' => 'sonata.core.form.type.equal', 'sonata_security_roles' => 'sonata.user.form.type.security_roles', 'sonata_user_profile' => 'sonata.user.profile.form.type', 'sonata_user_gender' => 'sonata.user.form.gender_list', 'sonata_user_registration' => 'sonata.user.registration.form.type', 'sonata_media_type' => 'sonata.media.form.type.media', 'bootstrap_collection' => 'braincrafted_bootstrap.form.type.collection', 'form_actions' => 'braincrafted_bootstrap.form.type.form_actions'), array('form' => array(0 => 'form.type_extension.form.http_foundation', 1 => 'form.type_extension.form.validator', 2 => 'form.type_extension.csrf', 3 => 'form.type_extension.form.data_collector', 4 => 'sonata.admin.form.extension.field', 5 => 'sonata.admin.form.extension.field.mopa', 6 => 'braincrafted_bootstrap.form.extension.typesetter_extension'), 'repeated' => array(0 => 'form.type_extension.repeated.validator'), 'submit' => array(0 => 'form.type_extension.submit.validator')), array(0 => 'form.type_guesser.validator', 1 => 'form.type_guesser.doctrine'))), $this->get('form.resolved_type_factory'));
+        return $this->services['form.registry'] = new \Symfony\Component\Form\FormRegistry(array(0 => new \Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension($this, array('form' => 'form.type.form', 'birthday' => 'form.type.birthday', 'checkbox' => 'form.type.checkbox', 'choice' => 'form.type.choice', 'collection' => 'form.type.collection', 'country' => 'form.type.country', 'date' => 'form.type.date', 'datetime' => 'form.type.datetime', 'email' => 'form.type.email', 'file' => 'form.type.file', 'hidden' => 'form.type.hidden', 'integer' => 'form.type.integer', 'language' => 'form.type.language', 'locale' => 'form.type.locale', 'money' => 'braincrafted_bootstrap.form.type.money', 'number' => 'form.type.number', 'password' => 'form.type.password', 'percent' => 'form.type.percent', 'radio' => 'form.type.radio', 'repeated' => 'form.type.repeated', 'search' => 'form.type.search', 'textarea' => 'form.type.textarea', 'text' => 'form.type.text', 'time' => 'form.type.time', 'timezone' => 'form.type.timezone', 'url' => 'form.type.url', 'button' => 'form.type.button', 'submit' => 'form.type.submit', 'reset' => 'form.type.reset', 'currency' => 'form.type.currency', 'entity' => 'form.type.entity', 'fos_user_username' => 'fos_user.username_form_type', 'fos_user_profile' => 'fos_user.profile.form.type', 'fos_user_registration' => 'fos_user.registration.form.type', 'fos_user_change_password' => 'fos_user.change_password.form.type', 'fos_user_resetting' => 'fos_user.resetting.form.type', 'fos_user_group' => 'fos_user.group.form.type', 'sonata_type_admin' => 'sonata.admin.form.type.admin', 'sonata_type_model' => 'sonata.admin.form.type.model_choice', 'sonata_type_model_list' => 'sonata.admin.form.type.model_list', 'sonata_type_model_reference' => 'sonata.admin.form.type.model_reference', 'sonata_type_model_hidden' => 'sonata.admin.form.type.model_hidden', 'sonata_type_filter_number' => 'sonata.admin.form.filter.type.number', 'sonata_type_filter_choice' => 'sonata.admin.form.filter.type.choice', 'sonata_type_filter_default' => 'sonata.admin.form.filter.type.default', 'sonata_type_filter_date' => 'sonata.admin.form.filter.type.date', 'sonata_type_filter_date_range' => 'sonata.admin.form.filter.type.daterange', 'sonata_type_filter_datetime' => 'sonata.admin.form.filter.type.datetime', 'sonata_type_filter_datetime_range' => 'sonata.admin.form.filter.type.datetime_range', 'sonata_block_service_choice' => 'sonata.block.form.type.block', 'sonata_type_immutable_array' => 'sonata.core.form.type.array', 'sonata_type_boolean' => 'sonata.core.form.type.boolean', 'sonata_type_collection' => 'sonata.core.form.type.collection', 'sonata_type_translatable_choice' => 'sonata.core.form.type.translatable_choice', 'sonata_type_date_range' => 'sonata.core.form.type.date_range', 'sonata_type_datetime_range' => 'sonata.core.form.type.datetime_range', 'sonata_type_date_picker' => 'sonata.core.form.type.date_picker', 'sonata_type_datetime_picker' => 'sonata.core.form.type.datetime_picker', 'sonata_type_equal' => 'sonata.core.form.type.equal', 'sonata_security_roles' => 'sonata.user.form.type.security_roles', 'sonata_user_profile' => 'sonata.user.profile.form.type', 'sonata_user_gender' => 'sonata.user.form.gender_list', 'sonata_user_registration' => 'sonata.user.registration.form.type', 'sonata_media_type' => 'sonata.media.form.type.media', 'bootstrap_collection' => 'braincrafted_bootstrap.form.type.collection', 'form_actions' => 'braincrafted_bootstrap.form.type.form_actions'), array('form' => array(0 => 'form.type_extension.form.http_foundation', 1 => 'form.type_extension.form.validator', 2 => 'form.type_extension.csrf', 3 => 'form.type_extension.form.data_collector', 4 => 'sonata.admin.form.extension.field', 5 => 'sonata.admin.form.extension.field.mopa', 6 => 'braincrafted_bootstrap.form.extension.typesetter_extension'), 'repeated' => array(0 => 'form.type_extension.repeated.validator'), 'submit' => array(0 => 'form.type_extension.submit.validator')), array(0 => 'form.type_guesser.validator', 1 => 'form.type_guesser.doctrine'))), $this->get('form.resolved_type_factory'));
     }
 
     /**
@@ -2093,6 +2106,133 @@ class appDevDebugProjectContainer extends Container
     }
 
     /**
+     * Gets the 'imagine.cache.path.resolver' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Avalanche\Bundle\ImagineBundle\Imagine\CachePathResolver A Avalanche\Bundle\ImagineBundle\Imagine\CachePathResolver instance.
+     */
+    protected function getImagine_Cache_Path_ResolverService()
+    {
+        return $this->services['imagine.cache.path.resolver'] = new \Avalanche\Bundle\ImagineBundle\Imagine\CachePathResolver('/var/www/app/../web', $this->get('router'));
+    }
+
+    /**
+     * Gets the 'imagine.controller' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Avalanche\Bundle\ImagineBundle\Controller\ImagineController A Avalanche\Bundle\ImagineBundle\Controller\ImagineController instance.
+     * 
+     * @throws InactiveScopeException when the 'imagine.controller' service is requested while the 'request' scope is not active
+     */
+    protected function getImagine_ControllerService()
+    {
+        if (!isset($this->scopedServices['request'])) {
+            throw new InactiveScopeException('imagine.controller', 'request');
+        }
+
+        return $this->services['imagine.controller'] = $this->scopedServices['request']['imagine.controller'] = new \Avalanche\Bundle\ImagineBundle\Controller\ImagineController($this->get('request'), $this->get('imagine.cache.path.resolver'), $this->get('imagine.gd'), $this->get('imagine.filter.manager'), $this->get('filesystem'), '/var/www/app/../web', '/var/www/app/../web');
+    }
+
+    /**
+     * Gets the 'imagine.filter.loader.thumbnail' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Avalanche\Bundle\ImagineBundle\Imagine\Filter\Loader\ThumbnailFilterLoader A Avalanche\Bundle\ImagineBundle\Imagine\Filter\Loader\ThumbnailFilterLoader instance.
+     */
+    protected function getImagine_Filter_Loader_ThumbnailService()
+    {
+        return $this->services['imagine.filter.loader.thumbnail'] = new \Avalanche\Bundle\ImagineBundle\Imagine\Filter\Loader\ThumbnailFilterLoader();
+    }
+
+    /**
+     * Gets the 'imagine.filter.manager' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Avalanche\Bundle\ImagineBundle\Imagine\Filter\FilterManager A Avalanche\Bundle\ImagineBundle\Imagine\Filter\FilterManager instance.
+     */
+    protected function getImagine_Filter_ManagerService()
+    {
+        $this->services['imagine.filter.manager'] = $instance = new \Avalanche\Bundle\ImagineBundle\Imagine\Filter\FilterManager(array());
+
+        $instance->addLoader('thumbnail', $this->get('imagine.filter.loader.thumbnail'));
+
+        return $instance;
+    }
+
+    /**
+     * Gets the 'imagine.gd' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Imagine\Gd\Imagine A Imagine\Gd\Imagine instance.
+     */
+    protected function getImagine_GdService()
+    {
+        return $this->services['imagine.gd'] = new \Imagine\Gd\Imagine();
+    }
+
+    /**
+     * Gets the 'imagine.gmagick' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Imagine\Gmagick\Imagine A Imagine\Gmagick\Imagine instance.
+     */
+    protected function getImagine_GmagickService()
+    {
+        return $this->services['imagine.gmagick'] = new \Imagine\Gmagick\Imagine();
+    }
+
+    /**
+     * Gets the 'imagine.imagick' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Imagine\Imagick\Imagine A Imagine\Imagick\Imagine instance.
+     */
+    protected function getImagine_ImagickService()
+    {
+        return $this->services['imagine.imagick'] = new \Imagine\Imagick\Imagine();
+    }
+
+    /**
+     * Gets the 'imagine.routing.loader' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Avalanche\Bundle\ImagineBundle\Routing\ImagineLoader A Avalanche\Bundle\ImagineBundle\Routing\ImagineLoader instance.
+     */
+    protected function getImagine_Routing_LoaderService()
+    {
+        return $this->services['imagine.routing.loader'] = new \Avalanche\Bundle\ImagineBundle\Routing\ImagineLoader('media/cache', array());
+    }
+
+    /**
+     * Gets the 'imagine.templating.helper' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Avalanche\Bundle\ImagineBundle\Templating\Helper\ImagineHelper A Avalanche\Bundle\ImagineBundle\Templating\Helper\ImagineHelper instance.
+     */
+    protected function getImagine_Templating_HelperService()
+    {
+        return $this->services['imagine.templating.helper'] = new \Avalanche\Bundle\ImagineBundle\Templating\Helper\ImagineHelper($this->get('imagine.cache.path.resolver'));
+    }
+
+    /**
      * Gets the 'kernel' service.
      *
      * This service is shared.
@@ -2854,6 +2994,7 @@ class appDevDebugProjectContainer extends Container
         $d->addLoader(new \Symfony\Component\Routing\Loader\AnnotationFileLoader($a, $c));
         $d->addLoader($c);
         $d->addLoader($this->get('sonata.admin.route_loader'));
+        $d->addLoader($this->get('imagine.routing.loader'));
 
         return $this->services['routing.loader'] = new \Symfony\Bundle\FrameworkBundle\Routing\DelegatingLoader($this->get('controller_name_converter'), $this->get('monolog.logger.router', ContainerInterface::NULL_ON_INVALID_REFERENCE), $d);
     }
@@ -2971,7 +3112,7 @@ class appDevDebugProjectContainer extends Container
         $g = new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationSuccessHandler($d, array('login_path' => '/admin/login', 'always_use_default_target_path' => false, 'default_target_path' => '/', 'target_path_parameter' => '_target_path', 'use_referer' => false));
         $g->setProviderKey('admin');
 
-        return $this->services['security.firewall.map.context.admin'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => $this->get('security.channel_listener'), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($a, array(0 => $this->get('fos_user.user_manager')), 'admin', $b, $c), 2 => $f, 3 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($a, $this->get('security.authentication.manager'), $this->get('security.authentication.session_strategy'), $d, 'admin', $g, new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler($e, $d, array('login_path' => '/admin/login', 'failure_path' => NULL, 'failure_forward' => false, 'failure_path_parameter' => '_failure_path'), $b), array('use_forward' => false, 'check_path' => '/admin/login_check', 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'intention' => 'authenticate', 'post_only' => true), $b, $c, NULL), 4 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($a, '5377bc421622d', $b), 5 => $this->get('security.access_listener')), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($a, $this->get('security.authentication.trust_resolver'), $d, 'admin', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($e, $d, '/admin/login', false), NULL, NULL, $b));
+        return $this->services['security.firewall.map.context.admin'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => $this->get('security.channel_listener'), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($a, array(0 => $this->get('fos_user.user_manager')), 'admin', $b, $c), 2 => $f, 3 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($a, $this->get('security.authentication.manager'), $this->get('security.authentication.session_strategy'), $d, 'admin', $g, new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler($e, $d, array('login_path' => '/admin/login', 'failure_path' => NULL, 'failure_forward' => false, 'failure_path_parameter' => '_failure_path'), $b), array('use_forward' => false, 'check_path' => '/admin/login_check', 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'intention' => 'authenticate', 'post_only' => true), $b, $c, NULL), 4 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($a, '538621da0d699', $b), 5 => $this->get('security.access_listener')), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($a, $this->get('security.authentication.trust_resolver'), $d, 'admin', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($e, $d, '/admin/login', false), NULL, NULL, $b));
     }
 
     /**
@@ -2996,7 +3137,7 @@ class appDevDebugProjectContainer extends Container
         $g = new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationSuccessHandler($d, array('login_path' => '/login', 'always_use_default_target_path' => false, 'default_target_path' => '/', 'target_path_parameter' => '_target_path', 'use_referer' => false));
         $g->setProviderKey('main');
 
-        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => $this->get('security.channel_listener'), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($a, array(0 => $this->get('fos_user.user_manager')), 'main', $b, $c), 2 => $f, 3 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($a, $this->get('security.authentication.manager'), $this->get('security.authentication.session_strategy'), $d, 'main', $g, new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler($e, $d, array('login_path' => '/login', 'failure_path' => NULL, 'failure_forward' => false, 'failure_path_parameter' => '_failure_path'), $b), array('use_forward' => false, 'check_path' => '/login_check', 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'intention' => 'authenticate', 'post_only' => true), $b, $c, NULL), 4 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($a, '5377bc421622d', $b), 5 => $this->get('security.access_listener')), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($a, $this->get('security.authentication.trust_resolver'), $d, 'main', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($e, $d, '/login', false), NULL, NULL, $b));
+        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => $this->get('security.channel_listener'), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($a, array(0 => $this->get('fos_user.user_manager')), 'main', $b, $c), 2 => $f, 3 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($a, $this->get('security.authentication.manager'), $this->get('security.authentication.session_strategy'), $d, 'main', $g, new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler($e, $d, array('login_path' => '/login', 'failure_path' => NULL, 'failure_forward' => false, 'failure_path_parameter' => '_failure_path'), $b), array('use_forward' => false, 'check_path' => '/login_check', 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'intention' => 'authenticate', 'post_only' => true), $b, $c, NULL), 4 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($a, '538621da0d699', $b), 5 => $this->get('security.access_listener')), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($a, $this->get('security.authentication.trust_resolver'), $d, 'main', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($e, $d, '/login', false), NULL, NULL, $b));
     }
 
     /**
@@ -3914,7 +4055,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getSonata_Admin_PoolService()
     {
-        $this->services['sonata.admin.pool'] = $instance = new \Sonata\AdminBundle\Admin\Pool($this, 'Administrador', '/bundles/sonataadmin/logo_title.png', array('html5_validate' => true, 'confirm_exit' => true, 'use_select2' => true, 'use_icheck' => true, 'pager_links' => NULL, 'form_type' => 'standard', 'dropdown_number_groups_per_colums' => 2, 'title_mode' => 'both', 'javascripts' => array(0 => 'bundles/sonataadmin/vendor/jquery/dist/jquery.min.js', 1 => 'bundles/sonataadmin/vendor/bootstrap/dist/js/bootstrap.min.js', 2 => 'bundles/sonataadmin/vendor/jqueryui/ui/minified/jquery-ui.min.js', 3 => 'bundles/sonataadmin/vendor/jqueryui/ui/minified/i18n/jquery-ui-i18n.min.js', 4 => 'bundles/sonataadmin/jquery/jquery.form.js', 5 => 'bundles/sonataadmin/jquery/jquery.confirmExit.js', 6 => 'bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.min.js', 7 => 'bundles/sonataadmin/vendor/select2/select2.min.js', 8 => 'bundles/sonataadmin/App.js', 9 => 'bundles/sonataadmin/Admin.js'), 'stylesheets' => array(0 => 'bundles/sonataadmin/vendor/bootstrap/dist/css/bootstrap.min.css', 1 => 'bundles/sonataadmin/vendor/AdminLTE/css/font-awesome.min.css', 2 => 'bundles/sonataadmin/vendor/AdminLTE/css/ionicons.min.css', 3 => 'bundles/sonataadmin/vendor/AdminLTE/css/AdminLTE.css', 4 => 'bundles/sonataadmin/vendor/jqueryui/themes/base/jquery-ui.css', 5 => 'bundles/sonataadmin/vendor/select2/select2.css', 6 => 'bundles/sonataadmin/vendor/select2/select2-bootstrap.css', 7 => 'bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css', 8 => 'bundles/sonataadmin/css/styles.css', 9 => 'bundles/sonataadmin/css/layout.css')), array());
+        $this->services['sonata.admin.pool'] = $instance = new \Sonata\AdminBundle\Admin\Pool($this, 'Administrador', '/bundles/sonataadmin/logo_title.png', array('html5_validate' => true, 'confirm_exit' => true, 'use_select2' => true, 'use_icheck' => true, 'pager_links' => NULL, 'form_type' => 'standard', 'dropdown_number_groups_per_colums' => 2, 'title_mode' => 'both', 'javascripts' => array(0 => 'bundles/sonataadmin/vendor/jquery/dist/jquery.min.js', 1 => 'bundles/sonatacore/vendor/moment/min/moment.min.js', 2 => 'bundles/sonataadmin/vendor/bootstrap/dist/js/bootstrap.min.js', 3 => 'bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js', 4 => 'bundles/sonataadmin/vendor/jqueryui/ui/minified/jquery-ui.min.js', 5 => 'bundles/sonataadmin/vendor/jqueryui/ui/minified/i18n/jquery-ui-i18n.min.js', 6 => 'bundles/sonataadmin/jquery/jquery.form.js', 7 => 'bundles/sonataadmin/jquery/jquery.confirmExit.js', 8 => 'bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.min.js', 9 => 'bundles/sonataadmin/vendor/select2/select2.min.js', 10 => 'bundles/sonataadmin/App.js', 11 => 'bundles/sonataadmin/Admin.js'), 'stylesheets' => array(0 => 'bundles/sonataadmin/vendor/bootstrap/dist/css/bootstrap.min.css', 1 => 'bundles/sonataadmin/vendor/AdminLTE/css/font-awesome.min.css', 2 => 'bundles/sonataadmin/vendor/AdminLTE/css/ionicons.min.css', 3 => 'bundles/sonataadmin/vendor/AdminLTE/css/AdminLTE.css', 4 => 'bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css', 5 => 'bundles/sonataadmin/vendor/jqueryui/themes/base/jquery-ui.css', 6 => 'bundles/sonataadmin/vendor/select2/select2.css', 7 => 'bundles/sonataadmin/vendor/select2/select2-bootstrap.css', 8 => 'bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css', 9 => 'bundles/sonataadmin/css/styles.css', 10 => 'bundles/sonataadmin/css/layout.css')), array());
 
         $instance->setTemplates(array('user_block' => 'SonataUserBundle:Admin/Core:user_block.html.twig', 'layout' => 'SonataAdminBundle::standard_layout.html.twig', 'ajax' => 'SonataAdminBundle::ajax_layout.html.twig', 'list' => 'SonataAdminBundle:CRUD:list.html.twig', 'show' => 'SonataAdminBundle:CRUD:show.html.twig', 'edit' => 'SonataAdminBundle:CRUD:edit.html.twig', 'add_block' => 'SonataAdminBundle:Core:add_block.html.twig', 'dashboard' => 'SonataAdminBundle:Core:dashboard.html.twig', 'search' => 'SonataAdminBundle:Core:search.html.twig', 'filter' => 'SonataAdminBundle:Form:filter_admin_fields.html.twig', 'preview' => 'SonataAdminBundle:CRUD:preview.html.twig', 'history' => 'SonataAdminBundle:CRUD:history.html.twig', 'acl' => 'SonataAdminBundle:CRUD:acl.html.twig', 'history_revision_timestamp' => 'SonataAdminBundle:CRUD:history_revision_timestamp.html.twig', 'action' => 'SonataAdminBundle:CRUD:action.html.twig', 'select' => 'SonataAdminBundle:CRUD:list__select.html.twig', 'list_block' => 'SonataAdminBundle:Block:block_admin_list.html.twig', 'search_result_block' => 'SonataAdminBundle:Block:block_search_result.html.twig', 'short_object_description' => 'SonataAdminBundle:Helper:short-object-description.html.twig', 'delete' => 'SonataAdminBundle:CRUD:delete.html.twig', 'batch' => 'SonataAdminBundle:CRUD:list__batch.html.twig', 'batch_confirmation' => 'SonataAdminBundle:CRUD:batch_confirmation.html.twig', 'inner_list_row' => 'SonataAdminBundle:CRUD:list_inner_row.html.twig', 'base_list_field' => 'SonataAdminBundle:CRUD:base_list_field.html.twig', 'pager_links' => 'SonataAdminBundle:Pager:links.html.twig', 'pager_results' => 'SonataAdminBundle:Pager:results.html.twig'));
         $instance->setAdminServiceIds(array(0 => 'mischiros_tienda.admin.tipo', 1 => 'mischiros_tienda.admin.talla', 2 => 'mischiros_tienda.admin.medida', 3 => 'mischiros_tienda.admin.prenda', 4 => 'mischiros_tienda.admin.ingreso', 5 => 'sonata.user.admin.user', 6 => 'sonata.user.admin.group', 7 => 'sonata.media.admin.media', 8 => 'sonata.media.admin.gallery', 9 => 'sonata.media.admin.gallery_has_media'));
@@ -4338,6 +4479,19 @@ class appDevDebugProjectContainer extends Container
     }
 
     /**
+     * Gets the 'sonata.core.date.moment_format_converter' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Sonata\CoreBundle\Date\MomentFormatConverter A Sonata\CoreBundle\Date\MomentFormatConverter instance.
+     */
+    protected function getSonata_Core_Date_MomentFormatConverterService()
+    {
+        return $this->services['sonata.core.date.moment_format_converter'] = new \Sonata\CoreBundle\Date\MomentFormatConverter();
+    }
+
+    /**
      * Gets the 'sonata.core.flashmessage.manager' service.
      *
      * This service is shared.
@@ -4403,6 +4557,19 @@ class appDevDebugProjectContainer extends Container
     }
 
     /**
+     * Gets the 'sonata.core.form.type.date_picker' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Sonata\CoreBundle\Form\Type\DatePickerType A Sonata\CoreBundle\Form\Type\DatePickerType instance.
+     */
+    protected function getSonata_Core_Form_Type_DatePickerService()
+    {
+        return $this->services['sonata.core.form.type.date_picker'] = new \Sonata\CoreBundle\Form\Type\DatePickerType($this->get('sonata.core.date.moment_format_converter'));
+    }
+
+    /**
      * Gets the 'sonata.core.form.type.date_range' service.
      *
      * This service is shared.
@@ -4413,6 +4580,19 @@ class appDevDebugProjectContainer extends Container
     protected function getSonata_Core_Form_Type_DateRangeService()
     {
         return $this->services['sonata.core.form.type.date_range'] = new \Sonata\CoreBundle\Form\Type\DateRangeType($this->get('translator.default'));
+    }
+
+    /**
+     * Gets the 'sonata.core.form.type.datetime_picker' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Sonata\CoreBundle\Form\Type\DateTimePickerType A Sonata\CoreBundle\Form\Type\DateTimePickerType instance.
+     */
+    protected function getSonata_Core_Form_Type_DatetimePickerService()
+    {
+        return $this->services['sonata.core.form.type.datetime_picker'] = new \Sonata\CoreBundle\Form\Type\DateTimePickerType($this->get('sonata.core.date.moment_format_converter'));
     }
 
     /**
@@ -5019,7 +5199,7 @@ class appDevDebugProjectContainer extends Container
         $this->services['sonata.media.pool'] = $instance = new \Sonata\MediaBundle\Provider\Pool('default');
 
         $instance->addContext('default', array(0 => 'sonata.media.provider.dailymotion', 1 => 'sonata.media.provider.youtube', 2 => 'sonata.media.provider.image', 3 => 'sonata.media.provider.file'), array('default_small' => array('width' => 100, 'quality' => 100, 'height' => false, 'format' => 'jpg', 'constraint' => true), 'default_big' => array('width' => 700, 'quality' => 100, 'height' => false, 'format' => 'jpg', 'constraint' => true)), array('strategy' => 'sonata.media.security.superadmin_strategy', 'mode' => 'http'));
-        $instance->addContext('prenda', array(0 => 'sonata.media.provider.image'), array('prenda_small' => array('width' => 100, 'quality' => 100, 'height' => false, 'format' => 'jpg', 'constraint' => true), 'prenda_big' => array('width' => 700, 'quality' => 100, 'height' => false, 'format' => 'jpg', 'constraint' => true)), array('strategy' => 'sonata.media.security.public_strategy', 'mode' => 'http'));
+        $instance->addContext('prenda', array(0 => 'sonata.media.provider.image'), array('prenda_chica' => array('width' => 200, 'quality' => 100, 'height' => false, 'format' => 'jpg', 'constraint' => true), 'prenda_media' => array('width' => 350, 'quality' => 100, 'height' => false, 'format' => 'jpg', 'constraint' => true), 'prenda_grande' => array('width' => 700, 'quality' => 100, 'height' => false, 'format' => 'jpg', 'constraint' => true)), array('strategy' => 'sonata.media.security.public_strategy', 'mode' => 'http'));
         $instance->addDownloadSecurity('sonata.media.security.superadmin_strategy', $this->get('sonata.media.security.superadmin_strategy'));
         $instance->addDownloadSecurity('sonata.media.security.public_strategy', $this->get('sonata.media.security.public_strategy'));
         $instance->addProvider('sonata.media.provider.image', $this->get('sonata.media.provider.image'));
@@ -5087,8 +5267,9 @@ class appDevDebugProjectContainer extends Container
         $instance->setTemplates(array('helper_thumbnail' => 'SonataMediaBundle:Provider:thumbnail.html.twig', 'helper_view' => 'SonataMediaBundle:Provider:view_image.html.twig'));
         $instance->addFormat('default_small', array('width' => 100, 'quality' => 100, 'height' => false, 'format' => 'jpg', 'constraint' => true));
         $instance->addFormat('default_big', array('width' => 700, 'quality' => 100, 'height' => false, 'format' => 'jpg', 'constraint' => true));
-        $instance->addFormat('prenda_small', array('width' => 100, 'quality' => 100, 'height' => false, 'format' => 'jpg', 'constraint' => true));
-        $instance->addFormat('prenda_big', array('width' => 700, 'quality' => 100, 'height' => false, 'format' => 'jpg', 'constraint' => true));
+        $instance->addFormat('prenda_chica', array('width' => 200, 'quality' => 100, 'height' => false, 'format' => 'jpg', 'constraint' => true));
+        $instance->addFormat('prenda_media', array('width' => 350, 'quality' => 100, 'height' => false, 'format' => 'jpg', 'constraint' => true));
+        $instance->addFormat('prenda_grande', array('width' => 700, 'quality' => 100, 'height' => false, 'format' => 'jpg', 'constraint' => true));
         $instance->setResizer($this->get('sonata.media.resizer.square'));
         $instance->addFormat('admin', array('quality' => 80, 'width' => 100, 'format' => 'jpg', 'height' => false, 'constraint' => true));
 
@@ -6564,6 +6745,7 @@ class appDevDebugProjectContainer extends Container
         $instance->addExtension($this->get('braincrafted_bootstrap.twig.label_extension'));
         $instance->addExtension($this->get('braincrafted_bootstrap.twig.badge_extension'));
         $instance->addExtension($this->get('braincrafted_bootstrap.twig.form_extension'));
+        $instance->addExtension(new \Avalanche\Bundle\ImagineBundle\Templating\ImagineExtension($this->get('imagine.cache.path.resolver')));
         $instance->addExtension($this->get('twig.extension.acme.demo'));
         $instance->addGlobal('app', $this->get('templating.globals'));
         $instance->addGlobal('sonata_block', $this->get('sonata.block.twig.global'));
@@ -6882,7 +7064,7 @@ class appDevDebugProjectContainer extends Container
         $a = $this->get('security.role_hierarchy');
         $b = $this->get('security.authentication.trust_resolver');
 
-        return $this->services['security.access.decision_manager'] = new \Symfony\Component\Security\Core\Authorization\AccessDecisionManager(array(0 => new \Symfony\Component\Security\Core\Authorization\Voter\RoleHierarchyVoter($a), 1 => new \Symfony\Component\Security\Core\Authorization\Voter\ExpressionVoter(new \Symfony\Component\Security\Core\Authorization\ExpressionLanguage(), $b, $a), 2 => new \Symfony\Component\Security\Core\Authorization\Voter\AuthenticatedVoter($b), 3 => new \Symfony\Component\Security\Acl\Voter\AclVoter($this->get('security.acl.provider'), new \Symfony\Component\Security\Acl\Domain\ObjectIdentityRetrievalStrategy(), new \Symfony\Component\Security\Acl\Domain\SecurityIdentityRetrievalStrategy($a, $b), new \Symfony\Component\Security\Acl\Permission\BasicPermissionMap(), $this->get('monolog.logger.security', ContainerInterface::NULL_ON_INVALID_REFERENCE), true)), 'unanimous', false, true);
+        return $this->services['security.access.decision_manager'] = new \Symfony\Component\Security\Core\Authorization\AccessDecisionManager(array(0 => new \Symfony\Component\Security\Core\Authorization\Voter\RoleHierarchyVoter($a), 1 => new \Symfony\Component\Security\Core\Authorization\Voter\ExpressionVoter(new \Symfony\Component\Security\Core\Authorization\ExpressionLanguage(), $b, $a), 2 => new \Symfony\Component\Security\Core\Authorization\Voter\AuthenticatedVoter($b), 3 => new \Symfony\Component\Security\Acl\Voter\AclVoter($this->get('security.acl.provider'), new \Symfony\Component\Security\Acl\Domain\ObjectIdentityRetrievalStrategy(), new \Symfony\Component\Security\Acl\Domain\SecurityIdentityRetrievalStrategy($a, $b), new \Sonata\AdminBundle\Security\Acl\Permission\AdminPermissionMap(), $this->get('monolog.logger.security', ContainerInterface::NULL_ON_INVALID_REFERENCE), true)), 'unanimous', false, true);
     }
 
     /**
@@ -6918,13 +7100,25 @@ class appDevDebugProjectContainer extends Container
     {
         $this->services['security.access_map'] = $instance = new \Symfony\Component\Security\Http\AccessMap();
 
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/_wdt'), array(0 => 'IS_AUTHENTICATED_ANONYMOUSLY'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/_profiler'), array(0 => 'IS_AUTHENTICATED_ANONYMOUSLY'), NULL);
         $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/login$'), array(0 => 'IS_AUTHENTICATED_ANONYMOUSLY'), NULL);
-        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/register'), array(0 => 'IS_AUTHENTICATED_ANONYMOUSLY'), NULL);
-        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/resetting'), array(0 => 'IS_AUTHENTICATED_ANONYMOUSLY'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/js/'), array(0 => 'IS_AUTHENTICATED_ANONYMOUSLY'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/css/'), array(0 => 'IS_AUTHENTICATED_ANONYMOUSLY'), NULL);
         $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/admin/login$'), array(0 => 'IS_AUTHENTICATED_ANONYMOUSLY'), NULL);
         $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/admin/logout$'), array(0 => 'IS_AUTHENTICATED_ANONYMOUSLY'), NULL);
-        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/admin/login_check$'), array(0 => 'IS_AUTHENTICATED_ANONYMOUSLY'), NULL);
-        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/admin/'), array(0 => 'ROLE_ADMIN', 1 => 'ROLE_SONATA_ADMIN'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/admin/login-check$'), array(0 => 'IS_AUTHENTICATED_ANONYMOUSLY'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/user/new$'), array(0 => 'IS_AUTHENTICATED_ANONYMOUSLY'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/user/check-confirmation-email$'), array(0 => 'IS_AUTHENTICATED_ANONYMOUSLY'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/user/confirm/'), array(0 => 'IS_AUTHENTICATED_ANONYMOUSLY'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/user/confirmed$'), array(0 => 'IS_AUTHENTICATED_ANONYMOUSLY'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/user/request-reset-password$'), array(0 => 'IS_AUTHENTICATED_ANONYMOUSLY'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/user/send-resetting-email$'), array(0 => 'IS_AUTHENTICATED_ANONYMOUSLY'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/user/check-resetting-email$'), array(0 => 'IS_AUTHENTICATED_ANONYMOUSLY'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/user/reset-password/'), array(0 => 'IS_AUTHENTICATED_ANONYMOUSLY'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/register'), array(0 => 'IS_AUTHENTICATED_ANONYMOUSLY'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/resetting'), array(0 => 'IS_AUTHENTICATED_ANONYMOUSLY'), NULL);
+        $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/admin/'), array(0 => 'ROLE_ADMIN'), NULL);
         $instance->add(new \Symfony\Component\HttpFoundation\RequestMatcher('^/.*'), array(0 => 'IS_AUTHENTICATED_ANONYMOUSLY'), NULL);
 
         return $instance;
@@ -6948,7 +7142,7 @@ class appDevDebugProjectContainer extends Container
         $b = $this->get('security.user_checker');
         $c = $this->get('security.encoder_factory');
 
-        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($a, $b, 'admin', $c, true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('5377bc421622d'), 2 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($a, $b, 'main', $c, true), 3 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('5377bc421622d')), true);
+        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($a, $b, 'admin', $c, true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('538621da0d699'), 2 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($a, $b, 'main', $c, true), 3 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('538621da0d699')), true);
 
         $instance->setEventDispatcher($this->get('debug.event_dispatcher'));
 
@@ -7308,6 +7502,7 @@ class appDevDebugProjectContainer extends Container
                 'SonataEasyExtendsBundle' => 'Sonata\\EasyExtendsBundle\\SonataEasyExtendsBundle',
                 'ApplicationSonataMediaBundle' => 'Application\\Sonata\\MediaBundle\\ApplicationSonataMediaBundle',
                 'BraincraftedBootstrapBundle' => 'Braincrafted\\Bundle\\BootstrapBundle\\BraincraftedBootstrapBundle',
+                'AvalancheImagineBundle' => 'Avalanche\\Bundle\\ImagineBundle\\AvalancheImagineBundle',
                 'AcmeDemoBundle' => 'Acme\\DemoBundle\\AcmeDemoBundle',
                 'WebProfilerBundle' => 'Symfony\\Bundle\\WebProfilerBundle\\WebProfilerBundle',
                 'SensioDistributionBundle' => 'Sensio\\Bundle\\DistributionBundle\\SensioDistributionBundle',
@@ -7327,6 +7522,7 @@ class appDevDebugProjectContainer extends Container
             'mailer_password' => 'polojilop@87',
             'locale' => 'es',
             'secret' => 'ThisTokenIsNotSoSecretChangeIt',
+            'security.acl.permission.map.class' => 'Sonata\\AdminBundle\\Security\\Acl\\Permission\\AdminPermissionMap',
             'controller_resolver.class' => 'Symfony\\Bundle\\FrameworkBundle\\Controller\\ControllerResolver',
             'controller_name_converter.class' => 'Symfony\\Bundle\\FrameworkBundle\\Controller\\ControllerNameParser',
             'response_listener.class' => 'Symfony\\Component\\HttpKernel\\EventListener\\ResponseListener',
@@ -7606,7 +7802,6 @@ class appDevDebugProjectContainer extends Container
             ),
             'security.acl.permission_granting_strategy.class' => 'Symfony\\Component\\Security\\Acl\\Domain\\PermissionGrantingStrategy',
             'security.acl.voter.class' => 'Symfony\\Component\\Security\\Acl\\Voter\\AclVoter',
-            'security.acl.permission.map.class' => 'Symfony\\Component\\Security\\Acl\\Permission\\BasicPermissionMap',
             'security.acl.object_identity_retrieval_strategy.class' => 'Symfony\\Component\\Security\\Acl\\Domain\\ObjectIdentityRetrievalStrategy',
             'security.acl.security_identity_retrieval_strategy.class' => 'Symfony\\Component\\Security\\Acl\\Domain\\SecurityIdentityRetrievalStrategy',
             'security.acl.cache.doctrine.class' => 'Symfony\\Component\\Security\\Acl\\Domain\\DoctrineAclCache',
@@ -8263,6 +8458,22 @@ class appDevDebugProjectContainer extends Container
             'braincrafted_bootstrap.assets_dir' => '/var/www/app/../vendor/twbs/bootstrap',
             'braincrafted_bootstrap.output_dir' => NULL,
             'braincrafted_bootstrap.less_filter' => 'less',
+            'imagine.web_root' => '/var/www/app/../web',
+            'imagine.source_root' => '/var/www/app/../web',
+            'imagine.cache_prefix' => 'media/cache',
+            'imagine.filters' => array(
+
+            ),
+            'imagine.filter.manager.class' => 'Avalanche\\Bundle\\ImagineBundle\\Imagine\\Filter\\FilterManager',
+            'imagine.cache.path.resolver.class' => 'Avalanche\\Bundle\\ImagineBundle\\Imagine\\CachePathResolver',
+            'imagine.controller.class' => 'Avalanche\\Bundle\\ImagineBundle\\Controller\\ImagineController',
+            'imagine.routing.loader.class' => 'Avalanche\\Bundle\\ImagineBundle\\Routing\\ImagineLoader',
+            'imagine.twig.extension.class' => 'Avalanche\\Bundle\\ImagineBundle\\Templating\\ImagineExtension',
+            'imagine.templating.helper.class' => 'Avalanche\\Bundle\\ImagineBundle\\Templating\\Helper\\ImagineHelper',
+            'imagine.gd.class' => 'Imagine\\Gd\\Imagine',
+            'imagine.imagick.class' => 'Imagine\\Imagick\\Imagine',
+            'imagine.gmagick.class' => 'Imagine\\Gmagick\\Imagine',
+            'imagine.filter.loader.thumbnail.class' => 'Avalanche\\Bundle\\ImagineBundle\\Imagine\\Filter\\Loader\\ThumbnailFilterLoader',
             'web_profiler.controller.profiler.class' => 'Symfony\\Bundle\\WebProfilerBundle\\Controller\\ProfilerController',
             'web_profiler.controller.router.class' => 'Symfony\\Bundle\\WebProfilerBundle\\Controller\\RouterController',
             'web_profiler.controller.exception.class' => 'Symfony\\Bundle\\WebProfilerBundle\\Controller\\ExceptionController',

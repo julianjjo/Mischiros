@@ -32,7 +32,7 @@ class PrendaAdmin extends Admin
         $listMapper
             ->add('id', 'integer', array('label' => 'Codigo de barras'))
             ->add('cantidad_disponible')
-            ->add('precio_venta', 'currency', array('currency' => 'COP'))
+            ->add('precio_venta', 'money', array('currency' => 'COP'))
             ->add('tipo')
             ->add('media')
             ->add('_action', 'actions', array(
@@ -54,8 +54,7 @@ class PrendaAdmin extends Admin
             ->add('id', 'integer', array('label' => 'Codigo de barras'))
             ->add('precio_venta', 'money', array(
                 'label' => 'Precio de venta',
-                'currency'=> 'COP',
-                'divisor' => 100,
+                'currency' => 'USD'
             ))
             ->add('tipo', 'entity', array('class' => 'Mischiros\TiendaBundle\Entity\Tipo', "attr" => array("class" => "form-control")))
             ->add('media', 'sonata_media_type', array(

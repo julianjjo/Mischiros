@@ -17,37 +17,11 @@ use Imagine\Image\BoxInterface;
 use Imagine\Image\Color;
 use Imagine\Image\PointInterface;
 use Imagine\Exception\RuntimeException;
-use Imagine\Exception\OutOfBoundsException;
 
-/**
- * The image interface
- */
 interface ImageInterface extends ManipulatorInterface
 {
     const RESOLUTION_PIXELSPERINCH = 'ppi';
     const RESOLUTION_PIXELSPERCENTIMETER = 'ppc';
-
-    const INTERLACE_NONE = 'none';
-    const INTERLACE_LINE = 'line';
-    const INTERLACE_PLANE = 'plane';
-    const INTERLACE_PARTITION = 'partition';
-
-    const FILTER_UNDEFINED = 'undefined';
-    const FILTER_POINT = 'point';
-    const FILTER_BOX = 'box';
-    const FILTER_TRIANGLE = 'triangle';
-    const FILTER_HERMITE = 'hermite';
-    const FILTER_HANNING = 'hanning';
-    const FILTER_HAMMING = 'hamming';
-    const FILTER_BLACKMAN = 'blackman';
-    const FILTER_GAUSSIAN = 'gaussian';
-    const FILTER_QUADRATIC = 'quadratic';
-    const FILTER_CUBIC = 'cubic';
-    const FILTER_CATROM = 'catrom';
-    const FILTER_MITCHELL = 'mitchell';
-    const FILTER_LANCZOS = 'lanczos';
-    const FILTER_BESSEL = 'bessel';
-    const FILTER_SINC = 'sinc';
 
     /**
      * Returns the image content as a binary string
@@ -114,25 +88,4 @@ interface ImageInterface extends ManipulatorInterface
      * @return Color
      */
     public function getColorAt(PointInterface $point);
-
-    /**
-     * Returns the image layers when applicable.
-     *
-     * @throws RuntimeException     In case the layer can not be returned
-     * @throws OutOfBoundsException In case the index is not a valid value
-     *
-     * @return LayersInterface
-     */
-    public function layers();
-
-    /**
-     * Enables or disables interlacing
-     *
-     * @param string $scheme
-     *
-     * @throws InvalidArgumentException When an unsupported Interface type is supplied
-     *
-     * @return ImageInterface
-     */
-    public function interlace($scheme);
 }

@@ -19,9 +19,6 @@ use Imagine\Image\ImageInterface;
 use Imagine\Image\PointInterface;
 use Imagine\Image\Fill\FillInterface;
 
-/**
- * The manipulator interface
- */
 interface ManipulatorInterface
 {
     const THUMBNAIL_INSET    = 'inset';
@@ -54,13 +51,12 @@ interface ManipulatorInterface
      * Resizes current image and returns self
      *
      * @param BoxInterface $size
-     * @param string       $filter
      *
      * @throws RuntimeException
      *
      * @return ManipulatorInterface
      */
-    public function resize(BoxInterface $size, $filter = ImageInterface::FILTER_UNDEFINED);
+    public function resize(BoxInterface $size);
 
     /**
      * Rotates an image at the given angle.

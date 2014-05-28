@@ -16,9 +16,6 @@ use Imagine\Image\BoxInterface;
 use Imagine\Image\PointInterface;
 use Imagine\Filter\FilterInterface;
 
-/**
- * A crop filter
- */
 class Crop implements FilterInterface
 {
     /**

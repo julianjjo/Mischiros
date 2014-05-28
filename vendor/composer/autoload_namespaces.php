@@ -36,6 +36,7 @@ return array(
     'Gaufrette' => array($vendorDir . '/knplabs/gaufrette/src'),
     'FOS\\UserBundle' => array($vendorDir . '/friendsofsymfony/user-bundle'),
     'FOS\\RestBundle' => array($vendorDir . '/friendsofsymfony/rest-bundle'),
+    'FOS\\CommentBundle' => array($vendorDir . '/friendsofsymfony/comment-bundle'),
     'Exporter' => array($vendorDir . '/sonata-project/exporter/lib'),
     'Doctrine\\ORM\\' => array($vendorDir . '/doctrine/orm/lib'),
     'Doctrine\\DBAL\\' => array($vendorDir . '/doctrine/dbal/lib'),
@@ -48,6 +49,7 @@ return array(
     'Doctrine\\Bundle\\DoctrineBundle' => array($vendorDir . '/doctrine/doctrine-bundle'),
     'Buzz' => array($vendorDir . '/kriswallsmith/buzz/lib'),
     'Braincrafted\\Bundle\\BootstrapBundle' => array($vendorDir . '/braincrafted/bootstrap-bundle'),
+    'Avalanche\\Bundle\\ImagineBundle' => array($vendorDir . '/avalanche123/imagine-bundle'),
     'Assetic' => array($vendorDir . '/kriswallsmith/assetic/src'),
     '' => array($baseDir . '/src'),
 );

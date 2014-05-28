@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block estilos %}
+	<style type="text/css">
+		.bordes{
+			border-style:solid;
+			border-width:5px;
+		}
+	</style>
+{% endblock %}
+
+{% block titulo %}Detalle{% endblock %}
+
+{% block barradenavegacion %}
+    <li><a href="{{ path('home')}}">Home</a></li>
+    <li class="active"><a href="{{ path('listarportipo',{ 'tipo' : 1 }) }}">Comprar</a></li>
+    <li><a href="{{ path('contactenos')}}">Contactenos</a></li>
+{% endblock %}
+
+{% block contenido %}
+	<br><br>
+	<div class="row">
+		<div class="col-md-4 col-md-offset-2">
+			<div class="panel panel-default">
+				<div class="panel-body">				   
+					{% media prenda.media, 'media' %}
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<table class="table">
+				<thead>
+					<tr>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Precio:</td>
+						<td>${{ prenda.precioVenta | number_format(0, ',', '.') }}</td>
+					</tr>
+					<tr>
+						<td>Cantidad:</td>
+						<td>{{ prenda.cantidadDisponible }}</td>
+					</tr>
+					<tr>
+						<td>Tipo:</td>
+						<td>{{ prenda.Tipo }}</td>
+					</tr>
+					<tr>
+						<td>Color:</td>
+						<td>{{ prenda.Tipo.color }}</td>
+					</tr>
+				</tbody>
+			</table>
+			<form role="form" action="{{ path('comprar') }}" method="get" {{ form_enctype(form) }}>
+			    {{ form_errors(form) }}
+			    {{ form_widget(form) }}
+			</form>
+		</div>
+	</div>
+{% endblock %}

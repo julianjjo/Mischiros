@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * @ORM\Entity
  * @ORM\Table(name="tipo")
+ * @ORM\Entity(repositoryClass="Mischiros\TiendaBundle\Entity\TipoRepository")
  */
 class Tipo
 {
@@ -34,14 +35,15 @@ class Tipo
     protected $color;
 
     /**
-     * @ORM\OneToMany(targetEntity="Medida", mappedBy="tipo")
-     **/
-    private $medidas;
-
-    /**
      * @ORM\OneToMany(targetEntity="Prenda", mappedBy="tipo")
      **/
     private $prendas;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Prenda", mappedBy="tipo")
+     **/
+    private $medidas;
+
     /**
      * Constructor
      */
@@ -149,26 +151,6 @@ class Tipo
     }
 
     /**
-     * Remove medidas
-     *
-     * @param \Mischiros\TiendaBundle\Entity\Medida $medidas
-     */
-    public function removeMedida(\Mischiros\TiendaBundle\Entity\Medida $medidas)
-    {
-        $this->medidas->removeElement($medidas);
-    }
-
-    /**
-     * Get medidas
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getMedidas()
-    {
-        return $this->medidas;
-    }
-
-    /**
      * Add prendas
      *
      * @param \Mischiros\TiendaBundle\Entity\Prenda $prendas
@@ -199,5 +181,25 @@ class Tipo
     public function getPrendas()
     {
         return $this->prendas;
+    }
+
+    /**
+     * Remove medidas
+     *
+     * @param \Mischiros\TiendaBundle\Entity\Prenda $medidas
+     */
+    public function removeMedida(\Mischiros\TiendaBundle\Entity\Prenda $medidas)
+    {
+        $this->medidas->removeElement($medidas);
+    }
+
+    /**
+     * Get medidas
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMedidas()
+    {
+        return $this->medidas;
     }
 }

@@ -15,9 +15,6 @@ use Imagine\Filter\FilterInterface;
 use Imagine\Image\Fill\FillInterface;
 use Imagine\Image\ImageInterface;
 
-/**
- * A fill filter
- */
 class Fill implements FilterInterface
 {
     /**

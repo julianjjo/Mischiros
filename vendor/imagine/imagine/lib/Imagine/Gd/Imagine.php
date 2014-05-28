@@ -17,11 +17,21 @@ use Imagine\Image\ImagineInterface;
 use Imagine\Exception\InvalidArgumentException;
 use Imagine\Exception\RuntimeException;
 
-/**
- * Imagine implementation using the GD library
- */
 final class Imagine implements ImagineInterface
 {
+    /**
+     * @var array
+     */
+    private $types = array(
+        IMAGETYPE_GIF      => 'gif',
+        IMAGETYPE_JPEG     => 'jpeg',
+        IMAGETYPE_JPEG2000 => 'jpeg',
+        IMAGETYPE_PNG      => 'png',
+        IMAGETYPE_UNKNOWN  => 'unknown',
+        IMAGETYPE_WBMP     => 'wbmp',
+        IMAGETYPE_XBM      => 'xbm'
+    );
+
     /**
      * @var array
      */
@@ -48,7 +58,7 @@ final class Imagine implements ImagineInterface
     private function requireGdVersion($version)
     {
         if (version_compare(GD_VERSION, $version, '<')) {
-            throw new RuntimeException(sprintf('GD2 version %s or higher is required', $version));
+            throw new RuntimeException('GD2 version 2.0.1 or higher is required');
         }
     }
 
@@ -104,7 +114,7 @@ final class Imagine implements ImagineInterface
             $image = $this->read($handle);
         } catch (\Exception $e) {
             fclose($handle);
-            throw new RuntimeException(sprintf('Unable to open image %s', $path), $e->getCode(), $e);
+            throw $e;
         }
 
         return $image;
