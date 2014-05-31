@@ -32,6 +32,10 @@
       <parameter key="ApplicationSonataMediaBundle">Application\Sonata\MediaBundle\ApplicationSonataMediaBundle</parameter>
       <parameter key="BraincraftedBootstrapBundle">Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle</parameter>
       <parameter key="AvalancheImagineBundle">Avalanche\Bundle\ImagineBundle\AvalancheImagineBundle</parameter>
+      <parameter key="FOSRestBundle">FOS\RestBundle\FOSRestBundle</parameter>
+      <parameter key="FOSCommentBundle">FOS\CommentBundle\FOSCommentBundle</parameter>
+      <parameter key="JMSSerializerBundle">JMS\SerializerBundle\JMSSerializerBundle</parameter>
+      <parameter key="IgaRssBundle">Iga\RssBundle\IgaRssBundle</parameter>
       <parameter key="AcmeDemoBundle">Acme\DemoBundle\AcmeDemoBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
@@ -184,6 +188,7 @@
       <parameter>/var/www/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/config/validation.xml</parameter>
       <parameter>/var/www/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/config/validation.xml</parameter>
       <parameter>/var/www/vendor/sonata-project/media-bundle/Resources/config/validation.xml</parameter>
+      <parameter>/var/www/vendor/friendsofsymfony/comment-bundle/FOS/CommentBundle/Resources/config/validation.xml</parameter>
       <parameter>/var/www/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/config/validation/orm.xml</parameter>
     </parameter>
     <parameter key="validator.mapping.loader.yaml_files_loader.mapping_files" type="collection"/>
@@ -456,7 +461,9 @@
     <parameter key="assetic.value_supplier.class">Symfony\Bundle\AsseticBundle\DefaultValueSupplier</parameter>
     <parameter key="assetic.node.paths" type="collection"/>
     <parameter key="assetic.cache_dir">/var/www/app/cache/dev/assetic</parameter>
-    <parameter key="assetic.bundles" type="collection"/>
+    <parameter key="assetic.bundles" type="collection">
+      <parameter>FOSCommentBundle</parameter>
+    </parameter>
     <parameter key="assetic.twig_extension.class">Symfony\Bundle\AsseticBundle\Twig\AsseticExtension</parameter>
     <parameter key="assetic.twig_formula_loader.class">Assetic\Extension\Twig\TwigFormulaLoader</parameter>
     <parameter key="assetic.helper.dynamic.class">Symfony\Bundle\AsseticBundle\Templating\DynamicAsseticHelper</parameter>
@@ -933,6 +940,120 @@
     <parameter key="imagine.imagick.class">Imagine\Imagick\Imagine</parameter>
     <parameter key="imagine.gmagick.class">Imagine\Gmagick\Imagine</parameter>
     <parameter key="imagine.filter.loader.thumbnail.class">Avalanche\Bundle\ImagineBundle\Imagine\Filter\Loader\ThumbnailFilterLoader</parameter>
+    <parameter key="fos_rest.serializer.exclusion_strategy.version"></parameter>
+    <parameter key="fos_rest.serializer.exclusion_strategy.groups"></parameter>
+    <parameter key="fos_rest.view_handler.jsonp.callback_param"></parameter>
+    <parameter key="fos_rest.view.exception_wrapper_handler">FOS\RestBundle\View\ExceptionWrapperHandler</parameter>
+    <parameter key="fos_rest.view_handler.default.class">FOS\RestBundle\View\ViewHandler</parameter>
+    <parameter key="fos_rest.view_handler.jsonp.class">FOS\RestBundle\View\JsonpHandler</parameter>
+    <parameter key="fos_rest.routing.loader.controller.class">FOS\RestBundle\Routing\Loader\RestRouteLoader</parameter>
+    <parameter key="fos_rest.routing.loader.yaml_collection.class">FOS\RestBundle\Routing\Loader\RestYamlCollectionLoader</parameter>
+    <parameter key="fos_rest.routing.loader.xml_collection.class">FOS\RestBundle\Routing\Loader\RestXmlCollectionLoader</parameter>
+    <parameter key="fos_rest.routing.loader.processor.class">FOS\RestBundle\Routing\Loader\RestRouteProcessor</parameter>
+    <parameter key="fos_rest.routing.loader.reader.controller.class">FOS\RestBundle\Routing\Loader\Reader\RestControllerReader</parameter>
+    <parameter key="fos_rest.routing.loader.reader.action.class">FOS\RestBundle\Routing\Loader\Reader\RestActionReader</parameter>
+    <parameter key="fos_rest.format_negotiator.class">FOS\RestBundle\Util\FormatNegotiator</parameter>
+    <parameter key="fos_rest.inflector.class">FOS\RestBundle\Util\Inflector\DoctrineInflector</parameter>
+    <parameter key="fos_rest.request_matcher.class">Symfony\Component\HttpFoundation\RequestMatcher</parameter>
+    <parameter key="fos_rest.request.param_fetcher.class">FOS\RestBundle\Request\ParamFetcher</parameter>
+    <parameter key="fos_rest.request.param_fetcher.reader.class">FOS\RestBundle\Request\ParamReader</parameter>
+    <parameter key="fos_rest.cache_dir">/var/www/app/cache/dev/fos_rest</parameter>
+    <parameter key="fos_rest.serializer.serialize_null">false</parameter>
+    <parameter key="fos_rest.formats" type="collection">
+      <parameter key="json">false</parameter>
+      <parameter key="xml">false</parameter>
+      <parameter key="html">true</parameter>
+    </parameter>
+    <parameter key="fos_rest.default_engine">twig</parameter>
+    <parameter key="fos_rest.force_redirects" type="collection">
+      <parameter key="html">302</parameter>
+    </parameter>
+    <parameter key="fos_rest.failed_validation">400</parameter>
+    <parameter key="fos_rest.empty_content">204</parameter>
+    <parameter key="fos_rest.serialize_null">false</parameter>
+    <parameter key="fos_rest.routing.loader.default_format">null</parameter>
+    <parameter key="fos_rest.routing.loader.include_format">true</parameter>
+    <parameter key="fos_rest.exception.codes" type="collection"/>
+    <parameter key="fos_rest.exception.messages" type="collection"/>
+    <parameter key="fos_rest.decoder.json.class">FOS\RestBundle\Decoder\JsonDecoder</parameter>
+    <parameter key="fos_rest.decoder.jsontoform.class">FOS\RestBundle\Decoder\JsonToFormDecoder</parameter>
+    <parameter key="fos_rest.decoder.xml.class">FOS\RestBundle\Decoder\XmlDecoder</parameter>
+    <parameter key="fos_rest.decoder_provider.class">FOS\RestBundle\Decoder\ContainerDecoderProvider</parameter>
+    <parameter key="fos_rest.body_listener.class">FOS\RestBundle\EventListener\BodyListener</parameter>
+    <parameter key="fos_rest.throw_exception_on_unsupported_content_type">false</parameter>
+    <parameter key="fos_rest.decoders" type="collection">
+      <parameter key="json">fos_rest.decoder.json</parameter>
+      <parameter key="xml">fos_rest.decoder.xml</parameter>
+    </parameter>
+    <parameter key="fos_rest.mime_types" type="collection"/>
+    <parameter key="fos_rest.converter.request_body.validation_errors_argument">validationErrors</parameter>
+    <parameter key="fos_comment.model.thread.class">Mischiros\TiendaBundle\Entity\Thread</parameter>
+    <parameter key="fos_comment.model.comment.class">Mischiros\TiendaBundle\Entity\Comment</parameter>
+    <parameter key="fos_comment.model.vote.class">FOS\CommentBundle\Entity\Vote</parameter>
+    <parameter key="fos_comment.manager.thread.default.class">FOS\CommentBundle\Entity\ThreadManager</parameter>
+    <parameter key="fos_comment.manager.comment.default.class">FOS\CommentBundle\Entity\CommentManager</parameter>
+    <parameter key="fos_comment.manager.vote.default.class">FOS\CommentBundle\Entity\VoteManager</parameter>
+    <parameter key="fos_comment.listener.comment_vote_score.class">FOS\CommentBundle\EventListener\CommentVoteScoreListener</parameter>
+    <parameter key="fos_comment.listener.thread_counters.class">FOS\CommentBundle\EventListener\ThreadCountersListener</parameter>
+    <parameter key="fos_comment.listener.thread_permalink.class">FOS\CommentBundle\EventListener\ThreadPermalinkListener</parameter>
+    <parameter key="fos_comment.listener.comment_blamer.class">FOS\CommentBundle\EventListener\CommentBlamerListener</parameter>
+    <parameter key="fos_comment.listener.vote_blamer.class">FOS\CommentBundle\EventListener\VoteBlamerListener</parameter>
+    <parameter key="fos_comment.listener.closed_threads.class">FOS\CommentBundle\EventListener\ClosedThreadListener</parameter>
+    <parameter key="fos_comment.sorting_factory.class">FOS\CommentBundle\Sorting\SortingFactory</parameter>
+    <parameter key="fos_comment.sorter.date.class">FOS\CommentBundle\Sorting\DateSorting</parameter>
+    <parameter key="fos_comment.template.engine">twig</parameter>
+    <parameter key="fos_comment.model_manager_name">null</parameter>
+    <parameter key="fos_comment.form.comment.type">fos_comment_comment</parameter>
+    <parameter key="fos_comment.form.comment.name">fos_comment_comment</parameter>
+    <parameter key="fos_comment.form.thread.type">fos_comment_thread</parameter>
+    <parameter key="fos_comment.form.thread.name">fos_comment_thread</parameter>
+    <parameter key="fos_comment.form.commentable_thread.type">fos_comment_commentable_thread</parameter>
+    <parameter key="fos_comment.form.commentable_thread.name">fos_comment_commentable_thread</parameter>
+    <parameter key="fos_comment.form.delete_comment.type">fos_comment_delete_comment</parameter>
+    <parameter key="fos_comment.form.delete_comment.name">fos_comment_delete_comment</parameter>
+    <parameter key="fos_comment.form.vote.type">fos_comment_vote</parameter>
+    <parameter key="fos_comment.form.vote.name">fos_comment_vote</parameter>
+    <parameter key="fos_comment.sorting_factory.default_sorter">date_desc</parameter>
+    <parameter key="jms_serializer.metadata.file_locator.class">Metadata\Driver\FileLocator</parameter>
+    <parameter key="jms_serializer.metadata.annotation_driver.class">JMS\Serializer\Metadata\Driver\AnnotationDriver</parameter>
+    <parameter key="jms_serializer.metadata.chain_driver.class">Metadata\Driver\DriverChain</parameter>
+    <parameter key="jms_serializer.metadata.yaml_driver.class">JMS\Serializer\Metadata\Driver\YamlDriver</parameter>
+    <parameter key="jms_serializer.metadata.xml_driver.class">JMS\Serializer\Metadata\Driver\XmlDriver</parameter>
+    <parameter key="jms_serializer.metadata.php_driver.class">JMS\Serializer\Metadata\Driver\PhpDriver</parameter>
+    <parameter key="jms_serializer.metadata.doctrine_type_driver.class">JMS\Serializer\Metadata\Driver\DoctrineTypeDriver</parameter>
+    <parameter key="jms_serializer.metadata.doctrine_phpcr_type_driver.class">JMS\Serializer\Metadata\Driver\DoctrinePHPCRTypeDriver</parameter>
+    <parameter key="jms_serializer.metadata.lazy_loading_driver.class">Metadata\Driver\LazyLoadingDriver</parameter>
+    <parameter key="jms_serializer.metadata.metadata_factory.class">Metadata\MetadataFactory</parameter>
+    <parameter key="jms_serializer.metadata.cache.file_cache.class">Metadata\Cache\FileCache</parameter>
+    <parameter key="jms_serializer.event_dispatcher.class">JMS\Serializer\EventDispatcher\LazyEventDispatcher</parameter>
+    <parameter key="jms_serializer.camel_case_naming_strategy.class">JMS\Serializer\Naming\CamelCaseNamingStrategy</parameter>
+    <parameter key="jms_serializer.serialized_name_annotation_strategy.class">JMS\Serializer\Naming\SerializedNameAnnotationStrategy</parameter>
+    <parameter key="jms_serializer.cache_naming_strategy.class">JMS\Serializer\Naming\CacheNamingStrategy</parameter>
+    <parameter key="jms_serializer.doctrine_object_constructor.class">JMS\Serializer\Construction\DoctrineObjectConstructor</parameter>
+    <parameter key="jms_serializer.unserialize_object_constructor.class">JMS\Serializer\Construction\UnserializeObjectConstructor</parameter>
+    <parameter key="jms_serializer.version_exclusion_strategy.class">JMS\Serializer\Exclusion\VersionExclusionStrategy</parameter>
+    <parameter key="jms_serializer.serializer.class">JMS\Serializer\Serializer</parameter>
+    <parameter key="jms_serializer.twig_extension.class">JMS\Serializer\Twig\SerializerExtension</parameter>
+    <parameter key="jms_serializer.templating.helper.class">JMS\SerializerBundle\Templating\SerializerHelper</parameter>
+    <parameter key="jms_serializer.json_serialization_visitor.class">JMS\Serializer\JsonSerializationVisitor</parameter>
+    <parameter key="jms_serializer.json_serialization_visitor.options">0</parameter>
+    <parameter key="jms_serializer.json_deserialization_visitor.class">JMS\Serializer\JsonDeserializationVisitor</parameter>
+    <parameter key="jms_serializer.xml_serialization_visitor.class">JMS\Serializer\XmlSerializationVisitor</parameter>
+    <parameter key="jms_serializer.xml_deserialization_visitor.class">JMS\Serializer\XmlDeserializationVisitor</parameter>
+    <parameter key="jms_serializer.xml_deserialization_visitor.doctype_whitelist" type="collection"/>
+    <parameter key="jms_serializer.yaml_serialization_visitor.class">JMS\Serializer\YamlSerializationVisitor</parameter>
+    <parameter key="jms_serializer.handler_registry.class">JMS\Serializer\Handler\LazyHandlerRegistry</parameter>
+    <parameter key="jms_serializer.datetime_handler.class">JMS\Serializer\Handler\DateHandler</parameter>
+    <parameter key="jms_serializer.array_collection_handler.class">JMS\Serializer\Handler\ArrayCollectionHandler</parameter>
+    <parameter key="jms_serializer.php_collection_handler.class">JMS\Serializer\Handler\PhpCollectionHandler</parameter>
+    <parameter key="jms_serializer.form_error_handler.class">JMS\Serializer\Handler\FormErrorHandler</parameter>
+    <parameter key="jms_serializer.constraint_violation_handler.class">JMS\Serializer\Handler\ConstraintViolationHandler</parameter>
+    <parameter key="jms_serializer.doctrine_proxy_subscriber.class">JMS\Serializer\EventDispatcher\Subscriber\DoctrineProxySubscriber</parameter>
+    <parameter key="jms_serializer.stopwatch_subscriber.class">JMS\SerializerBundle\Serializer\StopwatchEventSubscriber</parameter>
+    <parameter key="jms_serializer.infer_types_from_doctrine_metadata">true</parameter>
+    <parameter key="iga_rss.file">/var/www/app/../vendor/rssphp/rss.php</parameter>
+    <parameter key="iga_rss.rss">null</parameter>
+    <parameter key="iga_rss.rss.class">rss_php</parameter>
     <parameter key="web_profiler.controller.profiler.class">Symfony\Bundle\WebProfilerBundle\Controller\ProfilerController</parameter>
     <parameter key="web_profiler.controller.router.class">Symfony\Bundle\WebProfilerBundle\Controller\RouterController</parameter>
     <parameter key="web_profiler.controller.exception.class">Symfony\Bundle\WebProfilerBundle\Controller\ExceptionController</parameter>
@@ -2734,6 +2855,120 @@
         <argument>sl</argument>
         <argument>SonataMediaBundle</argument>
       </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/vendor/friendsofsymfony/comment-bundle/FOS/CommentBundle/Resources/translations/FOSCommentBundle.sr_Latn.yml</argument>
+        <argument>sr_Latn</argument>
+        <argument>FOSCommentBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/vendor/friendsofsymfony/comment-bundle/FOS/CommentBundle/Resources/translations/FOSCommentBundle.zh_CN.yml</argument>
+        <argument>zh_CN</argument>
+        <argument>FOSCommentBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/vendor/friendsofsymfony/comment-bundle/FOS/CommentBundle/Resources/translations/FOSCommentBundle.it.yml</argument>
+        <argument>it</argument>
+        <argument>FOSCommentBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/vendor/friendsofsymfony/comment-bundle/FOS/CommentBundle/Resources/translations/FOSCommentBundle.bg.yml</argument>
+        <argument>bg</argument>
+        <argument>FOSCommentBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/vendor/friendsofsymfony/comment-bundle/FOS/CommentBundle/Resources/translations/FOSCommentBundle.pl.yml</argument>
+        <argument>pl</argument>
+        <argument>FOSCommentBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/vendor/friendsofsymfony/comment-bundle/FOS/CommentBundle/Resources/translations/FOSCommentBundle.sr_Cyrl.yml</argument>
+        <argument>sr_Cyrl</argument>
+        <argument>FOSCommentBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/vendor/friendsofsymfony/comment-bundle/FOS/CommentBundle/Resources/translations/FOSCommentBundle.fi.yml</argument>
+        <argument>fi</argument>
+        <argument>FOSCommentBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/vendor/friendsofsymfony/comment-bundle/FOS/CommentBundle/Resources/translations/FOSCommentBundle.nl.yml</argument>
+        <argument>nl</argument>
+        <argument>FOSCommentBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/vendor/friendsofsymfony/comment-bundle/FOS/CommentBundle/Resources/translations/FOSCommentBundle.da.yml</argument>
+        <argument>da</argument>
+        <argument>FOSCommentBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/vendor/friendsofsymfony/comment-bundle/FOS/CommentBundle/Resources/translations/FOSCommentBundle.ru.yml</argument>
+        <argument>ru</argument>
+        <argument>FOSCommentBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/vendor/friendsofsymfony/comment-bundle/FOS/CommentBundle/Resources/translations/FOSCommentBundle.en.yml</argument>
+        <argument>en</argument>
+        <argument>FOSCommentBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/vendor/friendsofsymfony/comment-bundle/FOS/CommentBundle/Resources/translations/FOSCommentBundle.es.yml</argument>
+        <argument>es</argument>
+        <argument>FOSCommentBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/vendor/friendsofsymfony/comment-bundle/FOS/CommentBundle/Resources/translations/FOSCommentBundle.pt.yml</argument>
+        <argument>pt</argument>
+        <argument>FOSCommentBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/vendor/friendsofsymfony/comment-bundle/FOS/CommentBundle/Resources/translations/FOSCommentBundle.mn.yml</argument>
+        <argument>mn</argument>
+        <argument>FOSCommentBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/vendor/friendsofsymfony/comment-bundle/FOS/CommentBundle/Resources/translations/FOSCommentBundle.sl.yml</argument>
+        <argument>sl</argument>
+        <argument>FOSCommentBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/vendor/friendsofsymfony/comment-bundle/FOS/CommentBundle/Resources/translations/FOSCommentBundle.fr.yml</argument>
+        <argument>fr</argument>
+        <argument>FOSCommentBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/vendor/friendsofsymfony/comment-bundle/FOS/CommentBundle/Resources/translations/FOSCommentBundle.fa_IR.yml</argument>
+        <argument>fa_IR</argument>
+        <argument>FOSCommentBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/vendor/friendsofsymfony/comment-bundle/FOS/CommentBundle/Resources/translations/FOSCommentBundle.et.yml</argument>
+        <argument>et</argument>
+        <argument>FOSCommentBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/var/www/vendor/friendsofsymfony/comment-bundle/FOS/CommentBundle/Resources/translations/FOSCommentBundle.de.yml</argument>
+        <argument>de</argument>
+        <argument>FOSCommentBundle</argument>
+      </call>
     </service>
     <service id="translation.loader.php" class="Symfony\Component\Translation\Loader\PhpFileLoader">
       <tag name="translation.loader" alias="php"/>
@@ -3001,6 +3236,14 @@
         <argument>0</argument>
       </call>
       <call method="addListenerService">
+        <argument>kernel.request</argument>
+        <argument type="collection">
+          <argument>fos_rest.body_listener</argument>
+          <argument>onKernelRequest</argument>
+        </argument>
+        <argument>10</argument>
+      </call>
+      <call method="addListenerService">
         <argument>kernel.controller</argument>
         <argument type="collection">
           <argument>acme.demo.listener</argument>
@@ -3087,6 +3330,30 @@
       <call method="addSubscriberService">
         <argument>sensio_framework_extra.security.listener</argument>
         <argument>Sensio\Bundle\FrameworkExtraBundle\EventListener\SecurityListener</argument>
+      </call>
+      <call method="addSubscriberService">
+        <argument>fos_comment.listener.comment_vote_score</argument>
+        <argument>FOS\CommentBundle\EventListener\CommentVoteScoreListener</argument>
+      </call>
+      <call method="addSubscriberService">
+        <argument>fos_comment.listener.thread_counters</argument>
+        <argument>FOS\CommentBundle\EventListener\ThreadCountersListener</argument>
+      </call>
+      <call method="addSubscriberService">
+        <argument>fos_comment.listener.thread_permalink</argument>
+        <argument>FOS\CommentBundle\EventListener\ThreadPermalinkListener</argument>
+      </call>
+      <call method="addSubscriberService">
+        <argument>fos_comment.listener.comment_blamer</argument>
+        <argument>FOS\CommentBundle\EventListener\CommentBlamerListener</argument>
+      </call>
+      <call method="addSubscriberService">
+        <argument>fos_comment.listener.vote_blamer</argument>
+        <argument>FOS\CommentBundle\EventListener\VoteBlamerListener</argument>
+      </call>
+      <call method="addSubscriberService">
+        <argument>fos_comment.listener.closed_threads</argument>
+        <argument>FOS\CommentBundle\EventListener\ClosedThreadListener</argument>
       </call>
       <call method="addSubscriberService">
         <argument>web_profiler.debug_toolbar</argument>
@@ -3219,6 +3486,11 @@
               <argument key="sonata_media_type">sonata.media.form.type.media</argument>
               <argument key="bootstrap_collection">braincrafted_bootstrap.form.type.collection</argument>
               <argument key="form_actions">braincrafted_bootstrap.form.type.form_actions</argument>
+              <argument key="fos_comment_comment">fos_comment.form_type.comment.default</argument>
+              <argument key="fos_comment_commentable_thread">fos_comment.form_type.commentable_thread.default</argument>
+              <argument key="fos_comment_delete_comment">fos_comment.form_type.delete_comment.default</argument>
+              <argument key="fos_comment_thread">fos_comment.form_type.thread.default</argument>
+              <argument key="fos_comment_vote">fos_comment.form_type.vote.default</argument>
             </argument>
             <argument type="collection">
               <argument key="form" type="collection">
@@ -3488,6 +3760,7 @@
                   <argument>/var/www/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/config/validation.xml</argument>
                   <argument>/var/www/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/config/validation.xml</argument>
                   <argument>/var/www/vendor/sonata-project/media-bundle/Resources/config/validation.xml</argument>
+                  <argument>/var/www/vendor/friendsofsymfony/comment-bundle/FOS/CommentBundle/Resources/config/validation.xml</argument>
                   <argument>/var/www/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/config/validation/orm.xml</argument>
                 </argument>
               </service>
@@ -3739,6 +4012,15 @@
           <call method="addLoader">
             <argument type="service" id="imagine.routing.loader"/>
           </call>
+          <call method="addLoader">
+            <argument type="service" id="fos_rest.routing.loader.controller"/>
+          </call>
+          <call method="addLoader">
+            <argument type="service" id="fos_rest.routing.loader.yaml_collection"/>
+          </call>
+          <call method="addLoader">
+            <argument type="service" id="fos_rest.routing.loader.xml_collection"/>
+          </call>
         </service>
       </argument>
     </service>
@@ -3776,7 +4058,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>538621da0d699</argument>
+            <argument>53881d6c6e5ce</argument>
           </service>
         </argument>
         <argument type="service">
@@ -3790,7 +4072,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>538621da0d699</argument>
+            <argument>53881d6c6e5ce</argument>
           </service>
         </argument>
       </argument>
@@ -4255,7 +4537,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>538621da0d699</argument>
+            <argument>53881d6c6e5ce</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
           </service>
         </argument>
@@ -4369,7 +4651,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>538621da0d699</argument>
+            <argument>53881d6c6e5ce</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
           </service>
         </argument>
@@ -4546,7 +4828,9 @@
             <argument type="service" id="templating.name_parser"/>
             <argument>true</argument>
             <argument type="collection"/>
-            <argument type="collection"/>
+            <argument type="collection">
+              <argument>FOSCommentBundle</argument>
+            </argument>
             <argument type="service" id="assetic.value_supplier.default" on-invalid="null"/>
           </service>
         </argument>
@@ -4617,6 +4901,24 @@
           <service class="Avalanche\Bundle\ImagineBundle\Templating\ImagineExtension" public="false">
             <tag name="twig.extension"/>
             <argument type="service" id="imagine.cache.path.resolver"/>
+          </service>
+        </argument>
+      </call>
+      <call method="addExtension">
+        <argument type="service">
+          <service class="FOS\CommentBundle\Twig\CommentExtension" public="false">
+            <tag name="twig.extension"/>
+            <argument>null</argument>
+            <argument>null</argument>
+            <argument>null</argument>
+          </service>
+        </argument>
+      </call>
+      <call method="addExtension">
+        <argument type="service">
+          <service class="JMS\Serializer\Twig\SerializerExtension" public="false">
+            <tag name="twig.extension"/>
+            <argument type="service" id="fos_rest.serializer"/>
           </service>
         </argument>
       </call>
@@ -4757,6 +5059,33 @@
           </service>
         </argument>
         <argument>config</argument>
+      </call>
+      <call method="addResource">
+        <argument type="service">
+          <service class="Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource" public="false">
+            <tag name="assetic.templating.twig"/>
+            <tag name="assetic.formula_resource" loader="twig"/>
+            <argument type="collection">
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
+                  <argument>FOSCommentBundle</argument>
+                  <argument>/var/www/app/Resources/FOSCommentBundle/views</argument>
+                  <argument>/\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
+                  <argument>FOSCommentBundle</argument>
+                  <argument>/var/www/vendor/friendsofsymfony/comment-bundle/FOS/CommentBundle/Resources/views</argument>
+                  <argument>/\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+            </argument>
+          </service>
+        </argument>
+        <argument>twig</argument>
       </call>
       <call method="addResource">
         <argument type="service">
@@ -4945,6 +5274,7 @@
               <argument key="ApplicationSonataUserBundle">Application\Sonata\UserBundle\Entity</argument>
               <argument key="SonataMediaBundle">Sonata\MediaBundle\Entity</argument>
               <argument key="ApplicationSonataMediaBundle">Application\Sonata\MediaBundle\Entity</argument>
+              <argument key="FOSCommentBundle">FOS\CommentBundle\Entity</argument>
             </argument>
           </call>
           <call method="setMetadataCacheImpl">
@@ -4997,6 +5327,7 @@
                         <argument key="/var/www/src/Application/Sonata/UserBundle/Resources/config/doctrine">Application\Sonata\UserBundle\Entity</argument>
                         <argument key="/var/www/vendor/sonata-project/media-bundle/Resources/config/doctrine">Sonata\MediaBundle\Entity</argument>
                         <argument key="/var/www/src/Application/Sonata/MediaBundle/Resources/config/doctrine">Application\Sonata\MediaBundle\Entity</argument>
+                        <argument key="/var/www/vendor/friendsofsymfony/comment-bundle/FOS/CommentBundle/Resources/config/doctrine">FOS\CommentBundle\Entity</argument>
                       </argument>
                       <call method="setGlobalBasename">
                         <argument>mapping</argument>
@@ -5014,6 +5345,7 @@
                         <argument key="/var/www/src/Application/Sonata/UserBundle/Resources/config/doctrine">Application\Sonata\UserBundle\Entity</argument>
                         <argument key="/var/www/vendor/sonata-project/media-bundle/Resources/config/doctrine">Sonata\MediaBundle\Entity</argument>
                         <argument key="/var/www/src/Application/Sonata/MediaBundle/Resources/config/doctrine">Application\Sonata\MediaBundle\Entity</argument>
+                        <argument key="/var/www/vendor/friendsofsymfony/comment-bundle/FOS/CommentBundle/Resources/config/doctrine">FOS\CommentBundle\Entity</argument>
                       </argument>
                       <call method="setGlobalBasename">
                         <argument>mapping</argument>
@@ -5031,6 +5363,7 @@
                         <argument key="/var/www/src/Application/Sonata/UserBundle/Resources/config/doctrine">Application\Sonata\UserBundle\Entity</argument>
                         <argument key="/var/www/vendor/sonata-project/media-bundle/Resources/config/doctrine">Sonata\MediaBundle\Entity</argument>
                         <argument key="/var/www/src/Application/Sonata/MediaBundle/Resources/config/doctrine">Application\Sonata\MediaBundle\Entity</argument>
+                        <argument key="/var/www/vendor/friendsofsymfony/comment-bundle/FOS/CommentBundle/Resources/config/doctrine">FOS\CommentBundle\Entity</argument>
                       </argument>
                       <call method="setGlobalBasename">
                         <argument>mapping</argument>
@@ -5048,6 +5381,7 @@
                         <argument key="/var/www/src/Application/Sonata/UserBundle/Resources/config/doctrine">Application\Sonata\UserBundle\Entity</argument>
                         <argument key="/var/www/vendor/sonata-project/media-bundle/Resources/config/doctrine">Sonata\MediaBundle\Entity</argument>
                         <argument key="/var/www/src/Application/Sonata/MediaBundle/Resources/config/doctrine">Application\Sonata\MediaBundle\Entity</argument>
+                        <argument key="/var/www/vendor/friendsofsymfony/comment-bundle/FOS/CommentBundle/Resources/config/doctrine">FOS\CommentBundle\Entity</argument>
                       </argument>
                       <call method="setGlobalBasename">
                         <argument>mapping</argument>
@@ -5065,6 +5399,7 @@
                         <argument key="/var/www/src/Application/Sonata/UserBundle/Resources/config/doctrine">Application\Sonata\UserBundle\Entity</argument>
                         <argument key="/var/www/vendor/sonata-project/media-bundle/Resources/config/doctrine">Sonata\MediaBundle\Entity</argument>
                         <argument key="/var/www/src/Application/Sonata/MediaBundle/Resources/config/doctrine">Application\Sonata\MediaBundle\Entity</argument>
+                        <argument key="/var/www/vendor/friendsofsymfony/comment-bundle/FOS/CommentBundle/Resources/config/doctrine">FOS\CommentBundle\Entity</argument>
                       </argument>
                       <call method="setGlobalBasename">
                         <argument>mapping</argument>
@@ -5072,6 +5407,24 @@
                     </service>
                   </argument>
                   <argument>Application\Sonata\MediaBundle\Entity</argument>
+                </call>
+                <call method="addDriver">
+                  <argument type="service">
+                    <service class="Doctrine\ORM\Mapping\Driver\SimplifiedXmlDriver" public="false">
+                      <argument type="collection">
+                        <argument key="/var/www/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/config/doctrine">FOS\UserBundle\Entity</argument>
+                        <argument key="/var/www/vendor/sonata-project/user-bundle/Resources/config/doctrine">Sonata\UserBundle\Entity</argument>
+                        <argument key="/var/www/src/Application/Sonata/UserBundle/Resources/config/doctrine">Application\Sonata\UserBundle\Entity</argument>
+                        <argument key="/var/www/vendor/sonata-project/media-bundle/Resources/config/doctrine">Sonata\MediaBundle\Entity</argument>
+                        <argument key="/var/www/src/Application/Sonata/MediaBundle/Resources/config/doctrine">Application\Sonata\MediaBundle\Entity</argument>
+                        <argument key="/var/www/vendor/friendsofsymfony/comment-bundle/FOS/CommentBundle/Resources/config/doctrine">FOS\CommentBundle\Entity</argument>
+                      </argument>
+                      <call method="setGlobalBasename">
+                        <argument>mapping</argument>
+                      </call>
+                    </service>
+                  </argument>
+                  <argument>FOS\CommentBundle\Entity</argument>
                 </call>
               </service>
             </argument>
@@ -8067,6 +8420,555 @@
     <service id="imagine.filter.loader.thumbnail" class="Avalanche\Bundle\ImagineBundle\Imagine\Filter\Loader\ThumbnailFilterLoader">
       <tag name="imagine.filter.loader" filter="thumbnail"/>
     </service>
+    <service id="fos_rest.view.exception_wrapper_handler" class="FOS\RestBundle\View\ExceptionWrapperHandler"/>
+    <service id="fos_rest.routing.loader.controller" class="FOS\RestBundle\Routing\Loader\RestRouteLoader">
+      <tag name="routing.loader"/>
+      <argument type="service" id="service_container"/>
+      <argument type="service" id="file_locator"/>
+      <argument type="service" id="controller_name_converter"/>
+      <argument type="service" id="fos_rest.routing.loader.reader.controller"/>
+      <argument>null</argument>
+    </service>
+    <service id="fos_rest.routing.loader.processor" class="FOS\RestBundle\Routing\Loader\RestRouteProcessor"/>
+    <service id="fos_rest.routing.loader.yaml_collection" class="FOS\RestBundle\Routing\Loader\RestYamlCollectionLoader">
+      <tag name="routing.loader"/>
+      <argument type="service" id="file_locator"/>
+      <argument type="service" id="fos_rest.routing.loader.processor"/>
+      <argument>true</argument>
+      <argument type="collection">
+        <argument key="json">false</argument>
+        <argument key="xml">false</argument>
+        <argument key="html">true</argument>
+      </argument>
+      <argument>null</argument>
+    </service>
+    <service id="fos_rest.routing.loader.xml_collection" class="FOS\RestBundle\Routing\Loader\RestXmlCollectionLoader">
+      <tag name="routing.loader"/>
+      <argument type="service" id="file_locator"/>
+      <argument type="service" id="fos_rest.routing.loader.processor"/>
+      <argument>true</argument>
+      <argument type="collection">
+        <argument key="json">false</argument>
+        <argument key="xml">false</argument>
+        <argument key="html">true</argument>
+      </argument>
+      <argument>null</argument>
+    </service>
+    <service id="fos_rest.routing.loader.reader.controller" class="FOS\RestBundle\Routing\Loader\Reader\RestControllerReader">
+      <argument type="service" id="fos_rest.routing.loader.reader.action"/>
+      <argument type="service" id="annotation_reader"/>
+    </service>
+    <service id="fos_rest.routing.loader.reader.action" class="FOS\RestBundle\Routing\Loader\Reader\RestActionReader">
+      <argument type="service" id="annotation_reader"/>
+      <argument type="service" id="fos_rest.request.param_fetcher.reader"/>
+      <argument type="service" id="fos_rest.inflector.doctrine"/>
+      <argument>true</argument>
+      <argument type="collection">
+        <argument key="json">false</argument>
+        <argument key="xml">false</argument>
+        <argument key="html">true</argument>
+      </argument>
+    </service>
+    <service id="fos_rest.format_negotiator" class="FOS\RestBundle\Util\FormatNegotiator"/>
+    <service id="fos_rest.inflector.doctrine" class="FOS\RestBundle\Util\Inflector\DoctrineInflector"/>
+    <service id="fos_rest.request.param_fetcher" class="FOS\RestBundle\Request\ParamFetcher" scope="request">
+      <argument type="service" id="fos_rest.request.param_fetcher.reader"/>
+      <argument type="service" id="request"/>
+      <argument type="service" id="validator"/>
+    </service>
+    <service id="fos_rest.request.param_fetcher.reader" class="FOS\RestBundle\Request\ParamReader">
+      <argument type="service" id="annotation_reader"/>
+    </service>
+    <service id="fos_rest.decoder.json" class="FOS\RestBundle\Decoder\JsonDecoder"/>
+    <service id="fos_rest.decoder.jsontoform" class="FOS\RestBundle\Decoder\JsonToFormDecoder"/>
+    <service id="fos_rest.decoder.xml" class="FOS\RestBundle\Decoder\XmlDecoder"/>
+    <service id="fos_rest.decoder_provider" class="FOS\RestBundle\Decoder\ContainerDecoderProvider">
+      <argument type="collection">
+        <argument key="json">fos_rest.decoder.json</argument>
+        <argument key="xml">fos_rest.decoder.xml</argument>
+      </argument>
+      <call method="setContainer">
+        <argument type="service" id="service_container"/>
+      </call>
+    </service>
+    <service id="fos_rest.body_listener" class="FOS\RestBundle\EventListener\BodyListener">
+      <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" priority="10"/>
+      <argument type="service" id="fos_rest.decoder_provider"/>
+      <argument>false</argument>
+    </service>
+    <service id="fos_comment.entity_manager" class="Doctrine\ORM\EntityManager" factory-method="getManager" factory-service="doctrine" public="false">
+      <argument>null</argument>
+    </service>
+    <service id="fos_comment.manager.thread.default" class="FOS\CommentBundle\Entity\ThreadManager">
+      <argument type="service" id="debug.event_dispatcher"/>
+      <argument type="service" id="fos_comment.entity_manager"/>
+      <argument>Mischiros\TiendaBundle\Entity\Thread</argument>
+    </service>
+    <service id="fos_comment.manager.comment.default" class="FOS\CommentBundle\Entity\CommentManager">
+      <argument type="service" id="debug.event_dispatcher"/>
+      <argument type="service" id="fos_comment.sorting_factory"/>
+      <argument type="service" id="fos_comment.entity_manager"/>
+      <argument>Mischiros\TiendaBundle\Entity\Comment</argument>
+    </service>
+    <service id="fos_comment.manager.vote.default" class="FOS\CommentBundle\Entity\VoteManager">
+      <argument type="service" id="debug.event_dispatcher"/>
+      <argument type="service" id="fos_comment.entity_manager"/>
+      <argument>FOS\CommentBundle\Entity\Vote</argument>
+    </service>
+    <service id="fos_comment.listener.comment_vote_score" class="FOS\CommentBundle\EventListener\CommentVoteScoreListener">
+      <tag name="kernel.event_subscriber"/>
+    </service>
+    <service id="fos_comment.listener.thread_counters" class="FOS\CommentBundle\EventListener\ThreadCountersListener">
+      <tag name="kernel.event_subscriber"/>
+      <argument type="service" id="fos_comment.manager.comment.default"/>
+    </service>
+    <service id="fos_comment.listener.thread_permalink" class="FOS\CommentBundle\EventListener\ThreadPermalinkListener">
+      <tag name="kernel.event_subscriber"/>
+      <argument type="service" id="service_container"/>
+    </service>
+    <service id="fos_comment.listener.comment_blamer" class="FOS\CommentBundle\EventListener\CommentBlamerListener">
+      <tag name="kernel.event_subscriber"/>
+      <argument type="service" id="security.context" on-invalid="null"/>
+      <argument type="service" id="logger" on-invalid="null"/>
+    </service>
+    <service id="fos_comment.listener.vote_blamer" class="FOS\CommentBundle\EventListener\VoteBlamerListener">
+      <tag name="kernel.event_subscriber"/>
+      <argument type="service" id="security.context" on-invalid="null"/>
+      <argument type="service" id="logger" on-invalid="null"/>
+    </service>
+    <service id="fos_comment.listener.closed_threads" class="FOS\CommentBundle\EventListener\ClosedThreadListener">
+      <tag name="kernel.event_subscriber"/>
+    </service>
+    <service id="fos_comment.form_type.comment.default" class="FOS\CommentBundle\Form\CommentType">
+      <tag name="form.type" alias="fos_comment_comment"/>
+      <argument>Mischiros\TiendaBundle\Entity\Comment</argument>
+    </service>
+    <service id="fos_comment.form_type.commentable_thread.default" class="FOS\CommentBundle\Form\CommentableThreadType">
+      <tag name="form.type" alias="fos_comment_commentable_thread"/>
+      <argument>Mischiros\TiendaBundle\Entity\Thread</argument>
+    </service>
+    <service id="fos_comment.form_type.delete_comment.default" class="FOS\CommentBundle\Form\DeleteCommentType">
+      <tag name="form.type" alias="fos_comment_delete_comment"/>
+      <argument>Mischiros\TiendaBundle\Entity\Comment</argument>
+    </service>
+    <service id="fos_comment.form_type.thread.default" class="FOS\CommentBundle\Form\ThreadType">
+      <tag name="form.type" alias="fos_comment_thread"/>
+      <argument>Mischiros\TiendaBundle\Entity\Thread</argument>
+    </service>
+    <service id="fos_comment.form_type.vote.default" class="FOS\CommentBundle\Form\VoteType">
+      <tag name="form.type" alias="fos_comment_vote"/>
+      <argument>FOS\CommentBundle\Entity\Vote</argument>
+    </service>
+    <service id="fos_comment.sorting_factory" class="FOS\CommentBundle\Sorting\SortingFactory">
+      <argument type="collection">
+        <argument key="date_asc" type="service">
+          <service class="FOS\CommentBundle\Sorting\DateSorting" public="false">
+            <tag name="fos_comment.sorter" alias="date_asc"/>
+            <argument>ASC</argument>
+          </service>
+        </argument>
+        <argument key="date_desc" type="service">
+          <service class="FOS\CommentBundle\Sorting\DateSorting" public="false">
+            <tag name="fos_comment.sorter" alias="date_desc"/>
+            <argument>DESC</argument>
+          </service>
+        </argument>
+      </argument>
+      <argument>date_desc</argument>
+    </service>
+    <service id="jms_serializer.doctrine_proxy_subscriber" class="JMS\Serializer\EventDispatcher\Subscriber\DoctrineProxySubscriber">
+      <tag name="jms_serializer.event_subscriber"/>
+    </service>
+    <service id="jms_serializer.stopwatch_subscriber" class="JMS\SerializerBundle\Serializer\StopwatchEventSubscriber">
+      <tag name="jms_serializer.event_subscriber"/>
+      <argument type="service" id="debug.stopwatch"/>
+    </service>
+    <service id="jms_serializer.handler_registry" class="JMS\Serializer\Handler\LazyHandlerRegistry">
+      <argument type="service" id="service_container"/>
+      <argument type="collection">
+        <argument key="1" type="collection">
+          <argument key="sonata_user_user_id" type="collection">
+            <argument key="json" type="collection">
+              <argument>sonata.user.serializer.handler.user</argument>
+              <argument>serializeObjectToId</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>sonata.user.serializer.handler.user</argument>
+              <argument>serializeObjectToId</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>sonata.user.serializer.handler.user</argument>
+              <argument>serializeObjectToId</argument>
+            </argument>
+          </argument>
+          <argument key="DateTime" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.datetime_handler</argument>
+              <argument>serializeDateTime</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.datetime_handler</argument>
+              <argument>serializeDateTime</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.datetime_handler</argument>
+              <argument>serializeDateTime</argument>
+            </argument>
+          </argument>
+          <argument key="DateInterval" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.datetime_handler</argument>
+              <argument>serializeDateInterval</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.datetime_handler</argument>
+              <argument>serializeDateInterval</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.datetime_handler</argument>
+              <argument>serializeDateInterval</argument>
+            </argument>
+          </argument>
+          <argument key="ArrayCollection" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+          </argument>
+          <argument key="Doctrine\Common\Collections\ArrayCollection" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+          </argument>
+          <argument key="Doctrine\ORM\PersistentCollection" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+          </argument>
+          <argument key="Doctrine\ODM\MongoDB\PersistentCollection" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+          </argument>
+          <argument key="Doctrine\ODM\PHPCR\PersistentCollection" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+          </argument>
+          <argument key="PhpCollection\Sequence" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.php_collection_handler</argument>
+              <argument>serializeSequence</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.php_collection_handler</argument>
+              <argument>serializeSequence</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.php_collection_handler</argument>
+              <argument>serializeSequence</argument>
+            </argument>
+          </argument>
+          <argument key="PhpCollection\Map" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.php_collection_handler</argument>
+              <argument>serializeMap</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.php_collection_handler</argument>
+              <argument>serializeMap</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.php_collection_handler</argument>
+              <argument>serializeMap</argument>
+            </argument>
+          </argument>
+          <argument key="Symfony\Component\Form\Form" type="collection">
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.form_error_handler</argument>
+              <argument>serializeFormToxml</argument>
+            </argument>
+            <argument key="json" type="collection">
+              <argument>jms_serializer.form_error_handler</argument>
+              <argument>serializeFormTojson</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.form_error_handler</argument>
+              <argument>serializeFormToyml</argument>
+            </argument>
+          </argument>
+          <argument key="Symfony\Component\Form\FormError" type="collection">
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.form_error_handler</argument>
+              <argument>serializeFormErrorToxml</argument>
+            </argument>
+            <argument key="json" type="collection">
+              <argument>jms_serializer.form_error_handler</argument>
+              <argument>serializeFormErrorTojson</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.form_error_handler</argument>
+              <argument>serializeFormErrorToyml</argument>
+            </argument>
+          </argument>
+          <argument key="Symfony\Component\Validator\ConstraintViolationList" type="collection">
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.constraint_violation_handler</argument>
+              <argument>serializeListToxml</argument>
+            </argument>
+            <argument key="json" type="collection">
+              <argument>jms_serializer.constraint_violation_handler</argument>
+              <argument>serializeListTojson</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.constraint_violation_handler</argument>
+              <argument>serializeListToyml</argument>
+            </argument>
+          </argument>
+          <argument key="Symfony\Component\Validator\ConstraintViolation" type="collection">
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.constraint_violation_handler</argument>
+              <argument>serializeViolationToxml</argument>
+            </argument>
+            <argument key="json" type="collection">
+              <argument>jms_serializer.constraint_violation_handler</argument>
+              <argument>serializeViolationTojson</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.constraint_violation_handler</argument>
+              <argument>serializeViolationToyml</argument>
+            </argument>
+          </argument>
+        </argument>
+        <argument key="2" type="collection">
+          <argument key="sonata_user_user_id" type="collection">
+            <argument key="json" type="collection">
+              <argument>sonata.user.serializer.handler.user</argument>
+              <argument>deserializeObjectFromId</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>sonata.user.serializer.handler.user</argument>
+              <argument>deserializeObjectFromId</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>sonata.user.serializer.handler.user</argument>
+              <argument>deserializeObjectFromId</argument>
+            </argument>
+          </argument>
+          <argument key="DateTime" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.datetime_handler</argument>
+              <argument>deserializeDateTimeFromjson</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.datetime_handler</argument>
+              <argument>deserializeDateTimeFromxml</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.datetime_handler</argument>
+              <argument>deserializeDateTimeFromyml</argument>
+            </argument>
+          </argument>
+          <argument key="ArrayCollection" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+          </argument>
+          <argument key="Doctrine\Common\Collections\ArrayCollection" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+          </argument>
+          <argument key="Doctrine\ORM\PersistentCollection" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+          </argument>
+          <argument key="Doctrine\ODM\MongoDB\PersistentCollection" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+          </argument>
+          <argument key="Doctrine\ODM\PHPCR\PersistentCollection" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+          </argument>
+          <argument key="PhpCollection\Sequence" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.php_collection_handler</argument>
+              <argument>deserializeSequence</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.php_collection_handler</argument>
+              <argument>deserializeSequence</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.php_collection_handler</argument>
+              <argument>deserializeSequence</argument>
+            </argument>
+          </argument>
+          <argument key="PhpCollection\Map" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.php_collection_handler</argument>
+              <argument>deserializeMap</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.php_collection_handler</argument>
+              <argument>deserializeMap</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.php_collection_handler</argument>
+              <argument>deserializeMap</argument>
+            </argument>
+          </argument>
+        </argument>
+      </argument>
+    </service>
+    <service id="jms_serializer.datetime_handler" class="JMS\Serializer\Handler\DateHandler">
+      <tag name="jms_serializer.subscribing_handler"/>
+      <argument>Y-m-d\TH:i:sO</argument>
+      <argument>America/Bogota</argument>
+      <argument>true</argument>
+    </service>
+    <service id="jms_serializer.array_collection_handler" class="JMS\Serializer\Handler\ArrayCollectionHandler">
+      <tag name="jms_serializer.subscribing_handler"/>
+    </service>
+    <service id="jms_serializer.php_collection_handler" class="JMS\Serializer\Handler\PhpCollectionHandler">
+      <tag name="jms_serializer.subscribing_handler"/>
+    </service>
+    <service id="jms_serializer.form_error_handler" class="JMS\Serializer\Handler\FormErrorHandler">
+      <tag name="jms_serializer.subscribing_handler"/>
+      <argument type="service" id="translator.default"/>
+    </service>
+    <service id="jms_serializer.constraint_violation_handler" class="JMS\Serializer\Handler\ConstraintViolationHandler">
+      <tag name="jms_serializer.subscribing_handler"/>
+    </service>
+    <service id="jms_serializer.unserialize_object_constructor" class="JMS\Serializer\Construction\UnserializeObjectConstructor" public="false"/>
+    <service id="jms_serializer.templating.helper.serializer" class="JMS\SerializerBundle\Templating\SerializerHelper">
+      <tag name="templating.helper" alias="jms_serializer"/>
+      <argument type="service" id="fos_rest.serializer"/>
+    </service>
+    <service id="jms_serializer.json_serialization_visitor" class="JMS\Serializer\JsonSerializationVisitor">
+      <tag name="jms_serializer.serialization_visitor" format="json"/>
+      <argument type="service" id="jms_serializer.naming_strategy"/>
+      <call method="setOptions">
+        <argument>0</argument>
+      </call>
+    </service>
+    <service id="jms_serializer.json_deserialization_visitor" class="JMS\Serializer\JsonDeserializationVisitor">
+      <tag name="jms_serializer.deserialization_visitor" format="json"/>
+      <argument type="service" id="jms_serializer.naming_strategy"/>
+      <argument type="service" id="jms_serializer.unserialize_object_constructor"/>
+    </service>
+    <service id="jms_serializer.xml_serialization_visitor" class="JMS\Serializer\XmlSerializationVisitor">
+      <tag name="jms_serializer.serialization_visitor" format="xml"/>
+      <argument type="service" id="jms_serializer.naming_strategy"/>
+    </service>
+    <service id="jms_serializer.xml_deserialization_visitor" class="JMS\Serializer\XmlDeserializationVisitor">
+      <tag name="jms_serializer.deserialization_visitor" format="xml"/>
+      <argument type="service" id="jms_serializer.naming_strategy"/>
+      <argument type="service" id="jms_serializer.unserialize_object_constructor"/>
+      <call method="setDoctypeWhitelist">
+        <argument type="collection"/>
+      </call>
+    </service>
+    <service id="jms_serializer.yaml_serialization_visitor" class="JMS\Serializer\YamlSerializationVisitor">
+      <tag name="jms_serializer.serialization_visitor" format="yml"/>
+      <argument type="service" id="jms_serializer.naming_strategy"/>
+    </service>
+    <service id="iga_rss.rss" class="rss_php" scope="prototype">
+      <file>/var/www/app/../vendor/rssphp/rss.php</file>
+    </service>
     <service id="twig.extension.acme.demo" class="Acme\DemoBundle\Twig\Extension\DemoExtension" public="false">
       <tag name="twig.extension"/>
       <argument type="service" id="twig.loader"/>
@@ -8303,6 +9205,7 @@
           <argument key="sonata_block">sonata.block.templating.helper</argument>
           <argument key="knp_pagination">knp_paginator.templating.helper.pagination</argument>
           <argument key="imagine">imagine.templating.helper</argument>
+          <argument key="jms_serializer">jms_serializer.templating.helper.serializer</argument>
         </argument>
       </call>
     </service>
@@ -8442,6 +9345,14 @@
       <call method="addPath">
         <argument>/var/www/vendor/braincrafted/bootstrap-bundle/Braincrafted/Bundle/BootstrapBundle/Resources/views</argument>
         <argument>BraincraftedBootstrap</argument>
+      </call>
+      <call method="addPath">
+        <argument>/var/www/vendor/friendsofsymfony/comment-bundle/FOS/CommentBundle/Resources/views</argument>
+        <argument>FOSComment</argument>
+      </call>
+      <call method="addPath">
+        <argument>/var/www/src/Iga/RssBundle/Resources/views</argument>
+        <argument>IgaRss</argument>
       </call>
       <call method="addPath">
         <argument>/var/www/src/Acme/DemoBundle/Resources/views</argument>
@@ -8632,6 +9543,290 @@
       <argument type="service" id="fos_user.mailer"/>
       <argument type="service" id="fos_user.util.token_generator"/>
     </service>
+    <service id="fos_rest.serializer" class="JMS\Serializer\Serializer">
+      <argument type="service">
+        <service class="Metadata\MetadataFactory" public="false">
+          <argument type="service">
+            <service class="Metadata\Driver\LazyLoadingDriver" public="false">
+              <argument type="service" id="service_container"/>
+              <argument>jms_serializer.metadata_driver</argument>
+            </service>
+          </argument>
+          <argument>Metadata\ClassHierarchyMetadata</argument>
+          <argument>true</argument>
+          <call method="setCache">
+            <argument type="service">
+              <service class="Metadata\Cache\FileCache" public="false">
+                <argument>/var/www/app/cache/dev/jms_serializer</argument>
+              </service>
+            </argument>
+          </call>
+        </service>
+      </argument>
+      <argument type="service" id="jms_serializer.handler_registry"/>
+      <argument type="service" id="jms_serializer.unserialize_object_constructor"/>
+      <argument type="service">
+        <service class="PhpCollection\Map">
+          <argument type="collection">
+            <argument key="json" type="service" id="jms_serializer.json_serialization_visitor"/>
+            <argument key="xml" type="service" id="jms_serializer.xml_serialization_visitor"/>
+            <argument key="yml" type="service" id="jms_serializer.yaml_serialization_visitor"/>
+          </argument>
+        </service>
+      </argument>
+      <argument type="service">
+        <service class="PhpCollection\Map">
+          <argument type="collection">
+            <argument key="json" type="service" id="jms_serializer.json_deserialization_visitor"/>
+            <argument key="xml" type="service" id="jms_serializer.xml_deserialization_visitor"/>
+          </argument>
+        </service>
+      </argument>
+      <argument type="service">
+        <service class="JMS\Serializer\EventDispatcher\LazyEventDispatcher" public="false">
+          <argument type="service" id="service_container"/>
+          <call method="setListeners">
+            <argument type="collection">
+              <argument key="serializer.pre_serialize" type="collection">
+                <argument type="collection">
+                  <argument type="collection">
+                    <argument>jms_serializer.stopwatch_subscriber</argument>
+                    <argument>onPreSerialize</argument>
+                  </argument>
+                  <argument>null</argument>
+                  <argument>null</argument>
+                </argument>
+                <argument type="collection">
+                  <argument type="collection">
+                    <argument>jms_serializer.doctrine_proxy_subscriber</argument>
+                    <argument>onPreSerialize</argument>
+                  </argument>
+                  <argument>null</argument>
+                  <argument>null</argument>
+                </argument>
+              </argument>
+              <argument key="serializer.post_serialize" type="collection">
+                <argument type="collection">
+                  <argument type="collection">
+                    <argument>jms_serializer.stopwatch_subscriber</argument>
+                    <argument>onPostSerialize</argument>
+                  </argument>
+                  <argument>null</argument>
+                  <argument>null</argument>
+                </argument>
+              </argument>
+            </argument>
+          </call>
+        </service>
+      </argument>
+    </service>
+    <service id="fos_rest.view_handler" class="FOS\RestBundle\View\ViewHandler">
+      <argument type="collection">
+        <argument key="json">false</argument>
+        <argument key="xml">false</argument>
+        <argument key="html">true</argument>
+      </argument>
+      <argument>400</argument>
+      <argument>204</argument>
+      <argument>false</argument>
+      <argument type="collection">
+        <argument key="html">302</argument>
+      </argument>
+      <argument>twig</argument>
+      <call method="setExclusionStrategyGroups">
+        <argument></argument>
+      </call>
+      <call method="setExclusionStrategyVersion">
+        <argument></argument>
+      </call>
+      <call method="setSerializeNullStrategy">
+        <argument>false</argument>
+      </call>
+      <call method="setContainer">
+        <argument type="service" id="service_container"/>
+      </call>
+    </service>
+    <service id="fos_comment.form_factory.comment" class="FOS\CommentBundle\FormFactory\CommentFormFactory">
+      <argument type="service" id="form.factory"/>
+      <argument>fos_comment_comment</argument>
+      <argument>fos_comment_comment</argument>
+    </service>
+    <service id="fos_comment.form_factory.commentable_thread" class="FOS\CommentBundle\FormFactory\CommentableThreadFormFactory">
+      <argument type="service" id="form.factory"/>
+      <argument>fos_comment_commentable_thread</argument>
+      <argument>fos_comment_commentable_thread</argument>
+    </service>
+    <service id="fos_comment.form_factory.delete_comment" class="FOS\CommentBundle\FormFactory\DeleteCommentFormFactory">
+      <argument type="service" id="form.factory"/>
+      <argument>fos_comment_delete_comment</argument>
+      <argument>fos_comment_delete_comment</argument>
+    </service>
+    <service id="fos_comment.form_factory.thread" class="FOS\CommentBundle\FormFactory\ThreadFormFactory">
+      <argument type="service" id="form.factory"/>
+      <argument>fos_comment_thread</argument>
+      <argument>fos_comment_thread</argument>
+    </service>
+    <service id="fos_comment.form_factory.vote" class="FOS\CommentBundle\FormFactory\VoteFormFactory">
+      <argument type="service" id="form.factory"/>
+      <argument>fos_comment_vote</argument>
+      <argument>fos_comment_vote</argument>
+    </service>
+    <service id="jms_serializer.metadata_driver" class="JMS\Serializer\Metadata\Driver\DoctrineTypeDriver">
+      <argument type="service">
+        <service class="Metadata\Driver\DriverChain" public="false">
+          <argument type="collection">
+            <argument type="service">
+              <service class="JMS\Serializer\Metadata\Driver\YamlDriver" public="false">
+                <argument type="service">
+                  <service class="Metadata\Driver\FileLocator" public="false">
+                    <argument type="collection">
+                      <argument key="Symfony\Bundle\FrameworkBundle">/var/www/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\SecurityBundle">/var/www/vendor/symfony/symfony/src/Symfony/Bundle/SecurityBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\TwigBundle">/var/www/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\MonologBundle">/var/www/vendor/symfony/monolog-bundle/Symfony/Bundle/MonologBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\SwiftmailerBundle">/var/www/vendor/symfony/swiftmailer-bundle/Symfony/Bundle/SwiftmailerBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\AsseticBundle">/var/www/vendor/symfony/assetic-bundle/Symfony/Bundle/AsseticBundle/Resources/config/serializer</argument>
+                      <argument key="Doctrine\Bundle\DoctrineBundle">/var/www/vendor/doctrine/doctrine-bundle/Doctrine/Bundle/DoctrineBundle/Resources/config/serializer</argument>
+                      <argument key="Sensio\Bundle\FrameworkExtraBundle">/var/www/vendor/sensio/framework-extra-bundle/Sensio/Bundle/FrameworkExtraBundle/Resources/config/serializer</argument>
+                      <argument key="Mischiros\TiendaBundle">/var/www/src/Mischiros/TiendaBundle/Resources/config/serializer</argument>
+                      <argument key="FOS\UserBundle">/var/www/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/config/serializer</argument>
+                      <argument key="Sonata\jQueryBundle">/var/www/vendor/sonata-project/jquery-bundle/Resources/config/serializer</argument>
+                      <argument key="Sonata\AdminBundle">/var/www/vendor/sonata-project/admin-bundle/Resources/config/serializer</argument>
+                      <argument key="Sonata\BlockBundle">/var/www/vendor/sonata-project/block-bundle/Resources/config/serializer</argument>
+                      <argument key="Sonata\CoreBundle">/var/www/vendor/sonata-project/core-bundle/Resources/config/serializer</argument>
+                      <argument key="Sonata\DoctrineORMAdminBundle">/var/www/vendor/sonata-project/doctrine-orm-admin-bundle/Resources/config/serializer</argument>
+                      <argument key="Knp\Bundle\MenuBundle">/var/www/vendor/knplabs/knp-menu-bundle/Knp/Bundle/MenuBundle/Resources/config/serializer</argument>
+                      <argument key="Knp\Bundle\PaginatorBundle">/var/www/vendor/knplabs/knp-paginator-bundle/Knp/Bundle/PaginatorBundle/Resources/config/serializer</argument>
+                      <argument key="Sonata\UserBundle">/var/www/vendor/sonata-project/user-bundle/Resources/config/serializer</argument>
+                      <argument key="Application\Sonata\UserBundle">/var/www/src/Application/Sonata/UserBundle/Resources/config/serializer</argument>
+                      <argument key="Sonata\MediaBundle">/var/www/vendor/sonata-project/media-bundle/Resources/config/serializer</argument>
+                      <argument key="Sonata\EasyExtendsBundle">/var/www/vendor/sonata-project/easy-extends-bundle/Resources/config/serializer</argument>
+                      <argument key="Application\Sonata\MediaBundle">/var/www/src/Application/Sonata/MediaBundle/Resources/config/serializer</argument>
+                      <argument key="Braincrafted\Bundle\BootstrapBundle">/var/www/vendor/braincrafted/bootstrap-bundle/Braincrafted/Bundle/BootstrapBundle/Resources/config/serializer</argument>
+                      <argument key="Avalanche\Bundle\ImagineBundle">/var/www/vendor/avalanche123/imagine-bundle/Avalanche/Bundle/ImagineBundle/Resources/config/serializer</argument>
+                      <argument key="FOS\RestBundle">/var/www/vendor/friendsofsymfony/rest-bundle/FOS/RestBundle/Resources/config/serializer</argument>
+                      <argument key="FOS\CommentBundle">/var/www/vendor/friendsofsymfony/comment-bundle/FOS/CommentBundle/Resources/config/serializer</argument>
+                      <argument key="JMS\SerializerBundle">/var/www/vendor/jms/serializer-bundle/JMS/SerializerBundle/Resources/config/serializer</argument>
+                      <argument key="Iga\RssBundle">/var/www/src/Iga/RssBundle/Resources/config/serializer</argument>
+                      <argument key="Acme\DemoBundle">/var/www/src/Acme/DemoBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\WebProfilerBundle">/var/www/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/config/serializer</argument>
+                      <argument key="Sensio\Bundle\DistributionBundle">/var/www/vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/config/serializer</argument>
+                      <argument key="Sensio\Bundle\GeneratorBundle">/var/www/vendor/sensio/generator-bundle/Sensio/Bundle/GeneratorBundle/Resources/config/serializer</argument>
+                    </argument>
+                  </service>
+                </argument>
+              </service>
+            </argument>
+            <argument type="service">
+              <service class="JMS\Serializer\Metadata\Driver\XmlDriver" public="false">
+                <argument type="service">
+                  <service class="Metadata\Driver\FileLocator" public="false">
+                    <argument type="collection">
+                      <argument key="Symfony\Bundle\FrameworkBundle">/var/www/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\SecurityBundle">/var/www/vendor/symfony/symfony/src/Symfony/Bundle/SecurityBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\TwigBundle">/var/www/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\MonologBundle">/var/www/vendor/symfony/monolog-bundle/Symfony/Bundle/MonologBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\SwiftmailerBundle">/var/www/vendor/symfony/swiftmailer-bundle/Symfony/Bundle/SwiftmailerBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\AsseticBundle">/var/www/vendor/symfony/assetic-bundle/Symfony/Bundle/AsseticBundle/Resources/config/serializer</argument>
+                      <argument key="Doctrine\Bundle\DoctrineBundle">/var/www/vendor/doctrine/doctrine-bundle/Doctrine/Bundle/DoctrineBundle/Resources/config/serializer</argument>
+                      <argument key="Sensio\Bundle\FrameworkExtraBundle">/var/www/vendor/sensio/framework-extra-bundle/Sensio/Bundle/FrameworkExtraBundle/Resources/config/serializer</argument>
+                      <argument key="Mischiros\TiendaBundle">/var/www/src/Mischiros/TiendaBundle/Resources/config/serializer</argument>
+                      <argument key="FOS\UserBundle">/var/www/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/config/serializer</argument>
+                      <argument key="Sonata\jQueryBundle">/var/www/vendor/sonata-project/jquery-bundle/Resources/config/serializer</argument>
+                      <argument key="Sonata\AdminBundle">/var/www/vendor/sonata-project/admin-bundle/Resources/config/serializer</argument>
+                      <argument key="Sonata\BlockBundle">/var/www/vendor/sonata-project/block-bundle/Resources/config/serializer</argument>
+                      <argument key="Sonata\CoreBundle">/var/www/vendor/sonata-project/core-bundle/Resources/config/serializer</argument>
+                      <argument key="Sonata\DoctrineORMAdminBundle">/var/www/vendor/sonata-project/doctrine-orm-admin-bundle/Resources/config/serializer</argument>
+                      <argument key="Knp\Bundle\MenuBundle">/var/www/vendor/knplabs/knp-menu-bundle/Knp/Bundle/MenuBundle/Resources/config/serializer</argument>
+                      <argument key="Knp\Bundle\PaginatorBundle">/var/www/vendor/knplabs/knp-paginator-bundle/Knp/Bundle/PaginatorBundle/Resources/config/serializer</argument>
+                      <argument key="Sonata\UserBundle">/var/www/vendor/sonata-project/user-bundle/Resources/config/serializer</argument>
+                      <argument key="Application\Sonata\UserBundle">/var/www/src/Application/Sonata/UserBundle/Resources/config/serializer</argument>
+                      <argument key="Sonata\MediaBundle">/var/www/vendor/sonata-project/media-bundle/Resources/config/serializer</argument>
+                      <argument key="Sonata\EasyExtendsBundle">/var/www/vendor/sonata-project/easy-extends-bundle/Resources/config/serializer</argument>
+                      <argument key="Application\Sonata\MediaBundle">/var/www/src/Application/Sonata/MediaBundle/Resources/config/serializer</argument>
+                      <argument key="Braincrafted\Bundle\BootstrapBundle">/var/www/vendor/braincrafted/bootstrap-bundle/Braincrafted/Bundle/BootstrapBundle/Resources/config/serializer</argument>
+                      <argument key="Avalanche\Bundle\ImagineBundle">/var/www/vendor/avalanche123/imagine-bundle/Avalanche/Bundle/ImagineBundle/Resources/config/serializer</argument>
+                      <argument key="FOS\RestBundle">/var/www/vendor/friendsofsymfony/rest-bundle/FOS/RestBundle/Resources/config/serializer</argument>
+                      <argument key="FOS\CommentBundle">/var/www/vendor/friendsofsymfony/comment-bundle/FOS/CommentBundle/Resources/config/serializer</argument>
+                      <argument key="JMS\SerializerBundle">/var/www/vendor/jms/serializer-bundle/JMS/SerializerBundle/Resources/config/serializer</argument>
+                      <argument key="Iga\RssBundle">/var/www/src/Iga/RssBundle/Resources/config/serializer</argument>
+                      <argument key="Acme\DemoBundle">/var/www/src/Acme/DemoBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\WebProfilerBundle">/var/www/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/config/serializer</argument>
+                      <argument key="Sensio\Bundle\DistributionBundle">/var/www/vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/config/serializer</argument>
+                      <argument key="Sensio\Bundle\GeneratorBundle">/var/www/vendor/sensio/generator-bundle/Sensio/Bundle/GeneratorBundle/Resources/config/serializer</argument>
+                    </argument>
+                  </service>
+                </argument>
+              </service>
+            </argument>
+            <argument type="service">
+              <service class="JMS\Serializer\Metadata\Driver\PhpDriver" public="false">
+                <argument type="service">
+                  <service class="Metadata\Driver\FileLocator" public="false">
+                    <argument type="collection">
+                      <argument key="Symfony\Bundle\FrameworkBundle">/var/www/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\SecurityBundle">/var/www/vendor/symfony/symfony/src/Symfony/Bundle/SecurityBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\TwigBundle">/var/www/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\MonologBundle">/var/www/vendor/symfony/monolog-bundle/Symfony/Bundle/MonologBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\SwiftmailerBundle">/var/www/vendor/symfony/swiftmailer-bundle/Symfony/Bundle/SwiftmailerBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\AsseticBundle">/var/www/vendor/symfony/assetic-bundle/Symfony/Bundle/AsseticBundle/Resources/config/serializer</argument>
+                      <argument key="Doctrine\Bundle\DoctrineBundle">/var/www/vendor/doctrine/doctrine-bundle/Doctrine/Bundle/DoctrineBundle/Resources/config/serializer</argument>
+                      <argument key="Sensio\Bundle\FrameworkExtraBundle">/var/www/vendor/sensio/framework-extra-bundle/Sensio/Bundle/FrameworkExtraBundle/Resources/config/serializer</argument>
+                      <argument key="Mischiros\TiendaBundle">/var/www/src/Mischiros/TiendaBundle/Resources/config/serializer</argument>
+                      <argument key="FOS\UserBundle">/var/www/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/config/serializer</argument>
+                      <argument key="Sonata\jQueryBundle">/var/www/vendor/sonata-project/jquery-bundle/Resources/config/serializer</argument>
+                      <argument key="Sonata\AdminBundle">/var/www/vendor/sonata-project/admin-bundle/Resources/config/serializer</argument>
+                      <argument key="Sonata\BlockBundle">/var/www/vendor/sonata-project/block-bundle/Resources/config/serializer</argument>
+                      <argument key="Sonata\CoreBundle">/var/www/vendor/sonata-project/core-bundle/Resources/config/serializer</argument>
+                      <argument key="Sonata\DoctrineORMAdminBundle">/var/www/vendor/sonata-project/doctrine-orm-admin-bundle/Resources/config/serializer</argument>
+                      <argument key="Knp\Bundle\MenuBundle">/var/www/vendor/knplabs/knp-menu-bundle/Knp/Bundle/MenuBundle/Resources/config/serializer</argument>
+                      <argument key="Knp\Bundle\PaginatorBundle">/var/www/vendor/knplabs/knp-paginator-bundle/Knp/Bundle/PaginatorBundle/Resources/config/serializer</argument>
+                      <argument key="Sonata\UserBundle">/var/www/vendor/sonata-project/user-bundle/Resources/config/serializer</argument>
+                      <argument key="Application\Sonata\UserBundle">/var/www/src/Application/Sonata/UserBundle/Resources/config/serializer</argument>
+                      <argument key="Sonata\MediaBundle">/var/www/vendor/sonata-project/media-bundle/Resources/config/serializer</argument>
+                      <argument key="Sonata\EasyExtendsBundle">/var/www/vendor/sonata-project/easy-extends-bundle/Resources/config/serializer</argument>
+                      <argument key="Application\Sonata\MediaBundle">/var/www/src/Application/Sonata/MediaBundle/Resources/config/serializer</argument>
+                      <argument key="Braincrafted\Bundle\BootstrapBundle">/var/www/vendor/braincrafted/bootstrap-bundle/Braincrafted/Bundle/BootstrapBundle/Resources/config/serializer</argument>
+                      <argument key="Avalanche\Bundle\ImagineBundle">/var/www/vendor/avalanche123/imagine-bundle/Avalanche/Bundle/ImagineBundle/Resources/config/serializer</argument>
+                      <argument key="FOS\RestBundle">/var/www/vendor/friendsofsymfony/rest-bundle/FOS/RestBundle/Resources/config/serializer</argument>
+                      <argument key="FOS\CommentBundle">/var/www/vendor/friendsofsymfony/comment-bundle/FOS/CommentBundle/Resources/config/serializer</argument>
+                      <argument key="JMS\SerializerBundle">/var/www/vendor/jms/serializer-bundle/JMS/SerializerBundle/Resources/config/serializer</argument>
+                      <argument key="Iga\RssBundle">/var/www/src/Iga/RssBundle/Resources/config/serializer</argument>
+                      <argument key="Acme\DemoBundle">/var/www/src/Acme/DemoBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\WebProfilerBundle">/var/www/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/config/serializer</argument>
+                      <argument key="Sensio\Bundle\DistributionBundle">/var/www/vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/config/serializer</argument>
+                      <argument key="Sensio\Bundle\GeneratorBundle">/var/www/vendor/sensio/generator-bundle/Sensio/Bundle/GeneratorBundle/Resources/config/serializer</argument>
+                    </argument>
+                  </service>
+                </argument>
+              </service>
+            </argument>
+            <argument type="service">
+              <service class="JMS\Serializer\Metadata\Driver\AnnotationDriver" public="false">
+                <argument type="service" id="annotation_reader"/>
+              </service>
+            </argument>
+          </argument>
+        </service>
+      </argument>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="jms_serializer.naming_strategy" class="JMS\Serializer\Naming\CacheNamingStrategy">
+      <argument type="service">
+        <service class="JMS\Serializer\Naming\SerializedNameAnnotationStrategy" public="false">
+          <argument type="service">
+            <service class="JMS\Serializer\Naming\CamelCaseNamingStrategy" public="false">
+              <argument>_</argument>
+              <argument>true</argument>
+            </service>
+          </argument>
+        </service>
+      </argument>
+    </service>
+    <service id="jms_serializer.object_constructor" class="JMS\Serializer\Construction\DoctrineObjectConstructor">
+      <argument type="service" id="doctrine"/>
+      <argument type="service" id="jms_serializer.unserialize_object_constructor"/>
+    </service>
     <service id="knp_menu.menu_provider" class="Knp\Menu\Provider\ChainProvider">
       <argument type="collection">
         <argument type="service">
@@ -8674,6 +9869,14 @@
     <service id="sonata.user.authentication.form" alias="fos_user.profile.form"/>
     <service id="sonata.user.authentication.form_handler" alias="fos_user.profile.form.handler"/>
     <service id="imagine" alias="imagine.gd"/>
+    <service id="fos_rest.router" alias="router"/>
+    <service id="fos_rest.templating" alias="templating"/>
+    <service id="fos_rest.inflector" alias="fos_rest.inflector.doctrine"/>
+    <service id="fos_comment.manager.thread" alias="fos_comment.manager.thread.default"/>
+    <service id="fos_comment.manager.comment" alias="fos_comment.manager.comment.default"/>
+    <service id="fos_comment.manager.vote" alias="fos_comment.manager.vote.default"/>
+    <service id="jms_serializer" alias="fos_rest.serializer"/>
+    <service id="serializer" alias="fos_rest.serializer"/>
     <service id="sensio.distribution.webconfigurator" alias="sensio_distribution.webconfigurator"/>
   </services>
 </container>

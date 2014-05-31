@@ -85,23 +85,23 @@ class __TwigTemplate_bb2f68f912e30216a3549a709bb9914b0d8f73518287807f9066e064452
                         ";
         // line 32
         $this->displayBlock('barradenavegacion', $context, $blocks);
-        // line 37
+        // line 38
         echo "                    </ul>
                     <ul class=\"nav navbar-nav navbar-right\">
                         ";
-        // line 39
+        // line 40
         if ($this->env->getExtension('security')->isGranted("IS_AUTHENTICATED_REMEMBERED")) {
-            // line 40
+            // line 41
             echo "                            <li>
                                 <p class=\"navbar-text\">Bienvenido <a href=\"/perfil\" class=\"navbar-link\">";
-            // line 41
+            // line 42
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user"), "username"), "html", null, true);
             echo "</a></p>
                             </li>
                             <form class=\"navbar-form navbar-left\" role=\"form\"> 
                                 <a href=\"/perfil\" class=\"btn btn-primary\">Perfil</a>
                                 <a href=\"";
-            // line 45
+            // line 46
             echo $this->env->getExtension('routing')->getPath("fos_user_security_logout");
             echo "\" class=\"btn btn-primary\">";
             echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("link_logout", array(), "SonataUserBundle"), "html", null, true);
@@ -109,38 +109,38 @@ class __TwigTemplate_bb2f68f912e30216a3549a709bb9914b0d8f73518287807f9066e064452
                             </form>
                         ";
         } else {
-            // line 47
+            // line 48
             echo "                            
                             <a href=\"/login\" class=\"btn btn-primary navbar-btn\">";
-            // line 48
+            // line 49
             echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("link_login", array(), "SonataUserBundle"), "html", null, true);
             echo "</a>
                             <a href=\"/registro\" class=\"btn btn-primary navbar-btn\">";
-            // line 49
+            // line 50
             echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("link_register", array(), "SonataUserBundle"), "html", null, true);
             echo "</a>
                         ";
         }
-        // line 51
+        // line 52
         echo "                    </ul>
                 </div><!-- /.navbar-collapse -->
           </div><!-- /.container-fluid -->
         </nav>
         ";
-        // line 55
-        $this->displayBlock('contenido', $context, $blocks);
         // line 56
+        $this->displayBlock('contenido', $context, $blocks);
+        // line 57
         echo "        ";
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 57
+        // line 58
         echo "        <!-- jQuery (necessary for Bootstraps JavaScript plugins) -->
         <script src=\"";
-        // line 58
+        // line 59
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("js/jquery.js"), "html", null, true);
         echo "\"></script>
         <!-- Include all JavaScripts, compiled by Assetic -->
         <script src=\"";
-        // line 60
+        // line 61
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("js/bootstrap.js"), "html", null, true);
         echo "\"></script>
     </body>
@@ -169,20 +169,24 @@ class __TwigTemplate_bb2f68f912e30216a3549a709bb9914b0d8f73518287807f9066e064452
                             <li><a href=\"";
         // line 34
         echo $this->env->getExtension('routing')->getPath("listarportipo", array("tipo" => 1));
-        echo "\">Comprar</a></li>
+        echo "\">Comprar</a></li>                            
                             <li><a href=\"";
         // line 35
+        echo $this->env->getExtension('routing')->getPath("noticias");
+        echo "\">Noticias</a></li>
+                            <li><a href=\"";
+        // line 36
         echo $this->env->getExtension('routing')->getPath("contactenos");
         echo "\">Contactenos</a></li>
                         ";
     }
 
-    // line 55
+    // line 56
     public function block_contenido($context, array $blocks = array())
     {
     }
 
-    // line 56
+    // line 57
     public function block_javascripts($context, array $blocks = array())
     {
     }
@@ -199,6 +203,6 @@ class __TwigTemplate_bb2f68f912e30216a3549a709bb9914b0d8f73518287807f9066e064452
 
     public function getDebugInfo()
     {
-        return array (  186 => 56,  181 => 55,  175 => 35,  171 => 34,  166 => 33,  163 => 32,  158 => 7,  152 => 6,  144 => 60,  139 => 58,  136 => 57,  133 => 56,  131 => 55,  125 => 51,  120 => 49,  116 => 48,  113 => 47,  105 => 45,  95 => 40,  89 => 37,  87 => 32,  67 => 14,  65 => 13,  61 => 12,  56 => 11,  42 => 9,  37 => 8,  31 => 6,  24 => 1,  123 => 41,  108 => 39,  101 => 36,  98 => 41,  96 => 34,  93 => 39,  86 => 29,  83 => 28,  81 => 27,  78 => 26,  75 => 25,  58 => 24,  38 => 6,  35 => 7,  29 => 3,);
+        return array (  190 => 57,  185 => 56,  179 => 36,  175 => 35,  171 => 34,  166 => 33,  163 => 32,  158 => 7,  152 => 6,  144 => 61,  139 => 59,  136 => 58,  133 => 57,  131 => 56,  125 => 52,  120 => 50,  116 => 49,  113 => 48,  105 => 46,  98 => 42,  95 => 41,  93 => 40,  89 => 38,  87 => 32,  67 => 14,  65 => 13,  61 => 12,  56 => 11,  42 => 9,  37 => 8,  35 => 7,  31 => 6,  24 => 1,);
     }
 }

@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block titulo %}Noticias{% endblock %}
+
+{% block barradenavegacion %}
+    <li><a href="{{ path('home')}}">Home</a></li>
+    <li><a href="{{ path('listarportipo',{ 'tipo' : 1 }) }}">Comprar</a></li>
+    <li class="active"><a href="{{ path('noticias')}}">Noticias</a></li>
+    <li><a href="{{ path('contactenos')}}">Contactenos</a></li>
+{% endblock %}
+
+{% block contenido %}
+	{% for feed in items %}		
+		<br><br>
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1">						
+		            <strong><a href="{{ feed.link}}" rel="nofollow" title="{{ feed.title }}">{{ feed.title }}</a></strong>
+		            <div>{{ feed.description|raw }}</div>
+			</div>
+		</div>
+	{% endfor %}
+{% endblock %}

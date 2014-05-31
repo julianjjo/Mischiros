@@ -2,6 +2,10 @@ home:
     pattern:  /
     defaults: { _controller: MischirosTiendaBundle:Default:home }
 
+foro:
+    pattern:  /foro
+    defaults: { _controller: MischirosTiendaBundle:Default:Foro }
+
 comprar:
     pattern:  /comprar/
     defaults: { _controller: MischirosTiendaBundle:Ropa:Comprar }

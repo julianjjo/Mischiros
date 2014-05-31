@@ -14,4 +14,10 @@ class DefaultController extends Controller
         $prendas=$consulta->getResult();    	
         return $this->render('MischirosTiendaBundle:Default:index.html.twig', array('prendas' => $prendas));
     }
+
+    public function ForoAction()
+    {
+    	
+        return $this->render('MischirosTiendaBundle:Default:foro.html.twig');
+    }
 }

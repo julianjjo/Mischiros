@@ -36,14 +36,18 @@ class __TwigTemplate_ccb63aa3c31fd6500d9b4d337d4dca4f788d2db571821f2cf3c29f2c277
         // line 5
         echo $this->env->getExtension('routing')->getPath("listarportipo", array("tipo" => 1));
         echo "\">Comprar</a></li>
-    <li class=\"active\"><a href=\"";
+    <li><a href=\"";
         // line 6
+        echo $this->env->getExtension('routing')->getPath("noticias");
+        echo "\">Noticias</a></li>
+    <li class=\"active\"><a href=\"";
+        // line 7
         echo $this->env->getExtension('routing')->getPath("contactenos");
         echo "\">Contactenos</a></li>
 ";
     }
 
-    // line 9
+    // line 10
     public function block_contenido($context, array $blocks = array())
     {
         echo "\t
@@ -51,7 +55,7 @@ class __TwigTemplate_ccb63aa3c31fd6500d9b4d337d4dca4f788d2db571821f2cf3c29f2c277
 \t<div class=\"row\">
 \t\t<div class=\"col-md-8 col-md-offset-2\">\t\t\t\t
 \t\t\t";
-        // line 13
+        // line 14
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form');
         echo "
 \t\t</div>
@@ -71,6 +75,6 @@ class __TwigTemplate_ccb63aa3c31fd6500d9b4d337d4dca4f788d2db571821f2cf3c29f2c277
 
     public function getDebugInfo()
     {
-        return array (  55 => 13,  47 => 9,  41 => 6,  37 => 5,  32 => 4,  29 => 3,);
+        return array (  59 => 14,  51 => 10,  45 => 7,  41 => 6,  37 => 5,  32 => 4,  29 => 3,);
     }
 }

@@ -1,5 +1,5 @@
 <?php
-// src/Mischiros/TiendaBundle/Entity/Ingreso.php
+// src/Mischiros/TiendaBundle/Entity/Comment.php
 namespace Mischiros\TiendaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -22,7 +22,7 @@ class Comment extends BaseComment
      * Thread of this comment
      *
      * @var Thread
-     * @ORM\ManyToOne(targetEntity="MyProject\MyBundle\Entity\Thread")
+     * @ORM\ManyToOne(targetEntity="Mischiros\TiendaBundle\Entity\Thread")
      */
     protected $thread;
 }

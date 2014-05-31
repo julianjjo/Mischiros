@@ -141,6 +141,19 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
             }
 
+            if (0 === strpos($pathinfo, '/js/35a8e64')) {
+                // _assetic_35a8e64
+                if ($pathinfo === '/js/35a8e64.js') {
+                    return array (  '_controller' => 'assetic.controller:render',  'name' => '35a8e64',  'pos' => NULL,  '_format' => 'js',  '_route' => '_assetic_35a8e64',);
+                }
+
+                // _assetic_35a8e64_0
+                if ($pathinfo === '/js/35a8e64_comments_1.js') {
+                    return array (  '_controller' => 'assetic.controller:render',  'name' => '35a8e64',  'pos' => 0,  '_format' => 'js',  '_route' => '_assetic_35a8e64_0',);
+                }
+
+            }
+
         }
 
         if (0 === strpos($pathinfo, '/css/bootstrap_1')) {
@@ -273,6 +286,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'Mischiros\\TiendaBundle\\Controller\\DefaultController::homeAction',  '_route' => 'home',);
         }
 
+        // foro
+        if ($pathinfo === '/foro') {
+            return array (  '_controller' => 'Mischiros\\TiendaBundle\\Controller\\DefaultController::ForoAction',  '_route' => 'foro',);
+        }
+
         if (0 === strpos($pathinfo, '/co')) {
             if (0 === strpos($pathinfo, '/comprar')) {
                 // comprar
@@ -309,6 +327,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
             }
 
+        }
+
+        // noticias
+        if ($pathinfo === '/noticias') {
+            return array (  '_controller' => 'Iga\\RssBundle\\Controller\\RssController::noticiasAction',  '_route' => 'noticias',);
         }
 
         if (0 === strpos($pathinfo, '/media')) {
@@ -669,505 +692,701 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        if (0 === strpos($pathinfo, '/admin')) {
-            if (0 === strpos($pathinfo, '/admin/log')) {
-                if (0 === strpos($pathinfo, '/admin/login')) {
-                    // sonata_user_admin_security_login
-                    if ($pathinfo === '/admin/login') {
-                        return array (  '_controller' => 'Sonata\\UserBundle\\Controller\\AdminSecurityController::loginAction',  '_route' => 'sonata_user_admin_security_login',);
+        if (0 === strpos($pathinfo, '/a')) {
+            if (0 === strpos($pathinfo, '/admin')) {
+                if (0 === strpos($pathinfo, '/admin/log')) {
+                    if (0 === strpos($pathinfo, '/admin/login')) {
+                        // sonata_user_admin_security_login
+                        if ($pathinfo === '/admin/login') {
+                            return array (  '_controller' => 'Sonata\\UserBundle\\Controller\\AdminSecurityController::loginAction',  '_route' => 'sonata_user_admin_security_login',);
+                        }
+
+                        // sonata_user_admin_security_check
+                        if ($pathinfo === '/admin/login_check') {
+                            return array (  '_controller' => 'Sonata\\UserBundle\\Controller\\AdminSecurityController::checkAction',  '_route' => 'sonata_user_admin_security_check',);
+                        }
+
                     }
 
-                    // sonata_user_admin_security_check
-                    if ($pathinfo === '/admin/login_check') {
-                        return array (  '_controller' => 'Sonata\\UserBundle\\Controller\\AdminSecurityController::checkAction',  '_route' => 'sonata_user_admin_security_check',);
+                    // sonata_user_admin_security_logout
+                    if ($pathinfo === '/admin/logout') {
+                        return array (  '_controller' => 'Sonata\\UserBundle\\Controller\\AdminSecurityController::logoutAction',  '_route' => 'sonata_user_admin_security_logout',);
                     }
 
                 }
 
-                // sonata_user_admin_security_logout
-                if ($pathinfo === '/admin/logout') {
-                    return array (  '_controller' => 'Sonata\\UserBundle\\Controller\\AdminSecurityController::logoutAction',  '_route' => 'sonata_user_admin_security_logout',);
-                }
-
-            }
-
-            // sonata_admin_redirect
-            if (rtrim($pathinfo, '/') === '/admin') {
-                if (substr($pathinfo, -1) !== '/') {
-                    return $this->redirect($pathinfo.'/', 'sonata_admin_redirect');
-                }
-
-                return array (  '_controller' => 'Symfony\\Bundle\\FrameworkBundle\\Controller\\RedirectController::redirectAction',  'route' => 'sonata_admin_dashboard',  'permanent' => 'true',  '_route' => 'sonata_admin_redirect',);
-            }
-
-            // sonata_admin_dashboard
-            if ($pathinfo === '/admin/dashboard') {
-                return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CoreController::dashboardAction',  '_route' => 'sonata_admin_dashboard',);
-            }
-
-            if (0 === strpos($pathinfo, '/admin/core')) {
-                // sonata_admin_retrieve_form_element
-                if ($pathinfo === '/admin/core/get-form-field-element') {
-                    return array (  '_controller' => 'sonata.admin.controller.admin:retrieveFormFieldElementAction',  '_route' => 'sonata_admin_retrieve_form_element',);
-                }
-
-                // sonata_admin_append_form_element
-                if ($pathinfo === '/admin/core/append-form-field-element') {
-                    return array (  '_controller' => 'sonata.admin.controller.admin:appendFormFieldElementAction',  '_route' => 'sonata_admin_append_form_element',);
-                }
-
-                // sonata_admin_short_object_information
-                if (0 === strpos($pathinfo, '/admin/core/get-short-object-description') && preg_match('#^/admin/core/get\\-short\\-object\\-description(?:\\.(?P<_format>html|json))?$#s', $pathinfo, $matches)) {
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'sonata_admin_short_object_information')), array (  '_controller' => 'sonata.admin.controller.admin:getShortObjectDescriptionAction',  '_format' => 'html',));
-                }
-
-                // sonata_admin_set_object_field_value
-                if ($pathinfo === '/admin/core/set-object-field-value') {
-                    return array (  '_controller' => 'sonata.admin.controller.admin:setObjectFieldValueAction',  '_route' => 'sonata_admin_set_object_field_value',);
-                }
-
-            }
-
-            // sonata_admin_search
-            if ($pathinfo === '/admin/search') {
-                return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CoreController::searchAction',  '_route' => 'sonata_admin_search',);
-            }
-
-            if (0 === strpos($pathinfo, '/admin/mischiros/tienda')) {
-                if (0 === strpos($pathinfo, '/admin/mischiros/tienda/t')) {
-                    if (0 === strpos($pathinfo, '/admin/mischiros/tienda/tipo')) {
-                        // admin_mischiros_tienda_tipo_list
-                        if ($pathinfo === '/admin/mischiros/tienda/tipo/list') {
-                            return array (  '_controller' => 'Mischiros\\TiendaBundle\\Controller\\TipoAdminController::listAction',  '_sonata_admin' => 'mischiros_tienda.admin.tipo',  '_sonata_name' => 'admin_mischiros_tienda_tipo_list',  '_route' => 'admin_mischiros_tienda_tipo_list',);
-                        }
-
-                        // admin_mischiros_tienda_tipo_create
-                        if ($pathinfo === '/admin/mischiros/tienda/tipo/create') {
-                            return array (  '_controller' => 'Mischiros\\TiendaBundle\\Controller\\TipoAdminController::createAction',  '_sonata_admin' => 'mischiros_tienda.admin.tipo',  '_sonata_name' => 'admin_mischiros_tienda_tipo_create',  '_route' => 'admin_mischiros_tienda_tipo_create',);
-                        }
-
-                        // admin_mischiros_tienda_tipo_batch
-                        if ($pathinfo === '/admin/mischiros/tienda/tipo/batch') {
-                            return array (  '_controller' => 'Mischiros\\TiendaBundle\\Controller\\TipoAdminController::batchAction',  '_sonata_admin' => 'mischiros_tienda.admin.tipo',  '_sonata_name' => 'admin_mischiros_tienda_tipo_batch',  '_route' => 'admin_mischiros_tienda_tipo_batch',);
-                        }
-
-                        // admin_mischiros_tienda_tipo_edit
-                        if (preg_match('#^/admin/mischiros/tienda/tipo/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
-                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_mischiros_tienda_tipo_edit')), array (  '_controller' => 'Mischiros\\TiendaBundle\\Controller\\TipoAdminController::editAction',  '_sonata_admin' => 'mischiros_tienda.admin.tipo',  '_sonata_name' => 'admin_mischiros_tienda_tipo_edit',));
-                        }
-
-                        // admin_mischiros_tienda_tipo_delete
-                        if (preg_match('#^/admin/mischiros/tienda/tipo/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
-                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_mischiros_tienda_tipo_delete')), array (  '_controller' => 'Mischiros\\TiendaBundle\\Controller\\TipoAdminController::deleteAction',  '_sonata_admin' => 'mischiros_tienda.admin.tipo',  '_sonata_name' => 'admin_mischiros_tienda_tipo_delete',));
-                        }
-
-                        // admin_mischiros_tienda_tipo_show
-                        if (preg_match('#^/admin/mischiros/tienda/tipo/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
-                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_mischiros_tienda_tipo_show')), array (  '_controller' => 'Mischiros\\TiendaBundle\\Controller\\TipoAdminController::showAction',  '_sonata_admin' => 'mischiros_tienda.admin.tipo',  '_sonata_name' => 'admin_mischiros_tienda_tipo_show',));
-                        }
-
-                        // admin_mischiros_tienda_tipo_export
-                        if ($pathinfo === '/admin/mischiros/tienda/tipo/export') {
-                            return array (  '_controller' => 'Mischiros\\TiendaBundle\\Controller\\TipoAdminController::exportAction',  '_sonata_admin' => 'mischiros_tienda.admin.tipo',  '_sonata_name' => 'admin_mischiros_tienda_tipo_export',  '_route' => 'admin_mischiros_tienda_tipo_export',);
-                        }
-
-                        // admin_mischiros_tienda_tipo_acl
-                        if (preg_match('#^/admin/mischiros/tienda/tipo/(?P<id>[^/]++)/acl$#s', $pathinfo, $matches)) {
-                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_mischiros_tienda_tipo_acl')), array (  '_controller' => 'Mischiros\\TiendaBundle\\Controller\\TipoAdminController::aclAction',  '_sonata_admin' => 'mischiros_tienda.admin.tipo',  '_sonata_name' => 'admin_mischiros_tienda_tipo_acl',));
-                        }
-
+                // sonata_admin_redirect
+                if (rtrim($pathinfo, '/') === '/admin') {
+                    if (substr($pathinfo, -1) !== '/') {
+                        return $this->redirect($pathinfo.'/', 'sonata_admin_redirect');
                     }
 
-                    if (0 === strpos($pathinfo, '/admin/mischiros/tienda/talla')) {
-                        // admin_mischiros_tienda_talla_list
-                        if ($pathinfo === '/admin/mischiros/tienda/talla/list') {
-                            return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::listAction',  '_sonata_admin' => 'mischiros_tienda.admin.talla',  '_sonata_name' => 'admin_mischiros_tienda_talla_list',  '_route' => 'admin_mischiros_tienda_talla_list',);
-                        }
+                    return array (  '_controller' => 'Symfony\\Bundle\\FrameworkBundle\\Controller\\RedirectController::redirectAction',  'route' => 'sonata_admin_dashboard',  'permanent' => 'true',  '_route' => 'sonata_admin_redirect',);
+                }
 
-                        // admin_mischiros_tienda_talla_create
-                        if ($pathinfo === '/admin/mischiros/tienda/talla/create') {
-                            return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::createAction',  '_sonata_admin' => 'mischiros_tienda.admin.talla',  '_sonata_name' => 'admin_mischiros_tienda_talla_create',  '_route' => 'admin_mischiros_tienda_talla_create',);
-                        }
+                // sonata_admin_dashboard
+                if ($pathinfo === '/admin/dashboard') {
+                    return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CoreController::dashboardAction',  '_route' => 'sonata_admin_dashboard',);
+                }
 
-                        // admin_mischiros_tienda_talla_batch
-                        if ($pathinfo === '/admin/mischiros/tienda/talla/batch') {
-                            return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::batchAction',  '_sonata_admin' => 'mischiros_tienda.admin.talla',  '_sonata_name' => 'admin_mischiros_tienda_talla_batch',  '_route' => 'admin_mischiros_tienda_talla_batch',);
-                        }
+                if (0 === strpos($pathinfo, '/admin/core')) {
+                    // sonata_admin_retrieve_form_element
+                    if ($pathinfo === '/admin/core/get-form-field-element') {
+                        return array (  '_controller' => 'sonata.admin.controller.admin:retrieveFormFieldElementAction',  '_route' => 'sonata_admin_retrieve_form_element',);
+                    }
 
-                        // admin_mischiros_tienda_talla_edit
-                        if (preg_match('#^/admin/mischiros/tienda/talla/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
-                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_mischiros_tienda_talla_edit')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::editAction',  '_sonata_admin' => 'mischiros_tienda.admin.talla',  '_sonata_name' => 'admin_mischiros_tienda_talla_edit',));
-                        }
+                    // sonata_admin_append_form_element
+                    if ($pathinfo === '/admin/core/append-form-field-element') {
+                        return array (  '_controller' => 'sonata.admin.controller.admin:appendFormFieldElementAction',  '_route' => 'sonata_admin_append_form_element',);
+                    }
 
-                        // admin_mischiros_tienda_talla_delete
-                        if (preg_match('#^/admin/mischiros/tienda/talla/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
-                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_mischiros_tienda_talla_delete')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::deleteAction',  '_sonata_admin' => 'mischiros_tienda.admin.talla',  '_sonata_name' => 'admin_mischiros_tienda_talla_delete',));
-                        }
+                    // sonata_admin_short_object_information
+                    if (0 === strpos($pathinfo, '/admin/core/get-short-object-description') && preg_match('#^/admin/core/get\\-short\\-object\\-description(?:\\.(?P<_format>html|json))?$#s', $pathinfo, $matches)) {
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'sonata_admin_short_object_information')), array (  '_controller' => 'sonata.admin.controller.admin:getShortObjectDescriptionAction',  '_format' => 'html',));
+                    }
 
-                        // admin_mischiros_tienda_talla_show
-                        if (preg_match('#^/admin/mischiros/tienda/talla/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
-                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_mischiros_tienda_talla_show')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::showAction',  '_sonata_admin' => 'mischiros_tienda.admin.talla',  '_sonata_name' => 'admin_mischiros_tienda_talla_show',));
-                        }
-
-                        // admin_mischiros_tienda_talla_export
-                        if ($pathinfo === '/admin/mischiros/tienda/talla/export') {
-                            return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::exportAction',  '_sonata_admin' => 'mischiros_tienda.admin.talla',  '_sonata_name' => 'admin_mischiros_tienda_talla_export',  '_route' => 'admin_mischiros_tienda_talla_export',);
-                        }
-
-                        // admin_mischiros_tienda_talla_acl
-                        if (preg_match('#^/admin/mischiros/tienda/talla/(?P<id>[^/]++)/acl$#s', $pathinfo, $matches)) {
-                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_mischiros_tienda_talla_acl')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::aclAction',  '_sonata_admin' => 'mischiros_tienda.admin.talla',  '_sonata_name' => 'admin_mischiros_tienda_talla_acl',));
-                        }
-
+                    // sonata_admin_set_object_field_value
+                    if ($pathinfo === '/admin/core/set-object-field-value') {
+                        return array (  '_controller' => 'sonata.admin.controller.admin:setObjectFieldValueAction',  '_route' => 'sonata_admin_set_object_field_value',);
                     }
 
                 }
 
-                if (0 === strpos($pathinfo, '/admin/mischiros/tienda/medida')) {
-                    // admin_mischiros_tienda_medida_list
-                    if ($pathinfo === '/admin/mischiros/tienda/medida/list') {
-                        return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::listAction',  '_sonata_admin' => 'mischiros_tienda.admin.medida',  '_sonata_name' => 'admin_mischiros_tienda_medida_list',  '_route' => 'admin_mischiros_tienda_medida_list',);
-                    }
-
-                    // admin_mischiros_tienda_medida_create
-                    if ($pathinfo === '/admin/mischiros/tienda/medida/create') {
-                        return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::createAction',  '_sonata_admin' => 'mischiros_tienda.admin.medida',  '_sonata_name' => 'admin_mischiros_tienda_medida_create',  '_route' => 'admin_mischiros_tienda_medida_create',);
-                    }
-
-                    // admin_mischiros_tienda_medida_batch
-                    if ($pathinfo === '/admin/mischiros/tienda/medida/batch') {
-                        return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::batchAction',  '_sonata_admin' => 'mischiros_tienda.admin.medida',  '_sonata_name' => 'admin_mischiros_tienda_medida_batch',  '_route' => 'admin_mischiros_tienda_medida_batch',);
-                    }
-
-                    // admin_mischiros_tienda_medida_edit
-                    if (preg_match('#^/admin/mischiros/tienda/medida/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_mischiros_tienda_medida_edit')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::editAction',  '_sonata_admin' => 'mischiros_tienda.admin.medida',  '_sonata_name' => 'admin_mischiros_tienda_medida_edit',));
-                    }
-
-                    // admin_mischiros_tienda_medida_delete
-                    if (preg_match('#^/admin/mischiros/tienda/medida/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_mischiros_tienda_medida_delete')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::deleteAction',  '_sonata_admin' => 'mischiros_tienda.admin.medida',  '_sonata_name' => 'admin_mischiros_tienda_medida_delete',));
-                    }
-
-                    // admin_mischiros_tienda_medida_show
-                    if (preg_match('#^/admin/mischiros/tienda/medida/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_mischiros_tienda_medida_show')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::showAction',  '_sonata_admin' => 'mischiros_tienda.admin.medida',  '_sonata_name' => 'admin_mischiros_tienda_medida_show',));
-                    }
-
-                    // admin_mischiros_tienda_medida_export
-                    if ($pathinfo === '/admin/mischiros/tienda/medida/export') {
-                        return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::exportAction',  '_sonata_admin' => 'mischiros_tienda.admin.medida',  '_sonata_name' => 'admin_mischiros_tienda_medida_export',  '_route' => 'admin_mischiros_tienda_medida_export',);
-                    }
-
-                    // admin_mischiros_tienda_medida_acl
-                    if (preg_match('#^/admin/mischiros/tienda/medida/(?P<id>[^/]++)/acl$#s', $pathinfo, $matches)) {
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_mischiros_tienda_medida_acl')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::aclAction',  '_sonata_admin' => 'mischiros_tienda.admin.medida',  '_sonata_name' => 'admin_mischiros_tienda_medida_acl',));
-                    }
-
-                }
-
-                if (0 === strpos($pathinfo, '/admin/mischiros/tienda/prenda')) {
-                    // admin_mischiros_tienda_prenda_list
-                    if ($pathinfo === '/admin/mischiros/tienda/prenda/list') {
-                        return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::listAction',  '_sonata_admin' => 'mischiros_tienda.admin.prenda',  '_sonata_name' => 'admin_mischiros_tienda_prenda_list',  '_route' => 'admin_mischiros_tienda_prenda_list',);
-                    }
-
-                    // admin_mischiros_tienda_prenda_create
-                    if ($pathinfo === '/admin/mischiros/tienda/prenda/create') {
-                        return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::createAction',  '_sonata_admin' => 'mischiros_tienda.admin.prenda',  '_sonata_name' => 'admin_mischiros_tienda_prenda_create',  '_route' => 'admin_mischiros_tienda_prenda_create',);
-                    }
-
-                    // admin_mischiros_tienda_prenda_batch
-                    if ($pathinfo === '/admin/mischiros/tienda/prenda/batch') {
-                        return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::batchAction',  '_sonata_admin' => 'mischiros_tienda.admin.prenda',  '_sonata_name' => 'admin_mischiros_tienda_prenda_batch',  '_route' => 'admin_mischiros_tienda_prenda_batch',);
-                    }
-
-                    // admin_mischiros_tienda_prenda_edit
-                    if (preg_match('#^/admin/mischiros/tienda/prenda/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_mischiros_tienda_prenda_edit')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::editAction',  '_sonata_admin' => 'mischiros_tienda.admin.prenda',  '_sonata_name' => 'admin_mischiros_tienda_prenda_edit',));
-                    }
-
-                    // admin_mischiros_tienda_prenda_delete
-                    if (preg_match('#^/admin/mischiros/tienda/prenda/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_mischiros_tienda_prenda_delete')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::deleteAction',  '_sonata_admin' => 'mischiros_tienda.admin.prenda',  '_sonata_name' => 'admin_mischiros_tienda_prenda_delete',));
-                    }
-
-                    // admin_mischiros_tienda_prenda_show
-                    if (preg_match('#^/admin/mischiros/tienda/prenda/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_mischiros_tienda_prenda_show')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::showAction',  '_sonata_admin' => 'mischiros_tienda.admin.prenda',  '_sonata_name' => 'admin_mischiros_tienda_prenda_show',));
-                    }
-
-                    // admin_mischiros_tienda_prenda_export
-                    if ($pathinfo === '/admin/mischiros/tienda/prenda/export') {
-                        return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::exportAction',  '_sonata_admin' => 'mischiros_tienda.admin.prenda',  '_sonata_name' => 'admin_mischiros_tienda_prenda_export',  '_route' => 'admin_mischiros_tienda_prenda_export',);
-                    }
-
-                    // admin_mischiros_tienda_prenda_acl
-                    if (preg_match('#^/admin/mischiros/tienda/prenda/(?P<id>[^/]++)/acl$#s', $pathinfo, $matches)) {
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_mischiros_tienda_prenda_acl')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::aclAction',  '_sonata_admin' => 'mischiros_tienda.admin.prenda',  '_sonata_name' => 'admin_mischiros_tienda_prenda_acl',));
-                    }
-
-                }
-
-                if (0 === strpos($pathinfo, '/admin/mischiros/tienda/ingreso')) {
-                    // admin_mischiros_tienda_ingreso_list
-                    if ($pathinfo === '/admin/mischiros/tienda/ingreso/list') {
-                        return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::listAction',  '_sonata_admin' => 'mischiros_tienda.admin.ingreso',  '_sonata_name' => 'admin_mischiros_tienda_ingreso_list',  '_route' => 'admin_mischiros_tienda_ingreso_list',);
-                    }
-
-                    // admin_mischiros_tienda_ingreso_create
-                    if ($pathinfo === '/admin/mischiros/tienda/ingreso/create') {
-                        return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::createAction',  '_sonata_admin' => 'mischiros_tienda.admin.ingreso',  '_sonata_name' => 'admin_mischiros_tienda_ingreso_create',  '_route' => 'admin_mischiros_tienda_ingreso_create',);
-                    }
-
-                    // admin_mischiros_tienda_ingreso_batch
-                    if ($pathinfo === '/admin/mischiros/tienda/ingreso/batch') {
-                        return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::batchAction',  '_sonata_admin' => 'mischiros_tienda.admin.ingreso',  '_sonata_name' => 'admin_mischiros_tienda_ingreso_batch',  '_route' => 'admin_mischiros_tienda_ingreso_batch',);
-                    }
-
-                    // admin_mischiros_tienda_ingreso_edit
-                    if (preg_match('#^/admin/mischiros/tienda/ingreso/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_mischiros_tienda_ingreso_edit')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::editAction',  '_sonata_admin' => 'mischiros_tienda.admin.ingreso',  '_sonata_name' => 'admin_mischiros_tienda_ingreso_edit',));
-                    }
-
-                    // admin_mischiros_tienda_ingreso_delete
-                    if (preg_match('#^/admin/mischiros/tienda/ingreso/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_mischiros_tienda_ingreso_delete')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::deleteAction',  '_sonata_admin' => 'mischiros_tienda.admin.ingreso',  '_sonata_name' => 'admin_mischiros_tienda_ingreso_delete',));
-                    }
-
-                    // admin_mischiros_tienda_ingreso_show
-                    if (preg_match('#^/admin/mischiros/tienda/ingreso/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_mischiros_tienda_ingreso_show')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::showAction',  '_sonata_admin' => 'mischiros_tienda.admin.ingreso',  '_sonata_name' => 'admin_mischiros_tienda_ingreso_show',));
-                    }
-
-                    // admin_mischiros_tienda_ingreso_export
-                    if ($pathinfo === '/admin/mischiros/tienda/ingreso/export') {
-                        return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::exportAction',  '_sonata_admin' => 'mischiros_tienda.admin.ingreso',  '_sonata_name' => 'admin_mischiros_tienda_ingreso_export',  '_route' => 'admin_mischiros_tienda_ingreso_export',);
-                    }
-
-                    // admin_mischiros_tienda_ingreso_acl
-                    if (preg_match('#^/admin/mischiros/tienda/ingreso/(?P<id>[^/]++)/acl$#s', $pathinfo, $matches)) {
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_mischiros_tienda_ingreso_acl')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::aclAction',  '_sonata_admin' => 'mischiros_tienda.admin.ingreso',  '_sonata_name' => 'admin_mischiros_tienda_ingreso_acl',));
-                    }
-
+                // sonata_admin_search
+                if ($pathinfo === '/admin/search') {
+                    return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CoreController::searchAction',  '_route' => 'sonata_admin_search',);
                 }
 
             }
 
-            if (0 === strpos($pathinfo, '/admin/sonata')) {
-                if (0 === strpos($pathinfo, '/admin/sonata/user')) {
-                    if (0 === strpos($pathinfo, '/admin/sonata/user/user')) {
-                        // admin_sonata_user_user_list
-                        if ($pathinfo === '/admin/sonata/user/user/list') {
-                            return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::listAction',  '_sonata_admin' => 'sonata.user.admin.user',  '_sonata_name' => 'admin_sonata_user_user_list',  '_route' => 'admin_sonata_user_user_list',);
+            if (0 === strpos($pathinfo, '/api/threads')) {
+                // fos_comment_new_threads
+                if (0 === strpos($pathinfo, '/api/threads/new') && preg_match('#^/api/threads/new(?:\\.(?P<_format>json|xml|html))?$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'HEAD'));
+                        goto not_fos_comment_new_threads;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'fos_comment_new_threads')), array (  '_controller' => 'FOS\\CommentBundle\\Controller\\ThreadController::newThreadsAction',  '_format' => 'html',));
+                }
+                not_fos_comment_new_threads:
+
+                // fos_comment_edit_thread_commentable
+                if (preg_match('#^/api/threads/(?P<id>[^/]++)/commentable/edit(?:\\.(?P<_format>json|xml|html))?$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'HEAD'));
+                        goto not_fos_comment_edit_thread_commentable;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'fos_comment_edit_thread_commentable')), array (  '_controller' => 'FOS\\CommentBundle\\Controller\\ThreadController::editThreadCommentableAction',  '_format' => 'html',));
+                }
+                not_fos_comment_edit_thread_commentable:
+
+                // fos_comment_new_thread_comments
+                if (preg_match('#^/api/threads/(?P<id>[^/]++)/comments/new(?:\\.(?P<_format>json|xml|html))?$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'HEAD'));
+                        goto not_fos_comment_new_thread_comments;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'fos_comment_new_thread_comments')), array (  '_controller' => 'FOS\\CommentBundle\\Controller\\ThreadController::newThreadCommentsAction',  '_format' => 'html',));
+                }
+                not_fos_comment_new_thread_comments:
+
+                // fos_comment_remove_thread_comment
+                if (preg_match('#^/api/threads/(?P<id>[^/]++)/comments/(?P<commentId>[^/]++)/remove(?:\\.(?P<_format>json|xml|html))?$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'HEAD'));
+                        goto not_fos_comment_remove_thread_comment;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'fos_comment_remove_thread_comment')), array (  '_controller' => 'FOS\\CommentBundle\\Controller\\ThreadController::removeThreadCommentAction',  '_format' => 'html',));
+                }
+                not_fos_comment_remove_thread_comment:
+
+                // fos_comment_edit_thread_comment
+                if (preg_match('#^/api/threads/(?P<id>[^/]++)/comments/(?P<commentId>[^/]++)/edit(?:\\.(?P<_format>json|xml|html))?$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'HEAD'));
+                        goto not_fos_comment_edit_thread_comment;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'fos_comment_edit_thread_comment')), array (  '_controller' => 'FOS\\CommentBundle\\Controller\\ThreadController::editThreadCommentAction',  '_format' => 'html',));
+                }
+                not_fos_comment_edit_thread_comment:
+
+                // fos_comment_new_thread_comment_votes
+                if (preg_match('#^/api/threads/(?P<id>[^/]++)/comments/(?P<commentId>[^/]++)/votes/new(?:\\.(?P<_format>json|xml|html))?$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'HEAD'));
+                        goto not_fos_comment_new_thread_comment_votes;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'fos_comment_new_thread_comment_votes')), array (  '_controller' => 'FOS\\CommentBundle\\Controller\\ThreadController::newThreadCommentVotesAction',  '_format' => 'html',));
+                }
+                not_fos_comment_new_thread_comment_votes:
+
+                // fos_comment_get_thread
+                if (preg_match('#^/api/threads/(?P<id>[^/\\.]++)(?:\\.(?P<_format>json|xml|html))?$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'HEAD'));
+                        goto not_fos_comment_get_thread;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'fos_comment_get_thread')), array (  '_controller' => 'FOS\\CommentBundle\\Controller\\ThreadController::getThreadAction',  '_format' => 'html',));
+                }
+                not_fos_comment_get_thread:
+
+                // fos_comment_get_threads
+                if (preg_match('#^/api/threads(?:\\.(?P<_format>json|xml|html))?$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'HEAD'));
+                        goto not_fos_comment_get_threads;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'fos_comment_get_threads')), array (  '_controller' => 'FOS\\CommentBundle\\Controller\\ThreadController::getThreadsActions',  '_format' => 'html',));
+                }
+                not_fos_comment_get_threads:
+
+                // fos_comment_post_threads
+                if (preg_match('#^/api/threads(?:\\.(?P<_format>json|xml|html))?$#s', $pathinfo, $matches)) {
+                    if ($this->context->getMethod() != 'POST') {
+                        $allow[] = 'POST';
+                        goto not_fos_comment_post_threads;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'fos_comment_post_threads')), array (  '_controller' => 'FOS\\CommentBundle\\Controller\\ThreadController::postThreadsAction',  '_format' => 'html',));
+                }
+                not_fos_comment_post_threads:
+
+                // fos_comment_patch_thread_commentable
+                if (preg_match('#^/api/threads/(?P<id>[^/]++)/commentable(?:\\.(?P<_format>json|xml|html))?$#s', $pathinfo, $matches)) {
+                    if ($this->context->getMethod() != 'PATCH') {
+                        $allow[] = 'PATCH';
+                        goto not_fos_comment_patch_thread_commentable;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'fos_comment_patch_thread_commentable')), array (  '_controller' => 'FOS\\CommentBundle\\Controller\\ThreadController::patchThreadCommentableAction',  '_format' => 'html',));
+                }
+                not_fos_comment_patch_thread_commentable:
+
+                // fos_comment_get_thread_comment
+                if (preg_match('#^/api/threads/(?P<id>[^/]++)/comments/(?P<commentId>[^/\\.]++)(?:\\.(?P<_format>json|xml|html))?$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'HEAD'));
+                        goto not_fos_comment_get_thread_comment;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'fos_comment_get_thread_comment')), array (  '_controller' => 'FOS\\CommentBundle\\Controller\\ThreadController::getThreadCommentAction',  '_format' => 'html',));
+                }
+                not_fos_comment_get_thread_comment:
+
+                // fos_comment_patch_thread_comment_state
+                if (preg_match('#^/api/threads/(?P<id>[^/]++)/comments/(?P<commentId>[^/]++)/state(?:\\.(?P<_format>json|xml|html))?$#s', $pathinfo, $matches)) {
+                    if ($this->context->getMethod() != 'PATCH') {
+                        $allow[] = 'PATCH';
+                        goto not_fos_comment_patch_thread_comment_state;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'fos_comment_patch_thread_comment_state')), array (  '_controller' => 'FOS\\CommentBundle\\Controller\\ThreadController::patchThreadCommentStateAction',  '_format' => 'html',));
+                }
+                not_fos_comment_patch_thread_comment_state:
+
+                // fos_comment_put_thread_comments
+                if (preg_match('#^/api/threads/(?P<id>[^/]++)/comments/(?P<commentId>[^/\\.]++)(?:\\.(?P<_format>json|xml|html))?$#s', $pathinfo, $matches)) {
+                    if ($this->context->getMethod() != 'PUT') {
+                        $allow[] = 'PUT';
+                        goto not_fos_comment_put_thread_comments;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'fos_comment_put_thread_comments')), array (  '_controller' => 'FOS\\CommentBundle\\Controller\\ThreadController::putThreadCommentsAction',  '_format' => 'html',));
+                }
+                not_fos_comment_put_thread_comments:
+
+                // fos_comment_get_thread_comments
+                if (preg_match('#^/api/threads/(?P<id>[^/]++)/comments(?:\\.(?P<_format>json|xml|html))?$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'HEAD'));
+                        goto not_fos_comment_get_thread_comments;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'fos_comment_get_thread_comments')), array (  '_controller' => 'FOS\\CommentBundle\\Controller\\ThreadController::getThreadCommentsAction',  '_format' => 'html',));
+                }
+                not_fos_comment_get_thread_comments:
+
+                // fos_comment_post_thread_comments
+                if (preg_match('#^/api/threads/(?P<id>[^/]++)/comments(?:\\.(?P<_format>json|xml|html))?$#s', $pathinfo, $matches)) {
+                    if ($this->context->getMethod() != 'POST') {
+                        $allow[] = 'POST';
+                        goto not_fos_comment_post_thread_comments;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'fos_comment_post_thread_comments')), array (  '_controller' => 'FOS\\CommentBundle\\Controller\\ThreadController::postThreadCommentsAction',  '_format' => 'html',));
+                }
+                not_fos_comment_post_thread_comments:
+
+                // fos_comment_get_thread_comment_votes
+                if (preg_match('#^/api/threads/(?P<id>[^/]++)/comments/(?P<commentId>[^/]++)/votes(?:\\.(?P<_format>json|xml|html))?$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'HEAD'));
+                        goto not_fos_comment_get_thread_comment_votes;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'fos_comment_get_thread_comment_votes')), array (  '_controller' => 'FOS\\CommentBundle\\Controller\\ThreadController::getThreadCommentVotesAction',  '_format' => 'html',));
+                }
+                not_fos_comment_get_thread_comment_votes:
+
+                // fos_comment_post_thread_comment_votes
+                if (preg_match('#^/api/threads/(?P<id>[^/]++)/comments/(?P<commentId>[^/]++)/votes(?:\\.(?P<_format>json|xml|html))?$#s', $pathinfo, $matches)) {
+                    if ($this->context->getMethod() != 'POST') {
+                        $allow[] = 'POST';
+                        goto not_fos_comment_post_thread_comment_votes;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'fos_comment_post_thread_comment_votes')), array (  '_controller' => 'FOS\\CommentBundle\\Controller\\ThreadController::postThreadCommentVotesAction',  '_format' => 'html',));
+                }
+                not_fos_comment_post_thread_comment_votes:
+
+            }
+
+            if (0 === strpos($pathinfo, '/admin')) {
+                if (0 === strpos($pathinfo, '/admin/mischiros/tienda')) {
+                    if (0 === strpos($pathinfo, '/admin/mischiros/tienda/t')) {
+                        if (0 === strpos($pathinfo, '/admin/mischiros/tienda/tipo')) {
+                            // admin_mischiros_tienda_tipo_list
+                            if ($pathinfo === '/admin/mischiros/tienda/tipo/list') {
+                                return array (  '_controller' => 'Mischiros\\TiendaBundle\\Controller\\TipoAdminController::listAction',  '_sonata_admin' => 'mischiros_tienda.admin.tipo',  '_sonata_name' => 'admin_mischiros_tienda_tipo_list',  '_route' => 'admin_mischiros_tienda_tipo_list',);
+                            }
+
+                            // admin_mischiros_tienda_tipo_create
+                            if ($pathinfo === '/admin/mischiros/tienda/tipo/create') {
+                                return array (  '_controller' => 'Mischiros\\TiendaBundle\\Controller\\TipoAdminController::createAction',  '_sonata_admin' => 'mischiros_tienda.admin.tipo',  '_sonata_name' => 'admin_mischiros_tienda_tipo_create',  '_route' => 'admin_mischiros_tienda_tipo_create',);
+                            }
+
+                            // admin_mischiros_tienda_tipo_batch
+                            if ($pathinfo === '/admin/mischiros/tienda/tipo/batch') {
+                                return array (  '_controller' => 'Mischiros\\TiendaBundle\\Controller\\TipoAdminController::batchAction',  '_sonata_admin' => 'mischiros_tienda.admin.tipo',  '_sonata_name' => 'admin_mischiros_tienda_tipo_batch',  '_route' => 'admin_mischiros_tienda_tipo_batch',);
+                            }
+
+                            // admin_mischiros_tienda_tipo_edit
+                            if (preg_match('#^/admin/mischiros/tienda/tipo/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                                return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_mischiros_tienda_tipo_edit')), array (  '_controller' => 'Mischiros\\TiendaBundle\\Controller\\TipoAdminController::editAction',  '_sonata_admin' => 'mischiros_tienda.admin.tipo',  '_sonata_name' => 'admin_mischiros_tienda_tipo_edit',));
+                            }
+
+                            // admin_mischiros_tienda_tipo_delete
+                            if (preg_match('#^/admin/mischiros/tienda/tipo/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
+                                return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_mischiros_tienda_tipo_delete')), array (  '_controller' => 'Mischiros\\TiendaBundle\\Controller\\TipoAdminController::deleteAction',  '_sonata_admin' => 'mischiros_tienda.admin.tipo',  '_sonata_name' => 'admin_mischiros_tienda_tipo_delete',));
+                            }
+
+                            // admin_mischiros_tienda_tipo_show
+                            if (preg_match('#^/admin/mischiros/tienda/tipo/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
+                                return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_mischiros_tienda_tipo_show')), array (  '_controller' => 'Mischiros\\TiendaBundle\\Controller\\TipoAdminController::showAction',  '_sonata_admin' => 'mischiros_tienda.admin.tipo',  '_sonata_name' => 'admin_mischiros_tienda_tipo_show',));
+                            }
+
+                            // admin_mischiros_tienda_tipo_export
+                            if ($pathinfo === '/admin/mischiros/tienda/tipo/export') {
+                                return array (  '_controller' => 'Mischiros\\TiendaBundle\\Controller\\TipoAdminController::exportAction',  '_sonata_admin' => 'mischiros_tienda.admin.tipo',  '_sonata_name' => 'admin_mischiros_tienda_tipo_export',  '_route' => 'admin_mischiros_tienda_tipo_export',);
+                            }
+
+                            // admin_mischiros_tienda_tipo_acl
+                            if (preg_match('#^/admin/mischiros/tienda/tipo/(?P<id>[^/]++)/acl$#s', $pathinfo, $matches)) {
+                                return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_mischiros_tienda_tipo_acl')), array (  '_controller' => 'Mischiros\\TiendaBundle\\Controller\\TipoAdminController::aclAction',  '_sonata_admin' => 'mischiros_tienda.admin.tipo',  '_sonata_name' => 'admin_mischiros_tienda_tipo_acl',));
+                            }
+
                         }
 
-                        // admin_sonata_user_user_create
-                        if ($pathinfo === '/admin/sonata/user/user/create') {
-                            return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::createAction',  '_sonata_admin' => 'sonata.user.admin.user',  '_sonata_name' => 'admin_sonata_user_user_create',  '_route' => 'admin_sonata_user_user_create',);
-                        }
+                        if (0 === strpos($pathinfo, '/admin/mischiros/tienda/talla')) {
+                            // admin_mischiros_tienda_talla_list
+                            if ($pathinfo === '/admin/mischiros/tienda/talla/list') {
+                                return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::listAction',  '_sonata_admin' => 'mischiros_tienda.admin.talla',  '_sonata_name' => 'admin_mischiros_tienda_talla_list',  '_route' => 'admin_mischiros_tienda_talla_list',);
+                            }
 
-                        // admin_sonata_user_user_batch
-                        if ($pathinfo === '/admin/sonata/user/user/batch') {
-                            return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::batchAction',  '_sonata_admin' => 'sonata.user.admin.user',  '_sonata_name' => 'admin_sonata_user_user_batch',  '_route' => 'admin_sonata_user_user_batch',);
-                        }
+                            // admin_mischiros_tienda_talla_create
+                            if ($pathinfo === '/admin/mischiros/tienda/talla/create') {
+                                return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::createAction',  '_sonata_admin' => 'mischiros_tienda.admin.talla',  '_sonata_name' => 'admin_mischiros_tienda_talla_create',  '_route' => 'admin_mischiros_tienda_talla_create',);
+                            }
 
-                        // admin_sonata_user_user_edit
-                        if (preg_match('#^/admin/sonata/user/user/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
-                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_sonata_user_user_edit')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::editAction',  '_sonata_admin' => 'sonata.user.admin.user',  '_sonata_name' => 'admin_sonata_user_user_edit',));
-                        }
+                            // admin_mischiros_tienda_talla_batch
+                            if ($pathinfo === '/admin/mischiros/tienda/talla/batch') {
+                                return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::batchAction',  '_sonata_admin' => 'mischiros_tienda.admin.talla',  '_sonata_name' => 'admin_mischiros_tienda_talla_batch',  '_route' => 'admin_mischiros_tienda_talla_batch',);
+                            }
 
-                        // admin_sonata_user_user_delete
-                        if (preg_match('#^/admin/sonata/user/user/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
-                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_sonata_user_user_delete')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::deleteAction',  '_sonata_admin' => 'sonata.user.admin.user',  '_sonata_name' => 'admin_sonata_user_user_delete',));
-                        }
+                            // admin_mischiros_tienda_talla_edit
+                            if (preg_match('#^/admin/mischiros/tienda/talla/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                                return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_mischiros_tienda_talla_edit')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::editAction',  '_sonata_admin' => 'mischiros_tienda.admin.talla',  '_sonata_name' => 'admin_mischiros_tienda_talla_edit',));
+                            }
 
-                        // admin_sonata_user_user_show
-                        if (preg_match('#^/admin/sonata/user/user/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
-                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_sonata_user_user_show')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::showAction',  '_sonata_admin' => 'sonata.user.admin.user',  '_sonata_name' => 'admin_sonata_user_user_show',));
-                        }
+                            // admin_mischiros_tienda_talla_delete
+                            if (preg_match('#^/admin/mischiros/tienda/talla/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
+                                return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_mischiros_tienda_talla_delete')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::deleteAction',  '_sonata_admin' => 'mischiros_tienda.admin.talla',  '_sonata_name' => 'admin_mischiros_tienda_talla_delete',));
+                            }
 
-                        // admin_sonata_user_user_export
-                        if ($pathinfo === '/admin/sonata/user/user/export') {
-                            return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::exportAction',  '_sonata_admin' => 'sonata.user.admin.user',  '_sonata_name' => 'admin_sonata_user_user_export',  '_route' => 'admin_sonata_user_user_export',);
-                        }
+                            // admin_mischiros_tienda_talla_show
+                            if (preg_match('#^/admin/mischiros/tienda/talla/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
+                                return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_mischiros_tienda_talla_show')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::showAction',  '_sonata_admin' => 'mischiros_tienda.admin.talla',  '_sonata_name' => 'admin_mischiros_tienda_talla_show',));
+                            }
 
-                        // admin_sonata_user_user_acl
-                        if (preg_match('#^/admin/sonata/user/user/(?P<id>[^/]++)/acl$#s', $pathinfo, $matches)) {
-                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_sonata_user_user_acl')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::aclAction',  '_sonata_admin' => 'sonata.user.admin.user',  '_sonata_name' => 'admin_sonata_user_user_acl',));
+                            // admin_mischiros_tienda_talla_export
+                            if ($pathinfo === '/admin/mischiros/tienda/talla/export') {
+                                return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::exportAction',  '_sonata_admin' => 'mischiros_tienda.admin.talla',  '_sonata_name' => 'admin_mischiros_tienda_talla_export',  '_route' => 'admin_mischiros_tienda_talla_export',);
+                            }
+
+                            // admin_mischiros_tienda_talla_acl
+                            if (preg_match('#^/admin/mischiros/tienda/talla/(?P<id>[^/]++)/acl$#s', $pathinfo, $matches)) {
+                                return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_mischiros_tienda_talla_acl')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::aclAction',  '_sonata_admin' => 'mischiros_tienda.admin.talla',  '_sonata_name' => 'admin_mischiros_tienda_talla_acl',));
+                            }
+
                         }
 
                     }
 
-                    if (0 === strpos($pathinfo, '/admin/sonata/user/group')) {
-                        // admin_sonata_user_group_list
-                        if ($pathinfo === '/admin/sonata/user/group/list') {
-                            return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::listAction',  '_sonata_admin' => 'sonata.user.admin.group',  '_sonata_name' => 'admin_sonata_user_group_list',  '_route' => 'admin_sonata_user_group_list',);
+                    if (0 === strpos($pathinfo, '/admin/mischiros/tienda/medida')) {
+                        // admin_mischiros_tienda_medida_list
+                        if ($pathinfo === '/admin/mischiros/tienda/medida/list') {
+                            return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::listAction',  '_sonata_admin' => 'mischiros_tienda.admin.medida',  '_sonata_name' => 'admin_mischiros_tienda_medida_list',  '_route' => 'admin_mischiros_tienda_medida_list',);
                         }
 
-                        // admin_sonata_user_group_create
-                        if ($pathinfo === '/admin/sonata/user/group/create') {
-                            return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::createAction',  '_sonata_admin' => 'sonata.user.admin.group',  '_sonata_name' => 'admin_sonata_user_group_create',  '_route' => 'admin_sonata_user_group_create',);
+                        // admin_mischiros_tienda_medida_create
+                        if ($pathinfo === '/admin/mischiros/tienda/medida/create') {
+                            return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::createAction',  '_sonata_admin' => 'mischiros_tienda.admin.medida',  '_sonata_name' => 'admin_mischiros_tienda_medida_create',  '_route' => 'admin_mischiros_tienda_medida_create',);
                         }
 
-                        // admin_sonata_user_group_batch
-                        if ($pathinfo === '/admin/sonata/user/group/batch') {
-                            return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::batchAction',  '_sonata_admin' => 'sonata.user.admin.group',  '_sonata_name' => 'admin_sonata_user_group_batch',  '_route' => 'admin_sonata_user_group_batch',);
+                        // admin_mischiros_tienda_medida_batch
+                        if ($pathinfo === '/admin/mischiros/tienda/medida/batch') {
+                            return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::batchAction',  '_sonata_admin' => 'mischiros_tienda.admin.medida',  '_sonata_name' => 'admin_mischiros_tienda_medida_batch',  '_route' => 'admin_mischiros_tienda_medida_batch',);
                         }
 
-                        // admin_sonata_user_group_edit
-                        if (preg_match('#^/admin/sonata/user/group/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
-                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_sonata_user_group_edit')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::editAction',  '_sonata_admin' => 'sonata.user.admin.group',  '_sonata_name' => 'admin_sonata_user_group_edit',));
+                        // admin_mischiros_tienda_medida_edit
+                        if (preg_match('#^/admin/mischiros/tienda/medida/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_mischiros_tienda_medida_edit')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::editAction',  '_sonata_admin' => 'mischiros_tienda.admin.medida',  '_sonata_name' => 'admin_mischiros_tienda_medida_edit',));
                         }
 
-                        // admin_sonata_user_group_delete
-                        if (preg_match('#^/admin/sonata/user/group/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
-                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_sonata_user_group_delete')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::deleteAction',  '_sonata_admin' => 'sonata.user.admin.group',  '_sonata_name' => 'admin_sonata_user_group_delete',));
+                        // admin_mischiros_tienda_medida_delete
+                        if (preg_match('#^/admin/mischiros/tienda/medida/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
+                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_mischiros_tienda_medida_delete')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::deleteAction',  '_sonata_admin' => 'mischiros_tienda.admin.medida',  '_sonata_name' => 'admin_mischiros_tienda_medida_delete',));
                         }
 
-                        // admin_sonata_user_group_show
-                        if (preg_match('#^/admin/sonata/user/group/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
-                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_sonata_user_group_show')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::showAction',  '_sonata_admin' => 'sonata.user.admin.group',  '_sonata_name' => 'admin_sonata_user_group_show',));
+                        // admin_mischiros_tienda_medida_show
+                        if (preg_match('#^/admin/mischiros/tienda/medida/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
+                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_mischiros_tienda_medida_show')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::showAction',  '_sonata_admin' => 'mischiros_tienda.admin.medida',  '_sonata_name' => 'admin_mischiros_tienda_medida_show',));
                         }
 
-                        // admin_sonata_user_group_export
-                        if ($pathinfo === '/admin/sonata/user/group/export') {
-                            return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::exportAction',  '_sonata_admin' => 'sonata.user.admin.group',  '_sonata_name' => 'admin_sonata_user_group_export',  '_route' => 'admin_sonata_user_group_export',);
+                        // admin_mischiros_tienda_medida_export
+                        if ($pathinfo === '/admin/mischiros/tienda/medida/export') {
+                            return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::exportAction',  '_sonata_admin' => 'mischiros_tienda.admin.medida',  '_sonata_name' => 'admin_mischiros_tienda_medida_export',  '_route' => 'admin_mischiros_tienda_medida_export',);
                         }
 
-                        // admin_sonata_user_group_acl
-                        if (preg_match('#^/admin/sonata/user/group/(?P<id>[^/]++)/acl$#s', $pathinfo, $matches)) {
-                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_sonata_user_group_acl')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::aclAction',  '_sonata_admin' => 'sonata.user.admin.group',  '_sonata_name' => 'admin_sonata_user_group_acl',));
+                        // admin_mischiros_tienda_medida_acl
+                        if (preg_match('#^/admin/mischiros/tienda/medida/(?P<id>[^/]++)/acl$#s', $pathinfo, $matches)) {
+                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_mischiros_tienda_medida_acl')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::aclAction',  '_sonata_admin' => 'mischiros_tienda.admin.medida',  '_sonata_name' => 'admin_mischiros_tienda_medida_acl',));
+                        }
+
+                    }
+
+                    if (0 === strpos($pathinfo, '/admin/mischiros/tienda/prenda')) {
+                        // admin_mischiros_tienda_prenda_list
+                        if ($pathinfo === '/admin/mischiros/tienda/prenda/list') {
+                            return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::listAction',  '_sonata_admin' => 'mischiros_tienda.admin.prenda',  '_sonata_name' => 'admin_mischiros_tienda_prenda_list',  '_route' => 'admin_mischiros_tienda_prenda_list',);
+                        }
+
+                        // admin_mischiros_tienda_prenda_create
+                        if ($pathinfo === '/admin/mischiros/tienda/prenda/create') {
+                            return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::createAction',  '_sonata_admin' => 'mischiros_tienda.admin.prenda',  '_sonata_name' => 'admin_mischiros_tienda_prenda_create',  '_route' => 'admin_mischiros_tienda_prenda_create',);
+                        }
+
+                        // admin_mischiros_tienda_prenda_batch
+                        if ($pathinfo === '/admin/mischiros/tienda/prenda/batch') {
+                            return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::batchAction',  '_sonata_admin' => 'mischiros_tienda.admin.prenda',  '_sonata_name' => 'admin_mischiros_tienda_prenda_batch',  '_route' => 'admin_mischiros_tienda_prenda_batch',);
+                        }
+
+                        // admin_mischiros_tienda_prenda_edit
+                        if (preg_match('#^/admin/mischiros/tienda/prenda/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_mischiros_tienda_prenda_edit')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::editAction',  '_sonata_admin' => 'mischiros_tienda.admin.prenda',  '_sonata_name' => 'admin_mischiros_tienda_prenda_edit',));
+                        }
+
+                        // admin_mischiros_tienda_prenda_delete
+                        if (preg_match('#^/admin/mischiros/tienda/prenda/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
+                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_mischiros_tienda_prenda_delete')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::deleteAction',  '_sonata_admin' => 'mischiros_tienda.admin.prenda',  '_sonata_name' => 'admin_mischiros_tienda_prenda_delete',));
+                        }
+
+                        // admin_mischiros_tienda_prenda_show
+                        if (preg_match('#^/admin/mischiros/tienda/prenda/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
+                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_mischiros_tienda_prenda_show')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::showAction',  '_sonata_admin' => 'mischiros_tienda.admin.prenda',  '_sonata_name' => 'admin_mischiros_tienda_prenda_show',));
+                        }
+
+                        // admin_mischiros_tienda_prenda_export
+                        if ($pathinfo === '/admin/mischiros/tienda/prenda/export') {
+                            return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::exportAction',  '_sonata_admin' => 'mischiros_tienda.admin.prenda',  '_sonata_name' => 'admin_mischiros_tienda_prenda_export',  '_route' => 'admin_mischiros_tienda_prenda_export',);
+                        }
+
+                        // admin_mischiros_tienda_prenda_acl
+                        if (preg_match('#^/admin/mischiros/tienda/prenda/(?P<id>[^/]++)/acl$#s', $pathinfo, $matches)) {
+                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_mischiros_tienda_prenda_acl')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::aclAction',  '_sonata_admin' => 'mischiros_tienda.admin.prenda',  '_sonata_name' => 'admin_mischiros_tienda_prenda_acl',));
+                        }
+
+                    }
+
+                    if (0 === strpos($pathinfo, '/admin/mischiros/tienda/ingreso')) {
+                        // admin_mischiros_tienda_ingreso_list
+                        if ($pathinfo === '/admin/mischiros/tienda/ingreso/list') {
+                            return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::listAction',  '_sonata_admin' => 'mischiros_tienda.admin.ingreso',  '_sonata_name' => 'admin_mischiros_tienda_ingreso_list',  '_route' => 'admin_mischiros_tienda_ingreso_list',);
+                        }
+
+                        // admin_mischiros_tienda_ingreso_create
+                        if ($pathinfo === '/admin/mischiros/tienda/ingreso/create') {
+                            return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::createAction',  '_sonata_admin' => 'mischiros_tienda.admin.ingreso',  '_sonata_name' => 'admin_mischiros_tienda_ingreso_create',  '_route' => 'admin_mischiros_tienda_ingreso_create',);
+                        }
+
+                        // admin_mischiros_tienda_ingreso_batch
+                        if ($pathinfo === '/admin/mischiros/tienda/ingreso/batch') {
+                            return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::batchAction',  '_sonata_admin' => 'mischiros_tienda.admin.ingreso',  '_sonata_name' => 'admin_mischiros_tienda_ingreso_batch',  '_route' => 'admin_mischiros_tienda_ingreso_batch',);
+                        }
+
+                        // admin_mischiros_tienda_ingreso_edit
+                        if (preg_match('#^/admin/mischiros/tienda/ingreso/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_mischiros_tienda_ingreso_edit')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::editAction',  '_sonata_admin' => 'mischiros_tienda.admin.ingreso',  '_sonata_name' => 'admin_mischiros_tienda_ingreso_edit',));
+                        }
+
+                        // admin_mischiros_tienda_ingreso_delete
+                        if (preg_match('#^/admin/mischiros/tienda/ingreso/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
+                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_mischiros_tienda_ingreso_delete')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::deleteAction',  '_sonata_admin' => 'mischiros_tienda.admin.ingreso',  '_sonata_name' => 'admin_mischiros_tienda_ingreso_delete',));
+                        }
+
+                        // admin_mischiros_tienda_ingreso_show
+                        if (preg_match('#^/admin/mischiros/tienda/ingreso/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
+                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_mischiros_tienda_ingreso_show')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::showAction',  '_sonata_admin' => 'mischiros_tienda.admin.ingreso',  '_sonata_name' => 'admin_mischiros_tienda_ingreso_show',));
+                        }
+
+                        // admin_mischiros_tienda_ingreso_export
+                        if ($pathinfo === '/admin/mischiros/tienda/ingreso/export') {
+                            return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::exportAction',  '_sonata_admin' => 'mischiros_tienda.admin.ingreso',  '_sonata_name' => 'admin_mischiros_tienda_ingreso_export',  '_route' => 'admin_mischiros_tienda_ingreso_export',);
+                        }
+
+                        // admin_mischiros_tienda_ingreso_acl
+                        if (preg_match('#^/admin/mischiros/tienda/ingreso/(?P<id>[^/]++)/acl$#s', $pathinfo, $matches)) {
+                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_mischiros_tienda_ingreso_acl')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::aclAction',  '_sonata_admin' => 'mischiros_tienda.admin.ingreso',  '_sonata_name' => 'admin_mischiros_tienda_ingreso_acl',));
                         }
 
                     }
 
                 }
 
-                if (0 === strpos($pathinfo, '/admin/sonata/media')) {
-                    if (0 === strpos($pathinfo, '/admin/sonata/media/media')) {
-                        // admin_sonata_media_media_list
-                        if ($pathinfo === '/admin/sonata/media/media/list') {
-                            return array (  '_controller' => 'Sonata\\MediaBundle\\Controller\\MediaAdminController::listAction',  '_sonata_admin' => 'sonata.media.admin.media',  '_sonata_name' => 'admin_sonata_media_media_list',  '_route' => 'admin_sonata_media_media_list',);
+                if (0 === strpos($pathinfo, '/admin/sonata')) {
+                    if (0 === strpos($pathinfo, '/admin/sonata/user')) {
+                        if (0 === strpos($pathinfo, '/admin/sonata/user/user')) {
+                            // admin_sonata_user_user_list
+                            if ($pathinfo === '/admin/sonata/user/user/list') {
+                                return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::listAction',  '_sonata_admin' => 'sonata.user.admin.user',  '_sonata_name' => 'admin_sonata_user_user_list',  '_route' => 'admin_sonata_user_user_list',);
+                            }
+
+                            // admin_sonata_user_user_create
+                            if ($pathinfo === '/admin/sonata/user/user/create') {
+                                return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::createAction',  '_sonata_admin' => 'sonata.user.admin.user',  '_sonata_name' => 'admin_sonata_user_user_create',  '_route' => 'admin_sonata_user_user_create',);
+                            }
+
+                            // admin_sonata_user_user_batch
+                            if ($pathinfo === '/admin/sonata/user/user/batch') {
+                                return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::batchAction',  '_sonata_admin' => 'sonata.user.admin.user',  '_sonata_name' => 'admin_sonata_user_user_batch',  '_route' => 'admin_sonata_user_user_batch',);
+                            }
+
+                            // admin_sonata_user_user_edit
+                            if (preg_match('#^/admin/sonata/user/user/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                                return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_sonata_user_user_edit')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::editAction',  '_sonata_admin' => 'sonata.user.admin.user',  '_sonata_name' => 'admin_sonata_user_user_edit',));
+                            }
+
+                            // admin_sonata_user_user_delete
+                            if (preg_match('#^/admin/sonata/user/user/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
+                                return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_sonata_user_user_delete')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::deleteAction',  '_sonata_admin' => 'sonata.user.admin.user',  '_sonata_name' => 'admin_sonata_user_user_delete',));
+                            }
+
+                            // admin_sonata_user_user_show
+                            if (preg_match('#^/admin/sonata/user/user/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
+                                return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_sonata_user_user_show')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::showAction',  '_sonata_admin' => 'sonata.user.admin.user',  '_sonata_name' => 'admin_sonata_user_user_show',));
+                            }
+
+                            // admin_sonata_user_user_export
+                            if ($pathinfo === '/admin/sonata/user/user/export') {
+                                return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::exportAction',  '_sonata_admin' => 'sonata.user.admin.user',  '_sonata_name' => 'admin_sonata_user_user_export',  '_route' => 'admin_sonata_user_user_export',);
+                            }
+
+                            // admin_sonata_user_user_acl
+                            if (preg_match('#^/admin/sonata/user/user/(?P<id>[^/]++)/acl$#s', $pathinfo, $matches)) {
+                                return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_sonata_user_user_acl')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::aclAction',  '_sonata_admin' => 'sonata.user.admin.user',  '_sonata_name' => 'admin_sonata_user_user_acl',));
+                            }
+
                         }
 
-                        // admin_sonata_media_media_create
-                        if ($pathinfo === '/admin/sonata/media/media/create') {
-                            return array (  '_controller' => 'Sonata\\MediaBundle\\Controller\\MediaAdminController::createAction',  '_sonata_admin' => 'sonata.media.admin.media',  '_sonata_name' => 'admin_sonata_media_media_create',  '_route' => 'admin_sonata_media_media_create',);
-                        }
+                        if (0 === strpos($pathinfo, '/admin/sonata/user/group')) {
+                            // admin_sonata_user_group_list
+                            if ($pathinfo === '/admin/sonata/user/group/list') {
+                                return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::listAction',  '_sonata_admin' => 'sonata.user.admin.group',  '_sonata_name' => 'admin_sonata_user_group_list',  '_route' => 'admin_sonata_user_group_list',);
+                            }
 
-                        // admin_sonata_media_media_batch
-                        if ($pathinfo === '/admin/sonata/media/media/batch') {
-                            return array (  '_controller' => 'Sonata\\MediaBundle\\Controller\\MediaAdminController::batchAction',  '_sonata_admin' => 'sonata.media.admin.media',  '_sonata_name' => 'admin_sonata_media_media_batch',  '_route' => 'admin_sonata_media_media_batch',);
-                        }
+                            // admin_sonata_user_group_create
+                            if ($pathinfo === '/admin/sonata/user/group/create') {
+                                return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::createAction',  '_sonata_admin' => 'sonata.user.admin.group',  '_sonata_name' => 'admin_sonata_user_group_create',  '_route' => 'admin_sonata_user_group_create',);
+                            }
 
-                        // admin_sonata_media_media_edit
-                        if (preg_match('#^/admin/sonata/media/media/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
-                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_sonata_media_media_edit')), array (  '_controller' => 'Sonata\\MediaBundle\\Controller\\MediaAdminController::editAction',  '_sonata_admin' => 'sonata.media.admin.media',  '_sonata_name' => 'admin_sonata_media_media_edit',));
-                        }
+                            // admin_sonata_user_group_batch
+                            if ($pathinfo === '/admin/sonata/user/group/batch') {
+                                return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::batchAction',  '_sonata_admin' => 'sonata.user.admin.group',  '_sonata_name' => 'admin_sonata_user_group_batch',  '_route' => 'admin_sonata_user_group_batch',);
+                            }
 
-                        // admin_sonata_media_media_delete
-                        if (preg_match('#^/admin/sonata/media/media/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
-                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_sonata_media_media_delete')), array (  '_controller' => 'Sonata\\MediaBundle\\Controller\\MediaAdminController::deleteAction',  '_sonata_admin' => 'sonata.media.admin.media',  '_sonata_name' => 'admin_sonata_media_media_delete',));
-                        }
+                            // admin_sonata_user_group_edit
+                            if (preg_match('#^/admin/sonata/user/group/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                                return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_sonata_user_group_edit')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::editAction',  '_sonata_admin' => 'sonata.user.admin.group',  '_sonata_name' => 'admin_sonata_user_group_edit',));
+                            }
 
-                        // admin_sonata_media_media_show
-                        if (preg_match('#^/admin/sonata/media/media/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
-                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_sonata_media_media_show')), array (  '_controller' => 'Sonata\\MediaBundle\\Controller\\MediaAdminController::showAction',  '_sonata_admin' => 'sonata.media.admin.media',  '_sonata_name' => 'admin_sonata_media_media_show',));
-                        }
+                            // admin_sonata_user_group_delete
+                            if (preg_match('#^/admin/sonata/user/group/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
+                                return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_sonata_user_group_delete')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::deleteAction',  '_sonata_admin' => 'sonata.user.admin.group',  '_sonata_name' => 'admin_sonata_user_group_delete',));
+                            }
 
-                        // admin_sonata_media_media_export
-                        if ($pathinfo === '/admin/sonata/media/media/export') {
-                            return array (  '_controller' => 'Sonata\\MediaBundle\\Controller\\MediaAdminController::exportAction',  '_sonata_admin' => 'sonata.media.admin.media',  '_sonata_name' => 'admin_sonata_media_media_export',  '_route' => 'admin_sonata_media_media_export',);
-                        }
+                            // admin_sonata_user_group_show
+                            if (preg_match('#^/admin/sonata/user/group/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
+                                return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_sonata_user_group_show')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::showAction',  '_sonata_admin' => 'sonata.user.admin.group',  '_sonata_name' => 'admin_sonata_user_group_show',));
+                            }
 
-                        // admin_sonata_media_media_acl
-                        if (preg_match('#^/admin/sonata/media/media/(?P<id>[^/]++)/acl$#s', $pathinfo, $matches)) {
-                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_sonata_media_media_acl')), array (  '_controller' => 'Sonata\\MediaBundle\\Controller\\MediaAdminController::aclAction',  '_sonata_admin' => 'sonata.media.admin.media',  '_sonata_name' => 'admin_sonata_media_media_acl',));
+                            // admin_sonata_user_group_export
+                            if ($pathinfo === '/admin/sonata/user/group/export') {
+                                return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::exportAction',  '_sonata_admin' => 'sonata.user.admin.group',  '_sonata_name' => 'admin_sonata_user_group_export',  '_route' => 'admin_sonata_user_group_export',);
+                            }
+
+                            // admin_sonata_user_group_acl
+                            if (preg_match('#^/admin/sonata/user/group/(?P<id>[^/]++)/acl$#s', $pathinfo, $matches)) {
+                                return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_sonata_user_group_acl')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::aclAction',  '_sonata_admin' => 'sonata.user.admin.group',  '_sonata_name' => 'admin_sonata_user_group_acl',));
+                            }
+
                         }
 
                     }
 
-                    if (0 === strpos($pathinfo, '/admin/sonata/media/gallery')) {
-                        // admin_sonata_media_gallery_list
-                        if ($pathinfo === '/admin/sonata/media/gallery/list') {
-                            return array (  '_controller' => 'Sonata\\MediaBundle\\Controller\\GalleryAdminController::listAction',  '_sonata_admin' => 'sonata.media.admin.gallery',  '_sonata_name' => 'admin_sonata_media_gallery_list',  '_route' => 'admin_sonata_media_gallery_list',);
-                        }
-
-                        // admin_sonata_media_gallery_create
-                        if ($pathinfo === '/admin/sonata/media/gallery/create') {
-                            return array (  '_controller' => 'Sonata\\MediaBundle\\Controller\\GalleryAdminController::createAction',  '_sonata_admin' => 'sonata.media.admin.gallery',  '_sonata_name' => 'admin_sonata_media_gallery_create',  '_route' => 'admin_sonata_media_gallery_create',);
-                        }
-
-                        // admin_sonata_media_gallery_batch
-                        if ($pathinfo === '/admin/sonata/media/gallery/batch') {
-                            return array (  '_controller' => 'Sonata\\MediaBundle\\Controller\\GalleryAdminController::batchAction',  '_sonata_admin' => 'sonata.media.admin.gallery',  '_sonata_name' => 'admin_sonata_media_gallery_batch',  '_route' => 'admin_sonata_media_gallery_batch',);
-                        }
-
-                        // admin_sonata_media_gallery_edit
-                        if (preg_match('#^/admin/sonata/media/gallery/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
-                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_sonata_media_gallery_edit')), array (  '_controller' => 'Sonata\\MediaBundle\\Controller\\GalleryAdminController::editAction',  '_sonata_admin' => 'sonata.media.admin.gallery',  '_sonata_name' => 'admin_sonata_media_gallery_edit',));
-                        }
-
-                        // admin_sonata_media_gallery_delete
-                        if (preg_match('#^/admin/sonata/media/gallery/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
-                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_sonata_media_gallery_delete')), array (  '_controller' => 'Sonata\\MediaBundle\\Controller\\GalleryAdminController::deleteAction',  '_sonata_admin' => 'sonata.media.admin.gallery',  '_sonata_name' => 'admin_sonata_media_gallery_delete',));
-                        }
-
-                        // admin_sonata_media_gallery_show
-                        if (preg_match('#^/admin/sonata/media/gallery/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
-                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_sonata_media_gallery_show')), array (  '_controller' => 'Sonata\\MediaBundle\\Controller\\GalleryAdminController::showAction',  '_sonata_admin' => 'sonata.media.admin.gallery',  '_sonata_name' => 'admin_sonata_media_gallery_show',));
-                        }
-
-                        // admin_sonata_media_gallery_export
-                        if ($pathinfo === '/admin/sonata/media/gallery/export') {
-                            return array (  '_controller' => 'Sonata\\MediaBundle\\Controller\\GalleryAdminController::exportAction',  '_sonata_admin' => 'sonata.media.admin.gallery',  '_sonata_name' => 'admin_sonata_media_gallery_export',  '_route' => 'admin_sonata_media_gallery_export',);
-                        }
-
-                        // admin_sonata_media_gallery_acl
-                        if (preg_match('#^/admin/sonata/media/gallery/(?P<id>[^/]++)/acl$#s', $pathinfo, $matches)) {
-                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_sonata_media_gallery_acl')), array (  '_controller' => 'Sonata\\MediaBundle\\Controller\\GalleryAdminController::aclAction',  '_sonata_admin' => 'sonata.media.admin.gallery',  '_sonata_name' => 'admin_sonata_media_gallery_acl',));
-                        }
-
-                        if (0 === strpos($pathinfo, '/admin/sonata/media/galleryhasmedia')) {
-                            // admin_sonata_media_galleryhasmedia_list
-                            if ($pathinfo === '/admin/sonata/media/galleryhasmedia/list') {
-                                return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::listAction',  '_sonata_admin' => 'sonata.media.admin.gallery_has_media',  '_sonata_name' => 'admin_sonata_media_galleryhasmedia_list',  '_route' => 'admin_sonata_media_galleryhasmedia_list',);
+                    if (0 === strpos($pathinfo, '/admin/sonata/media')) {
+                        if (0 === strpos($pathinfo, '/admin/sonata/media/media')) {
+                            // admin_sonata_media_media_list
+                            if ($pathinfo === '/admin/sonata/media/media/list') {
+                                return array (  '_controller' => 'Sonata\\MediaBundle\\Controller\\MediaAdminController::listAction',  '_sonata_admin' => 'sonata.media.admin.media',  '_sonata_name' => 'admin_sonata_media_media_list',  '_route' => 'admin_sonata_media_media_list',);
                             }
 
-                            // admin_sonata_media_galleryhasmedia_create
-                            if ($pathinfo === '/admin/sonata/media/galleryhasmedia/create') {
-                                return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::createAction',  '_sonata_admin' => 'sonata.media.admin.gallery_has_media',  '_sonata_name' => 'admin_sonata_media_galleryhasmedia_create',  '_route' => 'admin_sonata_media_galleryhasmedia_create',);
+                            // admin_sonata_media_media_create
+                            if ($pathinfo === '/admin/sonata/media/media/create') {
+                                return array (  '_controller' => 'Sonata\\MediaBundle\\Controller\\MediaAdminController::createAction',  '_sonata_admin' => 'sonata.media.admin.media',  '_sonata_name' => 'admin_sonata_media_media_create',  '_route' => 'admin_sonata_media_media_create',);
                             }
 
-                            // admin_sonata_media_galleryhasmedia_batch
-                            if ($pathinfo === '/admin/sonata/media/galleryhasmedia/batch') {
-                                return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::batchAction',  '_sonata_admin' => 'sonata.media.admin.gallery_has_media',  '_sonata_name' => 'admin_sonata_media_galleryhasmedia_batch',  '_route' => 'admin_sonata_media_galleryhasmedia_batch',);
+                            // admin_sonata_media_media_batch
+                            if ($pathinfo === '/admin/sonata/media/media/batch') {
+                                return array (  '_controller' => 'Sonata\\MediaBundle\\Controller\\MediaAdminController::batchAction',  '_sonata_admin' => 'sonata.media.admin.media',  '_sonata_name' => 'admin_sonata_media_media_batch',  '_route' => 'admin_sonata_media_media_batch',);
                             }
 
-                            // admin_sonata_media_galleryhasmedia_edit
-                            if (preg_match('#^/admin/sonata/media/galleryhasmedia/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
-                                return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_sonata_media_galleryhasmedia_edit')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::editAction',  '_sonata_admin' => 'sonata.media.admin.gallery_has_media',  '_sonata_name' => 'admin_sonata_media_galleryhasmedia_edit',));
+                            // admin_sonata_media_media_edit
+                            if (preg_match('#^/admin/sonata/media/media/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                                return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_sonata_media_media_edit')), array (  '_controller' => 'Sonata\\MediaBundle\\Controller\\MediaAdminController::editAction',  '_sonata_admin' => 'sonata.media.admin.media',  '_sonata_name' => 'admin_sonata_media_media_edit',));
                             }
 
-                            // admin_sonata_media_galleryhasmedia_delete
-                            if (preg_match('#^/admin/sonata/media/galleryhasmedia/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
-                                return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_sonata_media_galleryhasmedia_delete')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::deleteAction',  '_sonata_admin' => 'sonata.media.admin.gallery_has_media',  '_sonata_name' => 'admin_sonata_media_galleryhasmedia_delete',));
+                            // admin_sonata_media_media_delete
+                            if (preg_match('#^/admin/sonata/media/media/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
+                                return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_sonata_media_media_delete')), array (  '_controller' => 'Sonata\\MediaBundle\\Controller\\MediaAdminController::deleteAction',  '_sonata_admin' => 'sonata.media.admin.media',  '_sonata_name' => 'admin_sonata_media_media_delete',));
                             }
 
-                            // admin_sonata_media_galleryhasmedia_show
-                            if (preg_match('#^/admin/sonata/media/galleryhasmedia/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
-                                return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_sonata_media_galleryhasmedia_show')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::showAction',  '_sonata_admin' => 'sonata.media.admin.gallery_has_media',  '_sonata_name' => 'admin_sonata_media_galleryhasmedia_show',));
+                            // admin_sonata_media_media_show
+                            if (preg_match('#^/admin/sonata/media/media/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
+                                return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_sonata_media_media_show')), array (  '_controller' => 'Sonata\\MediaBundle\\Controller\\MediaAdminController::showAction',  '_sonata_admin' => 'sonata.media.admin.media',  '_sonata_name' => 'admin_sonata_media_media_show',));
                             }
 
-                            // admin_sonata_media_galleryhasmedia_export
-                            if ($pathinfo === '/admin/sonata/media/galleryhasmedia/export') {
-                                return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::exportAction',  '_sonata_admin' => 'sonata.media.admin.gallery_has_media',  '_sonata_name' => 'admin_sonata_media_galleryhasmedia_export',  '_route' => 'admin_sonata_media_galleryhasmedia_export',);
+                            // admin_sonata_media_media_export
+                            if ($pathinfo === '/admin/sonata/media/media/export') {
+                                return array (  '_controller' => 'Sonata\\MediaBundle\\Controller\\MediaAdminController::exportAction',  '_sonata_admin' => 'sonata.media.admin.media',  '_sonata_name' => 'admin_sonata_media_media_export',  '_route' => 'admin_sonata_media_media_export',);
                             }
 
-                            // admin_sonata_media_galleryhasmedia_acl
-                            if (preg_match('#^/admin/sonata/media/galleryhasmedia/(?P<id>[^/]++)/acl$#s', $pathinfo, $matches)) {
-                                return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_sonata_media_galleryhasmedia_acl')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::aclAction',  '_sonata_admin' => 'sonata.media.admin.gallery_has_media',  '_sonata_name' => 'admin_sonata_media_galleryhasmedia_acl',));
+                            // admin_sonata_media_media_acl
+                            if (preg_match('#^/admin/sonata/media/media/(?P<id>[^/]++)/acl$#s', $pathinfo, $matches)) {
+                                return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_sonata_media_media_acl')), array (  '_controller' => 'Sonata\\MediaBundle\\Controller\\MediaAdminController::aclAction',  '_sonata_admin' => 'sonata.media.admin.media',  '_sonata_name' => 'admin_sonata_media_media_acl',));
+                            }
+
+                        }
+
+                        if (0 === strpos($pathinfo, '/admin/sonata/media/gallery')) {
+                            // admin_sonata_media_gallery_list
+                            if ($pathinfo === '/admin/sonata/media/gallery/list') {
+                                return array (  '_controller' => 'Sonata\\MediaBundle\\Controller\\GalleryAdminController::listAction',  '_sonata_admin' => 'sonata.media.admin.gallery',  '_sonata_name' => 'admin_sonata_media_gallery_list',  '_route' => 'admin_sonata_media_gallery_list',);
+                            }
+
+                            // admin_sonata_media_gallery_create
+                            if ($pathinfo === '/admin/sonata/media/gallery/create') {
+                                return array (  '_controller' => 'Sonata\\MediaBundle\\Controller\\GalleryAdminController::createAction',  '_sonata_admin' => 'sonata.media.admin.gallery',  '_sonata_name' => 'admin_sonata_media_gallery_create',  '_route' => 'admin_sonata_media_gallery_create',);
+                            }
+
+                            // admin_sonata_media_gallery_batch
+                            if ($pathinfo === '/admin/sonata/media/gallery/batch') {
+                                return array (  '_controller' => 'Sonata\\MediaBundle\\Controller\\GalleryAdminController::batchAction',  '_sonata_admin' => 'sonata.media.admin.gallery',  '_sonata_name' => 'admin_sonata_media_gallery_batch',  '_route' => 'admin_sonata_media_gallery_batch',);
+                            }
+
+                            // admin_sonata_media_gallery_edit
+                            if (preg_match('#^/admin/sonata/media/gallery/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                                return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_sonata_media_gallery_edit')), array (  '_controller' => 'Sonata\\MediaBundle\\Controller\\GalleryAdminController::editAction',  '_sonata_admin' => 'sonata.media.admin.gallery',  '_sonata_name' => 'admin_sonata_media_gallery_edit',));
+                            }
+
+                            // admin_sonata_media_gallery_delete
+                            if (preg_match('#^/admin/sonata/media/gallery/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
+                                return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_sonata_media_gallery_delete')), array (  '_controller' => 'Sonata\\MediaBundle\\Controller\\GalleryAdminController::deleteAction',  '_sonata_admin' => 'sonata.media.admin.gallery',  '_sonata_name' => 'admin_sonata_media_gallery_delete',));
+                            }
+
+                            // admin_sonata_media_gallery_show
+                            if (preg_match('#^/admin/sonata/media/gallery/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
+                                return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_sonata_media_gallery_show')), array (  '_controller' => 'Sonata\\MediaBundle\\Controller\\GalleryAdminController::showAction',  '_sonata_admin' => 'sonata.media.admin.gallery',  '_sonata_name' => 'admin_sonata_media_gallery_show',));
+                            }
+
+                            // admin_sonata_media_gallery_export
+                            if ($pathinfo === '/admin/sonata/media/gallery/export') {
+                                return array (  '_controller' => 'Sonata\\MediaBundle\\Controller\\GalleryAdminController::exportAction',  '_sonata_admin' => 'sonata.media.admin.gallery',  '_sonata_name' => 'admin_sonata_media_gallery_export',  '_route' => 'admin_sonata_media_gallery_export',);
+                            }
+
+                            // admin_sonata_media_gallery_acl
+                            if (preg_match('#^/admin/sonata/media/gallery/(?P<id>[^/]++)/acl$#s', $pathinfo, $matches)) {
+                                return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_sonata_media_gallery_acl')), array (  '_controller' => 'Sonata\\MediaBundle\\Controller\\GalleryAdminController::aclAction',  '_sonata_admin' => 'sonata.media.admin.gallery',  '_sonata_name' => 'admin_sonata_media_gallery_acl',));
+                            }
+
+                            if (0 === strpos($pathinfo, '/admin/sonata/media/galleryhasmedia')) {
+                                // admin_sonata_media_galleryhasmedia_list
+                                if ($pathinfo === '/admin/sonata/media/galleryhasmedia/list') {
+                                    return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::listAction',  '_sonata_admin' => 'sonata.media.admin.gallery_has_media',  '_sonata_name' => 'admin_sonata_media_galleryhasmedia_list',  '_route' => 'admin_sonata_media_galleryhasmedia_list',);
+                                }
+
+                                // admin_sonata_media_galleryhasmedia_create
+                                if ($pathinfo === '/admin/sonata/media/galleryhasmedia/create') {
+                                    return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::createAction',  '_sonata_admin' => 'sonata.media.admin.gallery_has_media',  '_sonata_name' => 'admin_sonata_media_galleryhasmedia_create',  '_route' => 'admin_sonata_media_galleryhasmedia_create',);
+                                }
+
+                                // admin_sonata_media_galleryhasmedia_batch
+                                if ($pathinfo === '/admin/sonata/media/galleryhasmedia/batch') {
+                                    return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::batchAction',  '_sonata_admin' => 'sonata.media.admin.gallery_has_media',  '_sonata_name' => 'admin_sonata_media_galleryhasmedia_batch',  '_route' => 'admin_sonata_media_galleryhasmedia_batch',);
+                                }
+
+                                // admin_sonata_media_galleryhasmedia_edit
+                                if (preg_match('#^/admin/sonata/media/galleryhasmedia/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_sonata_media_galleryhasmedia_edit')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::editAction',  '_sonata_admin' => 'sonata.media.admin.gallery_has_media',  '_sonata_name' => 'admin_sonata_media_galleryhasmedia_edit',));
+                                }
+
+                                // admin_sonata_media_galleryhasmedia_delete
+                                if (preg_match('#^/admin/sonata/media/galleryhasmedia/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
+                                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_sonata_media_galleryhasmedia_delete')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::deleteAction',  '_sonata_admin' => 'sonata.media.admin.gallery_has_media',  '_sonata_name' => 'admin_sonata_media_galleryhasmedia_delete',));
+                                }
+
+                                // admin_sonata_media_galleryhasmedia_show
+                                if (preg_match('#^/admin/sonata/media/galleryhasmedia/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
+                                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_sonata_media_galleryhasmedia_show')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::showAction',  '_sonata_admin' => 'sonata.media.admin.gallery_has_media',  '_sonata_name' => 'admin_sonata_media_galleryhasmedia_show',));
+                                }
+
+                                // admin_sonata_media_galleryhasmedia_export
+                                if ($pathinfo === '/admin/sonata/media/galleryhasmedia/export') {
+                                    return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::exportAction',  '_sonata_admin' => 'sonata.media.admin.gallery_has_media',  '_sonata_name' => 'admin_sonata_media_galleryhasmedia_export',  '_route' => 'admin_sonata_media_galleryhasmedia_export',);
+                                }
+
+                                // admin_sonata_media_galleryhasmedia_acl
+                                if (preg_match('#^/admin/sonata/media/galleryhasmedia/(?P<id>[^/]++)/acl$#s', $pathinfo, $matches)) {
+                                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_sonata_media_galleryhasmedia_acl')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::aclAction',  '_sonata_admin' => 'sonata.media.admin.gallery_has_media',  '_sonata_name' => 'admin_sonata_media_galleryhasmedia_acl',));
+                                }
+
                             }
 
                         }

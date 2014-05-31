@@ -33,7 +33,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ ]
+    bundles:        [ "FOSCommentBundle" ]
     #java: /usr/bin/java
     filters:
         less:
@@ -267,3 +267,13 @@ sonata_media:
     providers:
         image:
             resizer: sonata.media.resizer.square
+
+fos_comment:
+    db_driver: orm
+    class:
+        model:
+            comment: Mischiros\TiendaBundle\Entity\Comment
+            thread: Mischiros\TiendaBundle\Entity\Thread
+
+iga_rss:
+    file: %kernel.root_dir%/../vendor/rssphp/rss.php

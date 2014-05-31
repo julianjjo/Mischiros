@@ -1,0 +1,3 @@
+noticias:
+    pattern:  /noticias
+    defaults: { _controller: IgaRssBundle:Rss:noticias }

@@ -31,7 +31,8 @@
                     <ul class="nav navbar-nav">
                         {% block barradenavegacion %}
                             <li class="active"><a href="{{ path('home')}}">Home</a></li>
-                            <li><a href="{{ path('listarportipo',{ 'tipo' : 1 }) }}">Comprar</a></li>
+                            <li><a href="{{ path('listarportipo',{ 'tipo' : 1 }) }}">Comprar</a></li>                            
+                            <li><a href="{{ path('noticias')}}">Noticias</a></li>
                             <li><a href="{{ path('contactenos')}}">Contactenos</a></li>
                         {% endblock %}
                     </ul>

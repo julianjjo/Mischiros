@@ -1,5 +1,5 @@
 <?php
-// src/Mischiros/TiendaBundle/Entity/Ingreso.php
+// src/Mischiros/TiendaBundle/Entity/Thread.php
 namespace Mischiros\TiendaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
