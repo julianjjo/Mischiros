@@ -36,6 +36,7 @@ class AppKernel extends Kernel
             new FOS\CommentBundle\FOSCommentBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle($this),
             new Iga\RssBundle\IgaRssBundle(),
+            new Mischiros\ForoBundle\MischirosForoBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

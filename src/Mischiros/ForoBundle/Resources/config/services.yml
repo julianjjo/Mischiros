@@ -1,0 +1,7 @@
+parameters:
+#    mischiros_foro.example.class: Mischiros\ForoBundle\Example
+
+services:
+#    mischiros_foro.example:
+#        class: %mischiros_foro.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
